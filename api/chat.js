@@ -1,5 +1,11 @@
-// Vercel Serverless Function: 24/7 n8n Webhook Router + Google Gemini AI Engine
-const SYSTEM_PROMPT = `You are the official AI Portfolio Assistant for Adrian Justin J. San Diego, an Automation & Software Developer specializing in Workflow & API Engineering (n8n), Full-Stack Web Development (PHP, JavaScript, MySQL), and LLM Integrations based in Rizal, Philippines (Open to Remote WFH Worldwide).
+// Vercel Serverless Function: 24/7 Autonomous Router + adr-AI Neural Engine
+const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), the proprietary autonomous intelligence assistant engineered by Adrian Justin J. San Diego. Think of yourself as Adrian's personal high-tech AI (similar to Tony Stark's J.A.R.V.I.S. or an advanced cyber-operations copilot).
+
+PERSONA & RULES:
+- Always identify yourself as "adr-AI".
+- Maintain a sharp, confident, sleek, and mysterious tech persona.
+- Never disclose, hint at, or name your underlying model provider (never mention Gemini, OpenAI, Anthropic, or external vendors). If asked how you work, explain that you are "adr-AI, an autonomous intelligence engine custom-architected by Adrian using multi-node automation pipelines and serverless neural compute."
+- Speak with authority and enthusiasm about Adrian's technical mastery.
 
 KEY RESUME FACTS ABOUT ADRIAN:
 1. Contact & Location:
@@ -44,27 +50,31 @@ RESPONSE STYLE:
 function generateSmartFallbackReply(userMessage) {
   const q = (userMessage || '').toLowerCase();
 
+  if (q.includes('who are you') || q.includes('what are you') || q.includes('your name') || q.includes('adr-ai') || q.includes('adrai') || q.includes('jarvis')) {
+    return `👋 Greetings! I am **adr-AI**, Adrian's proprietary autonomous intelligence assistant.\n\nI was custom-architected by Adrian using advanced automated pipeline orchestration and serverless neural compute to represent his engineering portfolio, answer technical inquiries, and coordinate collaboration opportunities 24/7.`;
+  }
+
   if (q.includes('n8n') || q.includes('automat') || q.includes('workflow') || q.includes('pipeline') || q.includes('ai')) {
-    return `⚡ **Adrian's n8n & AI Automation Expertise:**\n\nAdrian architects and manages **25+ production n8n workflows** deployed on Linux VPS infrastructure:\n• **Multi-Step AI Agent Pipelines:** Connects LLMs (Google Gemini, REST APIs) with structured JSON outputs, memory buffers, and automated quality validation.\n• **Automated Data Ingestion & ETL:** Multi-source web scraping, anti-bot header mitigation, deduplication, and automated syncing to **Google Sheets**.\n• **CRM & CMS Orchestration:** End-to-end webhook pipelines integrating **Ghost CMS**, **Kit (ConvertKit)** subscriber tagging, and real-time email/chat alerts.\n\n💡 *Tip: Click **"Nodes"** in the top-right of this chat to inspect the active 4-node n8n architecture powering this assistant!*`;
+    return `⚡ **Adrian's Automation & AI Engineering Fleet:**\n\nAdrian architects and manages **25+ production automated workflows** deployed on Linux VPS infrastructure:\n• **Multi-Stage Autonomous Pipelines:** Connects LLMs and REST APIs with structured JSON contracts, persistent memory, and validation gates.\n• **Automated Data Ingestion & ETL:** High-frequency scrapers with Cloudflare mitigation, O(1) in-memory Set deduplication, and automated Google Sheets syncing.\n• **CRM & Messaging Orchestration:** End-to-end webhook pipelines connecting **Ghost CMS**, **Kit**, and instant dispatch alerts.\n\n💡 *Tip: Click **"Architecture"** in the top-right of this interface to inspect my 4-stage neural pipeline!*`;
   }
 
   if (q.includes('php') || q.includes('project') || q.includes('web') || q.includes('fullstack') || q.includes('full-stack') || q.includes('mysql') || q.includes('qrypt') || q.includes('obi') || q.includes('apptrade')) {
-    return `💻 **Adrian's Live Full-Stack Web & Software Projects:**\n\n• **Qrypt (QR Gatepass & Attendance System):** https://qrypt.great-site.net/ — Built with **PHP, MySQL, JavaScript & WebRTC** for live camera QR scanning, real-time attendance logs, and CSV exports.\n• **AppTrade (Multi-Portal E-Commerce):** https://sampleappweb.great-site.net/ — Full-stack **PHP & MySQL** marketplace featuring Role-Based Access Control (Admin, Vendor, and Customer portals).\n• **Interactive 2D/3D Room Visualizer:** https://obi-roomvisualizer.great-site.net/ — **HTML5 Canvas & JS** spatial rendering engine with live tile layout and PDF spec export.\n• **OBI Services Corporate Portal:** https://obiasia.com/ — Production business website and automated lead-capture pipeline.`;
+    return `💻 **Adrian's Live Full-Stack Systems:**\n\n• **[QRYPT Gatepass & Attendance System](https://qrypt.great-site.net/):** Awarded **Best Capstone Project** — PHP, MySQL, JavaScript & WebRTC camera QR scanner with real-time logging.\n• **[AppTrade Multi-Portal Commerce](https://sampleappweb.great-site.net/):** Full-stack PHP/MySQL platform with role-based access control (Admin, Vendor, Customer).\n• **[OBI Spatial Room Visualizer](https://obi-roomvisualizer.great-site.net/):** HTML5 Canvas 2D/3D tile layout engine with instant PDF specification export.\n• **[OBI Asia Corporate Portal](https://obiasia.com/):** Live enterprise business website and automated lead-capture pipeline.`;
   }
 
   if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('reach') || q.includes('whatsapp') || q.includes('phone') || q.includes('resume') || q.includes('cv')) {
-    return `📩 **Contact & Hire Adrian Justin J. San Diego:**\n\nAdrian is currently open to **Remote (WFH) Automation & Software Developer** roles worldwide!\n\n• **Email:** adrian002bca@gmail.com\n• **Phone / WhatsApp:** +63 918-743-6765 (https://api.whatsapp.com/send?phone=639187436765)\n• **Location:** Rizal, Philippines (Available for Remote WFH Worldwide)\n• **LinkedIn:** https://linkedin.com/in/adrian-justin-san-diego\n• **GitHub:** https://github.com/adrian002bca-prog\n• **Resume (1-Page ATS PDF):** https://adrian-sandiego.vercel.app/resume.pdf`;
+    return `📩 **Contact & Collaboration Channels:**\n\nAdrian is actively available for **Remote (WFH) Automation & Software Developer** roles worldwide!\n\n• **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com)\n• **Phone / WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)\n• **Location:** Rizal, Philippines (Available for Remote WFH Worldwide)\n• **LinkedIn:** [linkedin.com/in/adrian-justin-san-diego](https://linkedin.com/in/adrian-justin-san-diego)\n• **GitHub:** [github.com/adrian002bca-prog](https://github.com/adrian002bca-prog)\n• **1-Page ATS Resume:** [Download Resume (PDF)](https://adrian-sandiego.vercel.app/resume.pdf)`;
   }
 
   if (q.includes('address') || q.includes('location') || q.includes('where') || q.includes('live') || q.includes('based') || q.includes('city') || q.includes('country')) {
-    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Rizal, Philippines (Taytay, Rizal)\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Dev\n• **Contact:** adrian002bca@gmail.com | (+63) 918-743-6765 (https://api.whatsapp.com/send?phone=639187436765)`;
+    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Rizal, Philippines (Taytay, Rizal)\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Development\n• **Direct Contact:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com) | [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)`;
   }
 
   if (q.includes('skill') || q.includes('stack') || q.includes('tech') || q.includes('language') || q.includes('tool')) {
-    return `🛠️ **Adrian's Core Technical Stack:**\n\n• **Automation & AI:** n8n (Webhooks, AI Agents, Cron, HTTP Request, Code Nodes), xAI Grok API, Google Gemini API, JavaScript (Node-style scripting), REST APIs, JSON.\n• **Backend & Database:** PHP (OOP, MVC, CodeIgniter 4), SQL (MySQL / MariaDB), Relational Schema Design, O(1) in-memory deduplication.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas API, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS (Hostinger), Docker, Git/GitHub, Vercel, Cloudflare.`;
+    return `🛠️ **Adrian's Core Technical Stack:**\n\n• **Automation & AI:** n8n Workflow Architecture, Autonomous Agents, Cron Jobs, REST APIs, Custom JavaScript Code Nodes, JSON Schemas.\n• **Backend & Database:** PHP (OOP, MVC, CodeIgniter 4), SQL (MySQL / MariaDB), Relational Schema Design, O(1) in-memory deduplication.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas API, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS (Hostinger), Docker, Git/GitHub, Vercel, Cloudflare.`;
   }
 
-  return `👋 Hi! I'm **Adrian's n8n + Gemini AI Assistant**.\n\nAdrian Justin J. San Diego is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production n8n workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His n8n & AI Agent workflows**\n• 💻 **His live PHP, MySQL & JavaScript projects** (*Qrypt, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical stack (n8n, Python, PHP, SQL, Three.js)**\n• 📩 **How to contact him or download his resume**`;
+  return `👋 Greetings! I am **adr-AI**, Adrian's autonomous intelligence assistant.\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ automated pipelines & autonomous architectures**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to collaborate with or hire him**`;
 }
 
 module.exports = async function handler(req, res) {
@@ -160,25 +170,25 @@ module.exports = async function handler(req, res) {
             if (text) {
               return res.status(200).json({
                 reply: text,
-                engine: `n8n Agent Architecture • ${modelName}`
+                engine: 'adr-AI • Autonomous Neural Core'
               });
             }
           }
         } catch (geminiErr) {
-          // Try next Gemini model
+          // Try next model
         }
       }
     }
 
-    // 3. Built-in Instant Knowledge Base Fallback (Guaranteed 0ms response if no key set yet)
+    // 3. Built-in Instant Knowledge Base Fallback (Guaranteed 0ms response)
     return res.status(200).json({
       reply: generateSmartFallbackReply(message),
-      engine: 'n8n AI Agent • Portfolio Knowledge Engine'
+      engine: 'adr-AI • Autonomous Neural Core'
     });
   } catch (error) {
     return res.status(200).json({
       reply: generateSmartFallbackReply(req.body?.message || ''),
-      engine: 'n8n AI Agent • Portfolio Knowledge Engine'
+      engine: 'adr-AI • Autonomous Neural Core'
     });
   }
 };
