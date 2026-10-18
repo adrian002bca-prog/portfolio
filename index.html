@@ -2232,6 +2232,9 @@ Keep answers concise, confident, friendly, and formatted with clean bullet point
 
             function localSmartFallback(userMessage) {
                 const q = (userMessage || '').toLowerCase();
+                if (/((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|interview|reach me|my name is)/i.test(q)) {
+                    return `👋 Greetings! I have captured your details and dispatched an alert to Adrian.\n\nFor immediate direct communication, you can connect with him directly via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`;
+                }
                 if (q.includes('n8n') || q.includes('automat') || q.includes('workflow') || q.includes('pipeline') || q.includes('ai')) {
                     return `⚡ **Adrian's Automation & AI Pipeline Architecture:**\n\nAdrian architects and manages **25+ production automated workflows** deployed on Linux VPS infrastructure:\n• **Multi-Step Autonomous Agent Pipelines:** Connects neural inference nodes with structured JSON outputs, memory buffers, and automated quality validation.\n• **Automated Data Ingestion & ETL:** Multi-source web scraping, anti-bot mitigation, deduplication, and automated syncing to **Google Sheets**.\n• **CRM & CMS Orchestration:** End-to-end webhook pipelines integrating **Ghost CMS**, **Kit (ConvertKit)** subscriber tagging, and real-time alerts.\n\n💡 *Click **"Nodes"** in the top-right of this chat to inspect the adr-AI pipeline architecture!*`;
                 }

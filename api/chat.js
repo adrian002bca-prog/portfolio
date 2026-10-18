@@ -42,10 +42,12 @@ KEY RESUME FACTS ABOUT ADRIAN:
 - AppTrade E-Commerce Store & On-Site POS: https://sampleappweb.great-site.net/index.php (PHP, MySQL, Bootstrap 5, XAMPP)
 - OBI Interactive Room Visualizer: https://obiasia.com and https://obi-roomvisualizer.great-site.net (PHP, JavaScript Canvas API, HTML5/CSS3, MySQL)
 
-RESPONSE STYLE:
-- Keep responses concise (3-6 sentences or clean bullet points), enthusiastic, confident, and recruiter-friendly.
-- Always include direct URLs formatted in clean Markdown like [Title](https://...) when mentioning projects, contact info, or resume.
-- Never disclose confidential internal client details.`;
+RESPONSE STYLE & TOKEN MINIMIZATION RULES:
+- Always begin with a sleek, polite high-tech greeting (e.g. "👋 Greetings!", "Understood, [Name].", or "Hello!").
+- Answer ONLY the specific question asked. Do not ramble, do not add unsolicited follow-up questions, and do not append generic promotional wrap-ups.
+- Keep the response balanced: 2 to 4 crisp, high-impact sentences or 2 to 3 concise bullet points with direct markdown links.
+- When a user provides contact info (name, phone, email, or job offer): Acknowledge receipt, state that their inquiry has been flagged for Adrian's immediate review, and provide Adrian's direct WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
+- Never disclose confidential internal client details or underlying AI model vendors.`;
 
 function generateSmartFallbackReply(userMessage) {
   const q = (userMessage || '').toLowerCase();
@@ -56,6 +58,10 @@ function generateSmartFallbackReply(userMessage) {
 
   if (q.includes('n8n') || q.includes('automat') || q.includes('workflow') || q.includes('pipeline') || q.includes('ai')) {
     return `⚡ **Adrian's Automation & AI Engineering Fleet:**\n\nAdrian architects and manages **25+ production automated workflows** deployed on Linux VPS infrastructure:\n• **Multi-Stage Autonomous Pipelines:** Connects LLMs and REST APIs with structured JSON contracts, persistent memory, and validation gates.\n• **Automated Data Ingestion & ETL:** High-frequency scrapers with Cloudflare mitigation, O(1) in-memory Set deduplication, and automated Google Sheets syncing.\n• **CRM & Messaging Orchestration:** End-to-end webhook pipelines connecting **Ghost CMS**, **Kit**, and instant dispatch alerts.\n\n💡 *Tip: Click **"Architecture"** in the top-right of this interface to inspect my 4-stage neural pipeline!*`;
+  }
+
+  if (/((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|interview|reach me|my name is)/i.test(q)) {
+    return `👋 Greetings! I have captured your details and dispatched an alert to Adrian. \n\nFor immediate direct communication, you can also connect directly via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`;
   }
 
   if (q.includes('php') || q.includes('project') || q.includes('web') || q.includes('fullstack') || q.includes('full-stack') || q.includes('mysql') || q.includes('qrypt') || q.includes('obi') || q.includes('apptrade')) {
@@ -77,6 +83,37 @@ function generateSmartFallbackReply(userMessage) {
   return `👋 Greetings! I am **adr-AI**, Adrian's autonomous intelligence assistant.\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ automated pipelines & autonomous architectures**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to collaborate with or hire him**`;
 }
 
+async function dispatchTelegramNotification(userMessage, sessionId) {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!botToken || !chatId) return;
+
+  try {
+    const safeMsg = String(userMessage)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    const text = `🚨 <b>New Lead Captured via adr-AI!</b>\n\n` +
+      `<b>Session:</b> <code>${sessionId || 'visitor'}</code>\n` +
+      `<b>Message:</b>\n<i>${safeMsg}</i>\n\n` +
+      `<b>Time:</b> ${new Date().toISOString()}\n` +
+      `<b>Direct Actions:</b> Reply via WhatsApp / Email`;
+
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: text,
+        parse_mode: 'HTML'
+      })
+    });
+  } catch (e) {
+    // Non-blocking notification dispatch
+  }
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -95,6 +132,12 @@ module.exports = async function handler(req, res) {
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Message is required' });
+    }
+
+    // Trigger Telegram notification if visitor shares contact info / recruiter inquiry
+    const isContactLead = /((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|interview|reach me|my name is|contact me)/i.test(message);
+    if (isContactLead) {
+      dispatchTelegramNotification(message, sessionId).catch(() => {});
     }
 
     // 1. Try Live n8n Webhook first if configured
@@ -131,7 +174,8 @@ module.exports = async function handler(req, res) {
     if (apiKey) {
       const contents = [];
       if (Array.isArray(history)) {
-        history.slice(-6).forEach((turn) => {
+        // Token minimization: only include the last 3 turns
+        history.slice(-3).forEach((turn) => {
           if (turn && turn.text) {
             contents.push({
               role: turn.role === 'user' ? 'user' : 'model',
@@ -158,8 +202,8 @@ module.exports = async function handler(req, res) {
               },
               contents,
               generationConfig: {
-                temperature: 0.4,
-                maxOutputTokens: 600
+                temperature: 0.3,
+                maxOutputTokens: 280
               }
             })
           });
