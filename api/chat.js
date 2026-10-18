@@ -56,6 +56,10 @@ function generateSmartFallbackReply(userMessage) {
     return `📩 **Contact & Hire Adrian Justin J. San Diego:**\n\nAdrian is currently open to **Remote (WFH) AI Automation (n8n)** and **Full-Stack Software/Web Developer** roles worldwide!\n\n• **Email:** adrian002bca@gmail.com\n• **WhatsApp / Phone:** https://api.whatsapp.com/send?phone=639352726487 (+63 935 272 6487)\n• **LinkedIn:** https://linkedin.com/in/adrian-justin-san-diego\n• **GitHub:** https://github.com/adrian002bca-prog\n• **Resume (1-Page ATS PDF):** https://adrian-sandiego.vercel.app/resume.pdf`;
   }
 
+  if (q.includes('address') || q.includes('location') || q.includes('where') || q.includes('live') || q.includes('based') || q.includes('city') || q.includes('country')) {
+    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Naic, Cavite, Philippines\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Dev\n• **Contact:** adrian002bca@gmail.com | +63 935 272 6487 (https://api.whatsapp.com/send?phone=639352726487)`;
+  }
+
   if (q.includes('skill') || q.includes('stack') || q.includes('tech') || q.includes('language') || q.includes('tool')) {
     return `🛠️ **Adrian's Core Technical Stack:**\n\n• **Automation & AI:** n8n (Webhooks, AI Agents, Cron, HTTP Request, Code Nodes), Google Gemini API, Python (BeautifulSoup4, Requests, Pandas), REST APIs.\n• **Backend & Database:** PHP 8+ (OOP, PDO), SQL (MySQL / MariaDB), Node.js, Relational Schema Design, RBAC Authentication.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS (Hostinger), Docker, Git/GitHub, Vercel, Cloudflare.`;
   }
@@ -103,7 +107,7 @@ module.exports = async function handler(req, res) {
           if (replyText) {
             return res.status(200).json({
               reply: replyText,
-              engine: 'n8n Webhook + Gemini 2.5 Flash (Live)'
+              engine: 'n8n Webhook + Gemini AI (Live)'
             });
           }
         }
@@ -131,7 +135,7 @@ module.exports = async function handler(req, res) {
         parts: [{ text: message }]
       });
 
-      const modelsToTry = ['gemini-2.5-flash', 'gemini-2.0-flash'];
+      const modelsToTry = ['gemini-flash-latest', 'gemini-3.8-flash', 'gemini-2.5-flash'];
       for (const modelName of modelsToTry) {
         try {
           const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
