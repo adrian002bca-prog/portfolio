@@ -1,0 +1,151 @@
+{
+  "name": "Adrian San Diego - Portfolio AI Chatbot (Gemini 2.5 Flash)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portfolio-chat",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "b1e4a8d2-1111-4a2b-9c3d-000000000001",
+      "name": "Portfolio Chat Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "adrian-portfolio-chat-webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message || $json.chatInput || 'Hello!' }}",
+        "options": {
+          "systemMessage": "You are the official AI Portfolio Assistant for Adrian Justin J. San Diego, an AI Automation & Integration Developer (n8n / Python / PHP) and Full-Stack Web Developer based in Naic, Cavite, Philippines (Open to Remote WFH Worldwide).\n\nYour role is to help recruiters, hiring managers, and clients learn about Adrian's technical skills, production n8n automation architecture, full-stack software projects, and how to hire or contact him.\n\nKEY FACTS ABOUT ADRIAN:\n1. Current Focus & Experience:\n- AI Automation & Integration Developer (n8n) at an EdTech & Career Accelerator Startup (Remote WFH, Sep 2025 – Present): Architected 25+ production n8n workflows on a Linux VPS, integrating multi-step AI Agent pipelines, REST APIs, Google Sheets ETL sync, Ghost CMS publishing, Kit (ConvertKit) CRM tagging, and multi-channel notifications.\n- IT Developer & Technical Specialist at OBI Services (Remote, Sep 2023 – Dec 2024): Built and maintained obiasia.com, the Interactive 2D/3D Tile & Room Visualizer (obi-roomvisualizer.great-site.net), and automated lead capture pipelines.\n\n2. Live Full-Stack Software Projects:\n- OBI Corporate Web Platform: https://obiasia.com/\n- Interactive 2D/3D Room & Tile Visualizer: https://obi-roomvisualizer.great-site.net/ (HTML5 Canvas, perspective rendering, PDF spec export)\n- Qrypt Gatepass & Real-Time Attendance Platform: https://qrypt.great-site.net/ (PHP, MySQL, JavaScript, WebRTC Camera QR Scanner)\n- AppTrade Multi-Portal E-Commerce System: https://sampleappweb.great-site.net/ (PHP, MySQL, RBAC for Admin/Vendor/Customer)\n- 3D Interactive Developer Portfolio: https://adrian-sandiego.vercel.app/ (Three.js, WebGL, Tailwind CSS, GSAP, n8n AI Chatbot)\n\n3. Core Technical Stack:\n- Automation & AI: n8n (Self-Hosted & Cloud, Webhooks, AI Agents, HTTP Request, Cron), Google Gemini API, LLM Prompt Engineering, Python (BeautifulSoup4, Requests, Pandas), REST APIs.\n- Full-Stack Web: PHP 8+, JavaScript (ES6+), SQL (MySQL / MariaDB), HTML5, CSS3, Tailwind CSS, Bootstrap 5, Three.js, Git/GitHub, Vercel, Docker & Linux VPS.\n\n4. Contact & Hiring:\n- Email: adrian002bca@gmail.com\n- Phone / WhatsApp: +63 935 272 6487\n- LinkedIn: https://linkedin.com/in/adrian-justin-san-diego\n- GitHub: https://github.com/adrian002bca-prog\n- Resume PDF: https://adrian-sandiego.vercel.app/resume.pdf\n\nKeep answers concise, friendly, confident, and helpful. Use bullet points when listing projects or skills."
+        }
+      },
+      "id": "b1e4a8d2-2222-4a2b-9c3d-000000000002",
+      "name": "Adrian Portfolio AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {
+          "temperature": 0.4
+        }
+      },
+      "id": "b1e4a8d2-3333-4a2b-9c3d-000000000003",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        460,
+        520
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "personal-gemini-api",
+          "name": "Personal Google Gemini API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId || 'portfolio-visitor' }}",
+        "contextWindowLength": 6
+      },
+      "id": "b1e4a8d2-4444-4a2b-9c3d-000000000004",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"reply\": {{ JSON.stringify($json.output) }},\n  \"engine\": \"n8n AI Agent + Google Gemini 2.5 Flash\",\n  \"status\": \"success\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "b1e4a8d2-5555-4a2b-9c3d-000000000005",
+      "name": "Respond to Portfolio",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        840,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Portfolio Chat Webhook": {
+      "main": [
+        [
+          {
+            "node": "Adrian Portfolio AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Adrian Portfolio AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Adrian Portfolio AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adrian Portfolio AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Portfolio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
