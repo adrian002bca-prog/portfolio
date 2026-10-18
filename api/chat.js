@@ -189,7 +189,7 @@ module.exports = async function handler(req, res) {
         parts: [{ text: message }]
       });
 
-      const modelsToTry = ['gemini-flash-latest', 'gemini-3.8-flash', 'gemini-2.5-flash'];
+      const modelsToTry = ['gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.8-flash'];
       for (const modelName of modelsToTry) {
         try {
           const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
