@@ -53,18 +53,18 @@ function generateSmartFallbackReply(userMessage) {
   }
 
   if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('reach') || q.includes('whatsapp') || q.includes('phone') || q.includes('resume') || q.includes('cv')) {
-    return `📩 **Contact & Hire Adrian Justin J. San Diego:**\n\nAdrian is currently open to **Remote (WFH) AI Automation (n8n)** and **Full-Stack Software/Web Developer** roles worldwide!\n\n• **Email:** adrian002bca@gmail.com\n• **WhatsApp / Phone:** https://api.whatsapp.com/send?phone=639352726487 (+63 935 272 6487)\n• **LinkedIn:** https://linkedin.com/in/adrian-justin-san-diego\n• **GitHub:** https://github.com/adrian002bca-prog\n• **Resume (1-Page ATS PDF):** https://adrian-sandiego.vercel.app/resume.pdf`;
+    return `📩 **Contact & Hire Adrian Justin J. San Diego:**\n\nAdrian is currently open to **Remote (WFH) Automation & Software Developer** roles worldwide!\n\n• **Email:** adrian002bca@gmail.com\n• **Phone / WhatsApp:** +63 918-743-6765 (https://api.whatsapp.com/send?phone=639187436765)\n• **Location:** Rizal, Philippines (Available for Remote WFH Worldwide)\n• **LinkedIn:** https://linkedin.com/in/adrian-justin-san-diego\n• **GitHub:** https://github.com/adrian002bca-prog\n• **Resume (1-Page ATS PDF):** https://adrian-sandiego.vercel.app/resume.pdf`;
   }
 
   if (q.includes('address') || q.includes('location') || q.includes('where') || q.includes('live') || q.includes('based') || q.includes('city') || q.includes('country')) {
-    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Naic, Cavite, Philippines\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Dev\n• **Contact:** adrian002bca@gmail.com | +63 935 272 6487 (https://api.whatsapp.com/send?phone=639352726487)`;
+    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Rizal, Philippines (Taytay, Rizal)\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Dev\n• **Contact:** adrian002bca@gmail.com | (+63) 918-743-6765 (https://api.whatsapp.com/send?phone=639187436765)`;
   }
 
   if (q.includes('skill') || q.includes('stack') || q.includes('tech') || q.includes('language') || q.includes('tool')) {
-    return `🛠️ **Adrian's Core Technical Stack:**\n\n• **Automation & AI:** n8n (Webhooks, AI Agents, Cron, HTTP Request, Code Nodes), Google Gemini API, Python (BeautifulSoup4, Requests, Pandas), REST APIs.\n• **Backend & Database:** PHP 8+ (OOP, PDO), SQL (MySQL / MariaDB), Node.js, Relational Schema Design, RBAC Authentication.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS (Hostinger), Docker, Git/GitHub, Vercel, Cloudflare.`;
+    return `🛠️ **Adrian's Core Technical Stack:**\n\n• **Automation & AI:** n8n (Webhooks, AI Agents, Cron, HTTP Request, Code Nodes), xAI Grok API, Google Gemini API, JavaScript (Node-style scripting), REST APIs, JSON.\n• **Backend & Database:** PHP (OOP, MVC, CodeIgniter 4), SQL (MySQL / MariaDB), Relational Schema Design, O(1) in-memory deduplication.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas API, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS (Hostinger), Docker, Git/GitHub, Vercel, Cloudflare.`;
   }
 
-  return `👋 Hi! I'm **Adrian's n8n + Gemini AI Assistant**.\n\nAdrian Justin J. San Diego is a **BS Computer Science graduate** and **AI Automation (n8n) & Full-Stack Developer** with **25+ production n8n workflows** and **5 live web applications**.\n\nAsk me anything about:\n• ⚡ **His n8n & AI Agent workflows**\n• 💻 **His live PHP, MySQL & JavaScript projects** (*Qrypt, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical stack (n8n, Python, PHP, SQL, Three.js)**\n• 📩 **How to contact him or download his resume**`;
+  return `👋 Hi! I'm **Adrian's n8n + Gemini AI Assistant**.\n\nAdrian Justin J. San Diego is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production n8n workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His n8n & AI Agent workflows**\n• 💻 **His live PHP, MySQL & JavaScript projects** (*Qrypt, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical stack (n8n, Python, PHP, SQL, Three.js)**\n• 📩 **How to contact him or download his resume**`;
 }
 
 module.exports = async function handler(req, res) {
