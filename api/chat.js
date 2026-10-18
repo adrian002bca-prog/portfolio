@@ -86,7 +86,10 @@ function generateSmartFallbackReply(userMessage) {
 async function dispatchTelegramNotification(userMessage, sessionId) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!botToken || !chatId) return;
+  if (!botToken || !chatId) {
+    console.log('[Telegram Alert] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID');
+    return;
+  }
 
   try {
     const safeMsg = String(userMessage)
@@ -100,17 +103,24 @@ async function dispatchTelegramNotification(userMessage, sessionId) {
       `<b>Time:</b> ${new Date().toISOString()}\n` +
       `<b>Direct Actions:</b> Reply via WhatsApp / Email`;
 
-    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+
+    const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: chatId,
         text: text,
         parse_mode: 'HTML'
-      })
+      }),
+      signal: controller.signal
     });
+    clearTimeout(timer);
+    const data = await tgRes.json();
+    console.log('[Telegram Alert Result]:', data?.ok ? 'Dispatched' : data);
   } catch (e) {
-    // Non-blocking notification dispatch
+    console.log('[Telegram Alert Error]:', e.message);
   }
 }
 
@@ -137,7 +147,7 @@ module.exports = async function handler(req, res) {
     // Trigger Telegram notification if visitor shares contact info / recruiter inquiry
     const isContactLead = /((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|interview|reach me|my name is|contact me)/i.test(message);
     if (isContactLead) {
-      dispatchTelegramNotification(message, sessionId).catch(() => {});
+      await dispatchTelegramNotification(message, sessionId);
     }
 
     // 1. Try Live n8n Webhook first if configured
