@@ -117,7 +117,7 @@ module.exports = async function handler(req, res) {
     }
 
     // 2. Call Google Gemini API (24/7 Cloud Execution with identical n8n System Prompt)
-    const apiKey = customGeminiKey || process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY || customGeminiKey;
     if (apiKey) {
       const contents = [];
       if (Array.isArray(history)) {

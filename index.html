@@ -968,57 +968,51 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- FLOATING n8n + GOOGLE GEMINI 2.5 FLASH AI CHATBOT WIDGET      -->
+    <!-- FLOATING n8n + GOOGLE GEMINI AI CHATBOT WIDGET                 -->
     <!-- ============================================================= -->
     <div id="n8n-chatbot-root" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-sans">
         
         <!-- Chat Window -->
-        <div id="n8n-chat-window" class="hidden mb-3 w-[calc(100vw-2rem)] sm:w-[410px] max-h-[80vh] sm:max-h-[610px] rounded-2xl border border-purple-500/40 bg-[#070614]/95 backdrop-blur-2xl shadow-2xl shadow-purple-950/70 flex flex-col overflow-hidden transition-all duration-200">
+        <div id="n8n-chat-window" class="hidden w-[calc(100vw-2rem)] sm:w-[410px] h-[520px] max-h-[82vh] rounded-2xl border border-purple-500/40 bg-[#070614]/95 backdrop-blur-2xl shadow-2xl shadow-purple-950/70 flex flex-col overflow-hidden transition-all duration-200">
             
             <!-- Header -->
-            <div class="px-4 py-3.5 bg-gradient-to-r from-purple-950/90 via-indigo-950/90 to-slate-900/90 border-b border-white/10 flex items-center justify-between gap-2">
+            <div class="px-4 py-3 bg-gradient-to-r from-purple-950/90 via-indigo-950/90 to-slate-900/90 border-b border-white/10 flex items-center justify-between gap-2 shrink-0">
                 <div class="flex items-center gap-2.5 min-w-0">
-                    <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-rose-500 via-purple-600 to-cyan-500 p-[1.5px] shrink-0">
+                    <div class="relative w-8 h-8 rounded-xl bg-gradient-to-br from-rose-500 via-purple-600 to-cyan-500 p-[1.5px] shrink-0">
                         <div class="w-full h-full bg-[#080716] rounded-[10px] flex items-center justify-center">
-                            <i class="fa-solid fa-bolt text-cyan-400 text-sm"></i>
+                            <i class="fa-solid fa-bolt text-cyan-400 text-xs"></i>
                         </div>
-                        <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#080716]"></span>
+                        <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-[#080716]"></span>
                     </div>
                     <div class="min-w-0">
                         <div class="flex items-center gap-1.5">
                             <h3 class="text-white font-bold text-xs sm:text-sm truncate">Adrian's n8n AI Agent</h3>
                             <span class="px-1.5 py-0.5 text-[9px] font-mono font-semibold uppercase rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Live</span>
                         </div>
-                        <p id="n8n-engine-badge" class="text-[10px] font-mono text-cyan-300/90 truncate">n8n Webhook • Gemini 2.5 Flash</p>
+                        <p id="n8n-engine-badge" class="text-[10px] font-mono text-cyan-300/90 truncate">n8n Pipeline • Gemini AI</p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-1.5 shrink-0">
-                    <!-- Toggle n8n Workflow Diagram View -->
-                    <button id="n8n-workflow-toggle" type="button" title="Inspect n8n Workflow Nodes" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-[10px] font-mono text-purple-200 flex items-center gap-1 transition-all">
+                    <!-- Toggle n8n Workflow Architecture View (No download link) -->
+                    <button id="n8n-workflow-toggle" type="button" title="Inspect n8n Workflow Pipeline" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-[10px] font-mono text-purple-200 flex items-center gap-1 transition-all">
                         <i class="fa-solid fa-diagram-project text-rose-400"></i>
                         <span>Nodes</span>
                     </button>
-                    <!-- Toggle API Key / Webhook Settings -->
-                    <button id="n8n-settings-toggle" type="button" title="Configure Personal Gemini API Key or Local n8n Webhook" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-cyan-500/20 border border-white/10 text-slate-300 hover:text-cyan-300 flex items-center justify-center text-xs transition-all">
-                        <i class="fa-solid fa-gear"></i>
-                    </button>
-                    <!-- Minimize / Close -->
+                    <!-- Close Chat Window -->
                     <button id="n8n-chat-close" type="button" aria-label="Close Chat" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-rose-500/20 border border-white/10 text-slate-300 hover:text-rose-300 flex items-center justify-center text-xs transition-all">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Collapsible Panel 1: n8n Workflow Architecture Inspector -->
-            <div id="n8n-workflow-panel" class="hidden px-4 py-3 bg-[#0c0a20] border-b border-purple-500/30 text-left space-y-2.5">
+            <!-- Collapsible Panel: n8n Architecture Breakdown (Zero download links) -->
+            <div id="n8n-workflow-panel" class="hidden px-4 py-3 bg-[#0c0a20] border-b border-purple-500/30 text-left space-y-2.5 shrink-0">
                 <div class="flex items-center justify-between">
                     <span class="text-[10px] font-mono uppercase tracking-wider text-rose-400 font-semibold">
-                        <i class="fa-solid fa-sitemap mr-1"></i> Active 5-Node n8n Pipeline
+                        <i class="fa-solid fa-sitemap mr-1"></i> Active 4-Node n8n Pipeline
                     </span>
-                    <a href="n8n-portfolio-ai-workflow.json" download class="px-2 py-1 rounded bg-purple-600/30 hover:bg-purple-600/50 border border-purple-400/40 text-[10px] font-mono text-purple-200 flex items-center gap-1 transition-all">
-                        <i class="fa-solid fa-download"></i> Download .JSON
-                    </a>
+                    <span class="text-[9px] font-mono text-slate-400">Enterprise Orchestration</span>
                 </div>
                 <div class="grid grid-cols-4 gap-1.5 text-center font-mono text-[9px]">
                     <div class="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-200">
@@ -1031,7 +1025,7 @@
                     </div>
                     <div class="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-200">
                         <i class="fa-solid fa-brain block text-xs mb-0.5 text-cyan-400"></i>
-                        3. Gemini 2.5
+                        3. Gemini AI
                     </div>
                     <div class="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
                         <i class="fa-solid fa-database block text-xs mb-0.5 text-emerald-400"></i>
@@ -1039,29 +1033,8 @@
                     </div>
                 </div>
                 <p class="text-[10px] text-slate-400 leading-relaxed">
-                    Built with <strong class="text-white">n8n Community Edition</strong> + <strong class="text-cyan-300">Google Gemini 2.5 Flash</strong> with 24/7 Vercel serverless failover so recruiters get instant replies even when local n8n is offline.
+                    Production architecture connecting <strong class="text-white">n8n Community Edition</strong> + <strong class="text-cyan-300">Google Gemini AI</strong> with 24/7 serverless integration.
                 </p>
-            </div>
-
-            <!-- Collapsible Panel 2: Live Gemini Key / n8n Webhook Connection Settings -->
-            <div id="n8n-settings-panel" class="hidden px-4 py-3 bg-[#0c0a20] border-b border-cyan-500/30 text-left space-y-2.5">
-                <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-semibold">
-                        <i class="fa-solid fa-key mr-1"></i> Live AI & Webhook Configuration
-                    </span>
-                    <button id="n8n-settings-clear" type="button" class="text-[10px] font-mono text-slate-400 hover:text-rose-400">Reset</button>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-mono text-slate-300 mb-1">Google Gemini API Key (aistudio.google.com):</label>
-                    <input id="n8n-gemini-key-input" type="password" placeholder="AIzaSy..." class="w-full px-2.5 py-1.5 rounded-lg bg-black/50 border border-white/15 text-xs text-white font-mono focus:outline-none focus:border-cyan-400">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-mono text-slate-300 mb-1">Optional n8n Webhook URL (Local or Cloud):</label>
-                    <input id="n8n-webhook-url-input" type="text" placeholder="http://localhost:5678/webhook/portfolio-chat" class="w-full px-2.5 py-1.5 rounded-lg bg-black/50 border border-white/15 text-xs text-white font-mono focus:outline-none focus:border-purple-400">
-                </div>
-                <button id="n8n-settings-save" type="button" class="w-full py-1.5 rounded-lg bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-semibold text-xs hover:opacity-95 transition-all">
-                    Save & Activate Live Connection
-                </button>
             </div>
 
             <!-- Messages Scroll Container -->
@@ -1079,7 +1052,7 @@
             </div>
 
             <!-- Starter Quick Prompts -->
-            <div id="n8n-quick-prompts" class="px-3.5 py-2 bg-black/30 border-t border-white/5 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            <div id="n8n-quick-prompts" class="px-3.5 py-2 bg-black/30 border-t border-white/5 flex items-center gap-1.5 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
                 <button type="button" data-prompt="What n8n workflows and AI automations has Adrian built?" class="n8n-chip shrink-0 px-2.5 py-1 rounded-full bg-purple-500/15 hover:bg-purple-500/30 border border-purple-500/30 text-[11px] text-purple-200 transition-all">
                     ⚡ n8n Workflows
                 </button>
@@ -2088,75 +2061,22 @@ KEY RESUME FACTS ABOUT ADRIAN:
 
 Keep answers concise, confident, friendly, and formatted with clean bullet points.`;
 
-            // Load saved keys if user configured them in browser
-            const savedKey = localStorage.getItem('adrian_n8n_gemini_key') || '';
-            const savedWebhook = localStorage.getItem('adrian_n8n_webhook_url') || '';
-            if (geminiKeyInput) geminiKeyInput.value = savedKey;
-            if (webhookUrlInput) webhookUrlInput.value = savedWebhook;
-
-            function updateBadgeStatus() {
-                const k = localStorage.getItem('adrian_n8n_gemini_key') || '';
-                const w = localStorage.getItem('adrian_n8n_webhook_url') || '';
-                if (w) {
-                    engineBadge.textContent = 'n8n Live Webhook • Connected';
-                } else if (k) {
-                    engineBadge.textContent = 'n8n Agent • Gemini 2.5 Flash (Live Key)';
-                } else {
-                    engineBadge.textContent = 'n8n Webhook • Gemini 2.5 Flash';
-                }
-            }
-            updateBadgeStatus();
-
             launcher.addEventListener('click', () => {
-                chatWindow.classList.toggle('hidden');
-                if (!chatWindow.classList.contains('hidden')) {
-                    setTimeout(() => chatInput && chatInput.focus(), 100);
-                }
+                chatWindow.classList.remove('hidden');
+                launcher.classList.add('hidden');
+                setTimeout(() => chatInput && chatInput.focus(), 100);
             });
 
             if (closeBtn) {
                 closeBtn.addEventListener('click', () => {
                     chatWindow.classList.add('hidden');
+                    launcher.classList.remove('hidden');
                 });
             }
 
             if (workflowToggle && workflowPanel) {
                 workflowToggle.addEventListener('click', () => {
                     workflowPanel.classList.toggle('hidden');
-                    if (settingsPanel) settingsPanel.classList.add('hidden');
-                });
-            }
-
-            if (settingsToggle && settingsPanel) {
-                settingsToggle.addEventListener('click', () => {
-                    settingsPanel.classList.toggle('hidden');
-                    if (workflowPanel) workflowPanel.classList.add('hidden');
-                });
-            }
-
-            if (settingsSave) {
-                settingsSave.addEventListener('click', () => {
-                    const k = (geminiKeyInput?.value || '').trim();
-                    const w = (webhookUrlInput?.value || '').trim();
-                    if (k) localStorage.setItem('adrian_n8n_gemini_key', k);
-                    else localStorage.removeItem('adrian_n8n_gemini_key');
-
-                    if (w) localStorage.setItem('adrian_n8n_webhook_url', w);
-                    else localStorage.removeItem('adrian_n8n_webhook_url');
-
-                    updateBadgeStatus();
-                    settingsPanel.classList.add('hidden');
-                    appendBotMessage('✅ **Live Configuration Saved!** Your chatbot is now actively routing through your configured **Google Gemini 2.5 Flash / n8n Webhook** pipeline.');
-                });
-            }
-
-            if (settingsClear) {
-                settingsClear.addEventListener('click', () => {
-                    localStorage.removeItem('adrian_n8n_gemini_key');
-                    localStorage.removeItem('adrian_n8n_webhook_url');
-                    if (geminiKeyInput) geminiKeyInput.value = '';
-                    if (webhookUrlInput) webhookUrlInput.value = '';
-                    updateBadgeStatus();
                 });
             }
 
@@ -2210,7 +2130,7 @@ Keep answers concise, confident, friendly, and formatted with clean bullet point
                         <i class="fa-solid fa-spinner fa-spin text-cyan-400 text-xs"></i>
                     </div>
                     <div class="px-3 py-2.5 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-purple-500/30 text-cyan-300 font-mono text-[11px]">
-                        ⚡ Executing n8n Node: AI Agent (Gemini 2.5)...
+                        ⚡ Executing n8n Agent Node (Gemini AI)...
                     </div>
                 `;
                 messagesContainer.appendChild(wrapper);
@@ -2225,7 +2145,7 @@ Keep answers concise, confident, friendly, and formatted with clean bullet point
             function localSmartFallback(userMessage) {
                 const q = (userMessage || '').toLowerCase();
                 if (q.includes('n8n') || q.includes('automat') || q.includes('workflow') || q.includes('pipeline') || q.includes('ai')) {
-                    return `⚡ **Adrian's n8n & AI Automation Expertise:**\n\nAdrian architects and manages **25+ production n8n workflows** deployed on Linux VPS infrastructure:\n• **Multi-Step AI Agent Pipelines:** Connects LLMs (Google Gemini, REST APIs) with structured JSON outputs, memory buffers, and automated quality validation.\n• **Automated Data Ingestion & ETL:** Multi-source web scraping, anti-bot header mitigation, deduplication, and automated syncing to **Google Sheets**.\n• **CRM & CMS Orchestration:** End-to-end webhook pipelines integrating **Ghost CMS**, **Kit (ConvertKit)** subscriber tagging, and real-time alerts.\n\n💡 *Click **"Nodes"** in the top-right of this chat to inspect or download the `.json` n8n workflow powering this assistant!*`;
+                    return `⚡ **Adrian's n8n & AI Automation Expertise:**\n\nAdrian architects and manages **25+ production n8n workflows** deployed on Linux VPS infrastructure:\n• **Multi-Step AI Agent Pipelines:** Connects LLMs (Google Gemini, REST APIs) with structured JSON outputs, memory buffers, and automated quality validation.\n• **Automated Data Ingestion & ETL:** Multi-source web scraping, anti-bot header mitigation, deduplication, and automated syncing to **Google Sheets**.\n• **CRM & CMS Orchestration:** End-to-end webhook pipelines integrating **Ghost CMS**, **Kit (ConvertKit)** subscriber tagging, and real-time alerts.\n\n💡 *Click **"Nodes"** in the top-right of this chat to inspect the n8n architecture powering this assistant!*`;
                 }
                 if (q.includes('php') || q.includes('project') || q.includes('web') || q.includes('mysql') || q.includes('qrypt') || q.includes('obi') || q.includes('apptrade')) {
                     return `💻 **Adrian's Live Full-Stack Web & Software Projects:**\n\n• **Qrypt (QR Gatepass & Attendance System):** https://qrypt.great-site.net/ — Built with **PHP, MySQL, JavaScript & WebRTC** for live camera QR scanning and real-time attendance logs.\n• **AppTrade (Multi-Portal E-Commerce):** https://sampleappweb.great-site.net/ — Full-stack **PHP & MySQL** marketplace with Role-Based Access Control (Admin, Vendor, Customer portals).\n• **Interactive 2D/3D Room Visualizer:** https://obi-roomvisualizer.great-site.net/ — **HTML5 Canvas & JS** spatial rendering engine with PDF spec export.\n• **OBI Services Corporate Portal:** https://obiasia.com/ — Responsive corporate portal and lead-capture pipeline.`;
@@ -2250,68 +2170,7 @@ Keep answers concise, confident, friendly, and formatted with clean bullet point
                 if (chatInput) chatInput.value = '';
                 showTypingIndicator();
 
-                const customKey = localStorage.getItem('adrian_n8n_gemini_key') || '';
-                const customWebhook = localStorage.getItem('adrian_n8n_webhook_url') || '';
-
-                // 1. If user configured a direct n8n Webhook URL in browser settings, call it first
-                if (customWebhook && customWebhook.startsWith('http')) {
-                    try {
-                        const r = await fetch(customWebhook, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ message: cleanText, chatInput: cleanText, sessionId })
-                        });
-                        if (r.ok) {
-                            const d = await r.json();
-                            const reply = d.reply || d.output || d.text;
-                            if (reply) {
-                                removeTypingIndicator();
-                                chatHistory.push({ role: 'user', text: cleanText }, { role: 'model', text: reply });
-                                appendBotMessage(reply, 'n8n Webhook • Live Execution');
-                                return;
-                            }
-                        }
-                    } catch (e) {
-                        // Fall through to Gemini / Vercel API
-                    }
-                }
-
-                // 2. If user configured a Google Gemini API Key in browser settings, call Google Gemini directly
-                if (customKey) {
-                    const contents = chatHistory.slice(-6).map(m => ({
-                        role: m.role === 'user' ? 'user' : 'model',
-                        parts: [{ text: m.text }]
-                    }));
-                    contents.push({ role: 'user', parts: [{ text: cleanText }] });
-
-                    for (const modelName of ['gemini-flash-latest', 'gemini-3.8-flash', 'gemini-2.5-flash']) {
-                        try {
-                            const gRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(customKey)}`, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-                                    contents,
-                                    generationConfig: { temperature: 0.4, maxOutputTokens: 600 }
-                                })
-                            });
-                            if (gRes.ok) {
-                                const gData = await gRes.json();
-                                const reply = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
-                                if (reply) {
-                                    removeTypingIndicator();
-                                    chatHistory.push({ role: 'user', text: cleanText }, { role: 'model', text: reply });
-                                    appendBotMessage(reply, `n8n AI Agent • Google Gemini (${modelName})`);
-                                    return;
-                                }
-                            }
-                        } catch (e) {
-                            // Try next model
-                        }
-                    }
-                }
-
-                // 3. Call 24/7 Vercel Serverless Endpoint (/api/chat)
+                // 1. Call Secure 24/7 Vercel Serverless Endpoint (/api/chat)
                 try {
                     const apiRes = await fetch('/api/chat', {
                         method: 'POST',
@@ -2327,15 +2186,15 @@ Keep answers concise, confident, friendly, and formatted with clean bullet point
                         if (apiData && apiData.reply) {
                             removeTypingIndicator();
                             chatHistory.push({ role: 'user', text: cleanText }, { role: 'model', text: apiData.reply });
-                            appendBotMessage(apiData.reply, apiData.engine || 'n8n AI Agent • Gemini 2.5 Flash');
+                            appendBotMessage(apiData.reply, apiData.engine || 'n8n AI Agent • Google Gemini');
                             return;
                         }
                     }
                 } catch (e) {
-                    // Offline or local file mode fallback
+                    // Fallback to local smart engine if offline
                 }
 
-                // 4. Instant Client-Side Fallback
+                // 2. Client-Side Resume Engine Fallback (Guaranteed response)
                 setTimeout(() => {
                     removeTypingIndicator();
                     const reply = localSmartFallback(cleanText);
