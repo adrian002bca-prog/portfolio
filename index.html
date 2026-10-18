@@ -180,7 +180,7 @@
 
         #tech-balls-canvas {
             width: 100%;
-            height: 490px;
+            height: 350px;
             cursor: grab;
             background: transparent;
             touch-action: pan-y;
@@ -194,11 +194,18 @@
             cursor: grabbing;
         }
 
-        /* Initial state classes for GSAP to prevent FOUC on desktop, keep visible on mobile */
+        /* Desktop GSAP initial state (prevents FOUC on desktop) */
         @media (min-width: 768px) {
             .reveal-header, .reveal-card, .reveal-timeline-left, .reveal-timeline-right {
                 opacity: 0;
                 transform: translateY(30px);
+            }
+        }
+        /* Mobile phone guarantee: 100% visible immediately (Zero blank screen glitch on phones) */
+        @media (max-width: 767px) {
+            .reveal-header, .reveal-card, .reveal-timeline-left, .reveal-timeline-right {
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
@@ -215,16 +222,16 @@
 
     <!-- Navigation Header with Frosted Glass Protection to prevent overlap -->
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#050816]/90 backdrop-blur-md border-b border-white/10 shadow-lg" id="main-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="#" class="group flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-[2px] transition-transform duration-300 group-hover:scale-105">
-                    <div class="w-full h-full bg-[#050816] rounded-[10px] flex items-center justify-center font-bold text-white font-mono text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
+            <a href="#" class="group flex items-center gap-2.5 sm:gap-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-[2px] transition-transform duration-300 group-hover:scale-105 shrink-0">
+                    <div class="w-full h-full bg-[#050816] rounded-[10px] flex items-center justify-center font-bold text-white font-mono text-xs sm:text-sm">
                         AJ
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-bold text-base tracking-tight text-white group-hover:text-purple-400 transition-colors">Adrian San Diego</span>
-                    <span class="text-[11px] text-slate-400 font-mono tracking-wider">PORTFOLIO</span>
+                    <span class="font-bold text-sm sm:text-base tracking-tight text-white group-hover:text-purple-400 transition-colors">Adrian San Diego</span>
+                    <span class="text-[10px] sm:text-[11px] text-slate-400 font-mono tracking-wider">PORTFOLIO</span>
                 </div>
             </a>
 
@@ -255,80 +262,91 @@
             </div>
 
             <!-- Mobile Hamburger -->
-            <button id="mobile-menu-btn" aria-label="Toggle menu" class="sm:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
+            <button id="mobile-menu-btn" aria-label="Toggle menu" class="sm:hidden w-10 h-10 rounded-xl glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-purple-500/50 transition-all focus:outline-none">
+                <i class="fa-solid fa-bars text-base"></i>
             </button>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden sm:hidden glass-panel border-b border-white/10 px-6 py-4 flex flex-col gap-3">
-            <a href="#about" class="text-sm py-2 text-slate-300 hover:text-white">About</a>
-            <a href="#projects" class="text-sm py-2 text-slate-300 hover:text-white">Projects</a>
-            <a href="#skills" class="text-sm py-2 text-slate-300 hover:text-white">Skills</a>
-            <a href="#experience" class="text-sm py-2 text-slate-300 hover:text-white">Experience</a>
-            <a href="#contact" class="text-sm py-2 text-slate-300 hover:text-white">Contact</a>
-            <a href="resume.pdf" download class="text-sm py-2 font-semibold text-purple-400 flex items-center gap-2">
-                <i class="fa-solid fa-download"></i> Download Resume
+        <div id="mobile-menu" class="hidden sm:hidden glass-panel border-b border-white/10 px-6 py-4 flex flex-col gap-2.5 bg-[#050816]/98 backdrop-blur-xl">
+            <a href="#about" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
+                <i class="fa-solid fa-user text-purple-400 text-xs w-4"></i> About
+            </a>
+            <a href="#projects" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
+                <i class="fa-solid fa-laptop-code text-cyan-400 text-xs w-4"></i> Projects
+            </a>
+            <a href="#skills" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
+                <i class="fa-solid fa-microchip text-indigo-400 text-xs w-4"></i> Skills
+            </a>
+            <a href="#experience" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
+                <i class="fa-solid fa-briefcase text-emerald-400 text-xs w-4"></i> Experience
+            </a>
+            <a href="#contact" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
+                <i class="fa-solid fa-paper-plane text-rose-400 text-xs w-4"></i> Contact
+            </a>
+            <a href="resume.pdf" download class="text-sm py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 font-semibold text-white flex items-center justify-center gap-2 mt-1 shadow-lg shadow-purple-600/30">
+                <i class="fa-solid fa-file-pdf"></i> Download Resume (PDF)
             </a>
         </div>
     </header>
 
     <!-- HERO SECTION WITH HARMONIZED 3D TECH CORE (NO CHAOTIC BLUE SATELLITES & PERFECT ALIGNMENT) -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden">
         
         <!-- Hero Content Container -->
-        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[75vh]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center min-h-[70vh]">
             
             <!-- Left Hero Content (Signature JS Mastery Layout with Glowing Beam Indicator) -->
-            <div class="lg:col-span-7 flex items-start gap-5">
+            <div class="lg:col-span-7 flex items-start gap-3.5 sm:gap-5">
                 
                 <!-- The Signature JavaScript Mastery Vertical Line & Glowing Pin -->
-                <div class="flex flex-col justify-center items-center mt-3 flex-shrink-0">
-                    <div class="w-5 h-5 rounded-full bg-[#915eff] shadow-[0_0_25px_#915eff]"></div>
-                    <div class="w-1 sm:h-80 h-52 violet-gradient mt-1"></div>
+                <div class="flex flex-col justify-center items-center mt-2.5 sm:mt-3 flex-shrink-0">
+                    <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#915eff] shadow-[0_0_25px_#915eff]"></div>
+                    <div class="w-1 h-36 sm:h-80 violet-gradient mt-1"></div>
                 </div>
 
-                <div class="flex flex-col items-start gap-6">
+                <div class="flex flex-col items-start gap-4 sm:gap-6 min-w-0">
                     <!-- Status Badge -->
-                    <div id="hero-badge" class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel border border-purple-500/30 text-xs font-mono text-purple-300 shadow-inner">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>AVAILABLE FOR FULL-TIME & CONTRACT ROLES</span>
+                    <div id="hero-badge" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full glass-panel border border-purple-500/30 text-[11px] sm:text-xs font-mono text-purple-300 shadow-inner max-w-full">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                        <span class="hidden sm:inline">AVAILABLE FOR FULL-TIME & CONTRACT ROLES</span>
+                        <span class="sm:hidden font-medium">OPEN FOR WORK • REMOTE / WFH</span>
                     </div>
 
                     <!-- Main Headline -->
-                    <div id="hero-title" class="space-y-3">
-                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+                    <div id="hero-title" class="space-y-2.5 sm:space-y-3">
+                        <h1 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
                             Hi, I'm <br class="hidden sm:inline">
                             <span class="text-gradient-purple">Adrian Justin</span>
                         </h1>
-                        <p class="text-lg sm:text-2xl text-slate-200 font-semibold max-w-xl">
+                        <p class="text-base sm:text-2xl text-slate-200 font-semibold max-w-xl">
                             Automation & Integration Developer <span class="text-purple-400">•</span> Full-Stack Web
                         </p>
                     </div>
 
                     <!-- Bio Paragraph -->
-                    <p id="hero-bio" class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-xl">
+                    <p id="hero-bio" class="text-slate-400 text-sm sm:text-lg leading-relaxed max-w-xl">
                         I engineer scalable automated data pipelines (<span class="text-purple-300 font-semibold">25+ production n8n workflows</span>), custom web systems, and full-stack solutions. Recipient of the <span class="text-amber-300 font-semibold">Best Capstone Project Award</span> for QRYPT and <span class="text-cyan-300 font-semibold">TESDA NC II Certified</span>.
                     </p>
 
                     <!-- CTAs -->
-                    <div id="hero-cta" class="flex flex-wrap items-center gap-4 pt-2">
-                        <a href="#projects" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center gap-2">
+                    <div id="hero-cta" class="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
+                        <a href="#projects" class="px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center gap-2">
                             <span>Explore Projects</span>
                             <i class="fa-solid fa-arrow-down text-xs"></i>
                         </a>
-                        <a href="#contact" class="px-7 py-3.5 rounded-xl glass-panel text-slate-200 font-semibold text-sm hover:text-white hover:border-purple-500/50 hover:scale-[1.03] transition-all flex items-center gap-2">
+                        <a href="#contact" class="px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs sm:text-sm hover:text-white hover:border-purple-500/50 hover:scale-[1.03] transition-all flex items-center gap-2">
                             <span>Let's Talk</span>
                             <i class="fa-regular fa-paper-plane text-xs"></i>
                         </a>
                     </div>
 
                     <!-- Fast Info Badges -->
-                    <div id="hero-meta" class="flex flex-wrap items-center gap-4 pt-2 text-slate-400 text-sm font-mono text-xs">
+                    <div id="hero-meta" class="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2 text-slate-400 font-mono text-xs">
                         <span class="flex items-center gap-1.5 text-slate-400">
                             <i class="fa-solid fa-location-dot text-purple-400"></i> Rizal, Philippines
                         </span>
-                        <span class="text-slate-700">•</span>
+                        <span class="hidden sm:inline text-slate-700">•</span>
                         <a href="mailto:adrian002bca@gmail.com" class="hover:text-purple-300 transition-colors flex items-center gap-1.5">
                             <i class="fa-regular fa-envelope text-purple-400"></i> adrian002bca@gmail.com
                         </a>
@@ -337,13 +355,13 @@
             </div>
 
             <!-- Right Hero Area (Properly contained, perfectly aligned 3D Core with calm luxury spin) -->
-            <div class="lg:col-span-5 h-[270px] sm:h-[400px] lg:h-[500px] relative flex items-center justify-center">
+            <div class="lg:col-span-5 h-[230px] sm:h-[380px] lg:h-[500px] relative flex items-center justify-center">
                 <canvas id="hero-core-canvas"></canvas>
             </div>
         </div>
 
         <!-- The Iconic 3D Looping Scroll Pill Indicator -->
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
+        <div class="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 z-20">
             <span class="text-[10px] font-mono text-slate-400 tracking-widest uppercase">Scroll</span>
             <a href="#about" class="w-6 h-11 rounded-full border-2 border-slate-500/60 flex items-start justify-center p-1.5 hover:border-purple-400 transition-colors">
                 <span class="w-1.5 h-3 bg-purple-400 rounded-full animate-bounce"></span>
@@ -970,10 +988,10 @@
     <!-- ============================================================= -->
     <!-- FLOATING n8n + GOOGLE GEMINI AI CHATBOT WIDGET                 -->
     <!-- ============================================================= -->
-    <div id="n8n-chatbot-root" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-sans">
+    <div id="n8n-chatbot-root" class="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 font-sans">
         
         <!-- Chat Window -->
-        <div id="n8n-chat-window" class="hidden w-[calc(100vw-2rem)] sm:w-[410px] h-[520px] max-h-[82vh] rounded-2xl border border-purple-500/40 bg-[#070614]/95 backdrop-blur-2xl shadow-2xl shadow-purple-950/70 flex flex-col overflow-hidden transition-all duration-200">
+        <div id="n8n-chat-window" class="hidden w-[calc(100vw-1.5rem)] sm:w-[410px] h-[500px] max-h-[82vh] rounded-2xl border border-purple-500/40 bg-[#070614]/98 backdrop-blur-2xl shadow-2xl shadow-purple-950/80 flex flex-col overflow-hidden transition-all duration-200">
             
             <!-- Header -->
             <div class="px-4 py-3 bg-gradient-to-r from-purple-950/90 via-indigo-950/90 to-slate-900/90 border-b border-white/10 flex items-center justify-between gap-2 shrink-0">
@@ -1081,7 +1099,7 @@
         </div>
 
         <!-- Floating Launcher Button -->
-        <button id="n8n-chat-launcher" type="button" class="group relative flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-gradient-to-r from-[#1a103c] via-[#13112c] to-[#0c1b2e] border border-purple-500/50 hover:border-cyan-400/70 shadow-2xl shadow-purple-900/50 hover:scale-[1.03] active:scale-[0.98] transition-all">
+        <button id="n8n-chat-launcher" type="button" class="group relative flex items-center gap-2 sm:gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-gradient-to-r from-[#1a103c] via-[#13112c] to-[#0c1b2e] border border-purple-500/50 hover:border-cyan-400/70 shadow-2xl shadow-purple-900/50 hover:scale-[1.03] active:scale-[0.98] transition-all">
             <span class="relative flex h-3 w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -1158,54 +1176,63 @@
                 .from('#hero-cta', { y: 20, opacity: 0 }, '-=0.6')
                 .from('#hero-meta', { y: 15, opacity: 0 }, '-=0.6');
 
-            // Scroll-triggered animations for all section headers
-            gsap.utils.toArray('.reveal-header').forEach((header) => {
-                gsap.to(header, {
-                    scrollTrigger: {
-                        trigger: header,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none'
-                    },
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.9,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Scroll-triggered staggered card animations (Triggers reliably on mobile and desktop)
-            gsap.utils.toArray('.reveal-card').forEach((card, index) => {
-                gsap.to(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 95%',
-                        toggleActions: 'play none none none'
-                    },
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    delay: (index % 4) * 0.08,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Smooth vertical entrance for timeline cards (Guaranteed zero horizontal clipping on ANY screen size)
-            gsap.utils.toArray('.reveal-timeline-left, .reveal-timeline-right').forEach((item) => {
-                gsap.fromTo(item, 
-                    { y: 35, opacity: 0 },
-                    {
+            const isMobileScreen = window.innerWidth < 768;
+            if (!isMobileScreen) {
+                // Scroll-triggered animations for all section headers (Desktop)
+                gsap.utils.toArray('.reveal-header').forEach((header) => {
+                    gsap.to(header, {
                         scrollTrigger: {
-                            trigger: item,
-                            start: 'top 92%',
+                            trigger: header,
+                            start: 'top 85%',
                             toggleActions: 'play none none none'
                         },
                         y: 0,
                         opacity: 1,
-                        duration: 0.85,
+                        duration: 0.9,
                         ease: 'power3.out'
-                    }
-                );
-            });
+                    });
+                });
+
+                // Scroll-triggered staggered card animations (Desktop)
+                gsap.utils.toArray('.reveal-card').forEach((card, index) => {
+                    gsap.to(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 95%',
+                            toggleActions: 'play none none none'
+                        },
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        delay: (index % 4) * 0.08,
+                        ease: 'power3.out'
+                    });
+                });
+
+                // Smooth vertical entrance for timeline cards (Desktop)
+                gsap.utils.toArray('.reveal-timeline-left, .reveal-timeline-right').forEach((item) => {
+                    gsap.fromTo(item, 
+                        { y: 35, opacity: 0 },
+                        {
+                            scrollTrigger: {
+                                trigger: item,
+                                start: 'top 92%',
+                                toggleActions: 'play none none none'
+                            },
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.85,
+                            ease: 'power3.out'
+                        }
+                    );
+                });
+            } else {
+                // Mobile phones guarantee: 100% visible immediately with zero blank screen glitches
+                document.querySelectorAll('.reveal-header, .reveal-card, .reveal-timeline-left, .reveal-timeline-right').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }
 
             window.addEventListener('load', () => {
                 if (typeof ScrollTrigger !== 'undefined') {
@@ -1751,26 +1778,28 @@
             function layoutTechScene() {
                 const screenW = window.innerWidth || document.documentElement.clientWidth || canvas.clientWidth;
                 const isMobile = screenW < 768;
-                const cols = isMobile ? 3 : 6;
-                const rows = isMobile ? 4 : 2;
+                const cols = isMobile ? 4 : 6;
+                const rows = isMobile ? 3 : 2;
                 currentGridCols = cols;
 
-                const spacingX = isMobile ? 4.5 : 4.6;
-                const spacingY = isMobile ? 4.4 : 4.6;
+                const spacingX = isMobile ? 3.5 : 4.6;
+                const spacingY = isMobile ? 3.5 : 4.6;
 
-                const cW = Math.max(canvas.clientWidth || 350, 200);
-                const cH = Math.max(canvas.clientHeight || (isMobile ? 490 : 430), 200);
+                const cW = Math.max(canvas.clientWidth || (isMobile ? 360 : 700), 200);
+                const cH = Math.max(canvas.clientHeight || (isMobile ? 350 : 430), 200);
                 lastCanvasW = cW;
                 lastCanvasH = cH;
 
                 const aspect = cW / cH;
-                const minW = isMobile ? 14.4 : 28.0;
-                const minH = isMobile ? 19.2 : 10.0;
+                const ballRadius = isMobile ? 1.30 : 1.62;
 
-                let frustumW = minW;
+                const gridW = (cols - 1) * spacingX + ballRadius * 2;
+                const gridH = (rows - 1) * spacingY + ballRadius * 2;
+
+                let frustumW = gridW + (isMobile ? 1.4 : 2.5);
                 let frustumH = frustumW / aspect;
-                if (frustumH < minH) {
-                    frustumH = minH;
+                if (frustumH < gridH + (isMobile ? 1.2 : 2.0)) {
+                    frustumH = gridH + (isMobile ? 1.2 : 2.0);
                     frustumW = frustumH * aspect;
                 }
 
@@ -1793,6 +1822,9 @@
 
                     ball.position.x = ball.userData.baseX;
                     ball.position.y = ball.userData.baseY;
+
+                    const scale = isMobile ? 0.82 : 1.0;
+                    ball.scale.set(scale, scale, scale);
                 });
             }
             layoutTechScene();
@@ -1892,7 +1924,8 @@
 
                 // Continuously adapt layout if viewport or canvas dimensions change
                 const checkW = window.innerWidth || document.documentElement.clientWidth || canvas.clientWidth;
-                const checkCols = (checkW < 768) ? 3 : 6;
+                const isMobileView = checkW < 768;
+                const checkCols = isMobileView ? 4 : 6;
                 if (checkCols !== currentGridCols || canvas.clientWidth !== lastCanvasW || canvas.clientHeight !== lastCanvasH) {
                     layoutTechScene();
                 }
@@ -1905,7 +1938,8 @@
                     if (ball === activeDragBall && isCanvasDragging) {
                         // Dragging
                     } else if (ball === hoveredBall) {
-                        ball.scale.lerp(new THREE.Vector3(1.12, 1.12, 1.12), 0.1);
+                        const hScale = isMobileView ? 0.95 : 1.12;
+                        ball.scale.lerp(new THREE.Vector3(hScale, hScale, hScale), 0.1);
                         ball.position.z = 0.5;
                     } else {
                         const targetRotX = Math.sin(time * 1.4 + data.phase) * 0.11;
@@ -1916,7 +1950,8 @@
                         ball.rotation.y += (targetRotY - ball.rotation.y) * 0.06;
                         ball.rotation.z += (targetRotZ - ball.rotation.z) * 0.06;
 
-                        ball.scale.lerp(new THREE.Vector3(1.0, 1.0, 1.0), 0.08);
+                        const bScale = isMobileView ? 0.82 : 1.0;
+                        ball.scale.lerp(new THREE.Vector3(bScale, bScale, bScale), 0.08);
                         ball.position.z = 0;
                     }
                 });
