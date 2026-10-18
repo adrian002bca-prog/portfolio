@@ -2049,21 +2049,44 @@
             const sessionId = 'adrian-portfolio-' + Math.random().toString(36).substring(2, 10);
             const chatHistory = [];
 
-            const SYSTEM_PROMPT = `You are the official AI Portfolio Assistant for Adrian Justin J. San Diego, an AI Automation & Integration Developer (n8n / Python / PHP) and Full-Stack Web Developer based in Naic, Cavite, Philippines (Open to Remote WFH Worldwide).
-Help recruiters, hiring managers, and clients learn about Adrian's 25+ production n8n workflows, Full-Stack PHP/MySQL/JS applications, technical stack, and contact details.
-Key Projects:
-- OBI Services Corporate Platform: https://obiasia.com/
-- Interactive 2D/3D Room & Tile Visualizer: https://obi-roomvisualizer.great-site.net/
-- Qrypt QR Gatepass & Real-Time Attendance Platform (PHP, MySQL, JS, WebRTC): https://qrypt.great-site.net/
-- AppTrade Multi-Portal E-Commerce System (PHP, MySQL, RBAC): https://sampleappweb.great-site.net/
-- 3D Interactive Developer Portfolio: https://adrian-sandiego.vercel.app/
-Contact:
+            const SYSTEM_PROMPT = `You are the official AI Portfolio Assistant for Adrian Justin J. San Diego, an Automation & Software Developer specializing in Workflow & API Engineering (n8n), Full-Stack Web Development (PHP, JavaScript, MySQL), and LLM Integrations based in Rizal, Philippines (Open to Remote WFH Worldwide).
+
+KEY RESUME FACTS ABOUT ADRIAN:
+1. Contact & Location:
+- Full Name: Adrian Justin J. San Diego
+- Location: Rizal, Philippines (Taytay, Rizal) — Available for Remote (WFH) Worldwide
+- Phone: (+63) 918-743-6765
 - Email: adrian002bca@gmail.com
-- WhatsApp / Phone: +63 935 272 6487 (https://api.whatsapp.com/send?phone=639352726487)
 - LinkedIn: https://linkedin.com/in/adrian-justin-san-diego
 - GitHub: https://github.com/adrian002bca-prog
-- Resume PDF: https://adrian-sandiego.vercel.app/resume.pdf
-Keep answers concise, friendly, and formatted with clear bullet points.`;
+- Live Portfolio: https://adrian-sandiego.vercel.app
+- 1-Page ATS Resume PDF: https://adrian-sandiego.vercel.app/resume.pdf
+
+2. Education & Certifications:
+- Bachelor of Science in Information Systems (BSIS) — Trent Information First Technical Career Institute, Taytay, Rizal (Graduated: May 2026)
+- Awards: Outstanding / Best Capstone Award (QRYPT Attendance System) & Academic Loyalty Award
+- Certification: Computer Systems Servicing NC II — TESDA, 2024
+
+3. Professional Work Experience:
+- Junior Automation & Technical Operations Specialist (Contract) | EdTech & Career Accelerator Startup | Remote (WFH) | August 2026 – Present:
+  * Engineered, upgraded, and actively maintain 25+ production automated workflows and scrapers on self-hosted n8n on Hostinger running on recurring 2–3 hour cycles.
+  * Resolved live Cloudflare 403 blocks, HTTP 406/429 errors, and DNS failures; built REST API integrations (xAI Grok LLM, Google Sheets batchUpdate, Kit API).
+  * Authored custom JavaScript Code nodes with O(1) in-memory Set() and multi-field fingerprint deduplication, guaranteeing 0 duplicates.
+  * Audited and restored 5 stale ingestion pipelines backfilling 1,300+ rows across Google Sheets.
+  * Closed 50+ technical tickets in an agile Jira Kanban sprint delivery framework.
+- IT Systems & Support Developer | Apptrade Inc. | Taytay, Rizal, Philippines | May 2026 – August 2026:
+  * Developed and maintained full-stack locally hosted PHP & MySQL Point-of-Sale (POS) and inventory systems deployed on-site via XAMPP, plus online e-commerce platform.
+  * Built barcode scanning, cart/checkout workflows, receipt printing, dynamic discounts, and MySQL relational schemas.
+- IT Intern – Web & System Developer | Optimum Brands Inc. (OBI) | Pasig City, Philippines | January 2026 – March 2026:
+  * Engineered the interactive browser-based OBI Room Visualizer (deployed live on official obiasia.com), Quotation System, and Payment-Budget System using PHP, JavaScript (Canvas API), HTML5, CSS3, and MySQL.
+
+4. Live Portfolio Projects:
+- Automated Data Ingestion & AI Pipeline: Self-Hosted n8n, xAI Grok API, JavaScript, REST APIs, Google Sheets
+- QRYPT (Best Capstone Awardee): https://qrypt.great-site.net/qr-code-attendance-system/qr-code-attendance-system/user.php (PHP, MySQL, WebRTC Camera QR Scanner)
+- AppTrade E-Commerce Store & On-Site POS: https://sampleappweb.great-site.net/index.php (PHP, MySQL, Bootstrap 5, XAMPP)
+- OBI Interactive Room Visualizer: https://obiasia.com and https://obi-roomvisualizer.great-site.net (PHP, JavaScript Canvas API, HTML5/CSS3, MySQL)
+
+Keep answers concise, confident, friendly, and formatted with clean bullet points.`;
 
             // Load saved keys if user configured them in browser
             const savedKey = localStorage.getItem('adrian_n8n_gemini_key') || '';
@@ -2207,16 +2230,16 @@ Keep answers concise, friendly, and formatted with clear bullet points.`;
                 if (q.includes('php') || q.includes('project') || q.includes('web') || q.includes('mysql') || q.includes('qrypt') || q.includes('obi') || q.includes('apptrade')) {
                     return `💻 **Adrian's Live Full-Stack Web & Software Projects:**\n\n• **Qrypt (QR Gatepass & Attendance System):** https://qrypt.great-site.net/ — Built with **PHP, MySQL, JavaScript & WebRTC** for live camera QR scanning and real-time attendance logs.\n• **AppTrade (Multi-Portal E-Commerce):** https://sampleappweb.great-site.net/ — Full-stack **PHP & MySQL** marketplace with Role-Based Access Control (Admin, Vendor, Customer portals).\n• **Interactive 2D/3D Room Visualizer:** https://obi-roomvisualizer.great-site.net/ — **HTML5 Canvas & JS** spatial rendering engine with PDF spec export.\n• **OBI Services Corporate Portal:** https://obiasia.com/ — Responsive corporate portal and lead-capture pipeline.`;
                 }
-                if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('whatsapp') || q.includes('resume') || q.includes('cv')) {
-                    return `📩 **Contact & Hire Adrian Justin J. San Diego:**\n\nAdrian is open to **Remote (WFH) AI Automation (n8n)** and **Full-Stack Developer** opportunities worldwide!\n\n• **Email:** adrian002bca@gmail.com\n• **WhatsApp:** https://api.whatsapp.com/send?phone=639352726487 (+63 935 272 6487)\n• **LinkedIn:** https://linkedin.com/in/adrian-justin-san-diego\n• **GitHub:** https://github.com/adrian002bca-prog\n• **Resume (1-Page ATS PDF):** https://adrian-sandiego.vercel.app/resume.pdf`;
+                if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('whatsapp') || q.includes('resume') || q.includes('cv') || q.includes('phone')) {
+                    return `📩 **Contact & Hire Adrian Justin J. San Diego:**\n\nAdrian is actively open to **Remote (WFH) Automation & Software Developer** roles worldwide!\n\n• **Email:** adrian002bca@gmail.com\n• **Phone / WhatsApp:** +63 918-743-6765 (https://api.whatsapp.com/send?phone=639187436765)\n• **Location:** Rizal, Philippines (Available for Remote WFH Worldwide)\n• **LinkedIn:** https://linkedin.com/in/adrian-justin-san-diego\n• **GitHub:** https://github.com/adrian002bca-prog\n• **Resume (1-Page ATS PDF):** https://adrian-sandiego.vercel.app/resume.pdf`;
                 }
                 if (q.includes('address') || q.includes('location') || q.includes('where') || q.includes('live') || q.includes('based') || q.includes('city') || q.includes('country')) {
-                    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Naic, Cavite, Philippines\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Web Dev\n• **Contact:** adrian002bca@gmail.com | +63 935 272 6487 (https://api.whatsapp.com/send?phone=639352726487)`;
+                    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Rizal, Philippines (Taytay, Rizal)\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Dev\n• **Contact:** adrian002bca@gmail.com | (+63) 918-743-6765 (https://api.whatsapp.com/send?phone=639187436765)`;
                 }
                 if (q.includes('skill') || q.includes('stack') || q.includes('tech')) {
-                    return `🛠️ **Adrian's Technical Skill Stack:**\n\n• **Automation & AI:** n8n (Webhooks, AI Agents, Cron, HTTP Request, Code Nodes), Google Gemini API, Python (BeautifulSoup4, Requests, Pandas), REST APIs.\n• **Backend & Database:** PHP 8+, SQL (MySQL / MariaDB), Node.js, Relational Database Design, RBAC Auth.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS, Docker, Git/GitHub, Vercel, Cloudflare.`;
+                    return `🛠️ **Adrian's Technical Skill Stack:**\n\n• **Automation & AI:** n8n (Webhooks, AI Agents, Cron, HTTP Request, Code Nodes), xAI Grok API, Google Gemini API, JavaScript (Node-style scripting), REST APIs, JSON.\n• **Backend & Database:** PHP (OOP, MVC, CodeIgniter 4), SQL (MySQL / MariaDB), Relational Schema Design, O(1) in-memory deduplication.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas API, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS (Hostinger), Docker, Git/GitHub, Vercel, Cloudflare.`;
                 }
-                return `👋 I'm **Adrian's n8n + Gemini AI Assistant**!\n\nAdrian is a **BS Computer Science graduate** and **AI Automation (n8n) & Full-Stack Developer** with **25+ production n8n workflows** and **5 live web applications**.\n\nTry asking me about:\n• ⚡ **His n8n & AI Agent workflows**\n• 💻 **His live PHP, MySQL & JS projects** (*Qrypt, AppTrade, OBI Visualizer*)\n• 🛠️ **His full technical stack**\n• 📩 **How to hire or contact him**`;
+                return `👋 I'm **Adrian's n8n + Gemini AI Assistant**!\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production n8n workflows** and **live full-stack systems**.\n\nTry asking me about:\n• ⚡ **His n8n & AI Agent workflows**\n• 💻 **His live PHP, MySQL & JS projects** (*Qrypt, AppTrade, OBI Visualizer*)\n• 🛠️ **His full technical stack**\n• 📩 **How to hire or contact him**`;
             }
 
             async function sendMessage(userText) {
