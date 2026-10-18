@@ -38,14 +38,14 @@ KEY RESUME FACTS ABOUT ADRIAN:
 
 RESPONSE STYLE:
 - Keep responses concise (3-6 sentences or clean bullet points), enthusiastic, confident, and recruiter-friendly.
-- Always include direct URLs when mentioning projects or contact info.
+- Always include direct URLs formatted in clean Markdown like [Title](https://...) when mentioning projects, contact info, or resume.
 - Never disclose confidential internal client details.`;
 
 function generateSmartFallbackReply(userMessage) {
   const q = (userMessage || '').toLowerCase();
 
   if (q.includes('n8n') || q.includes('automat') || q.includes('workflow') || q.includes('pipeline') || q.includes('ai')) {
-    return `⚡ **Adrian's n8n & AI Automation Expertise:**\n\nAdrian architects and manages **25+ production n8n workflows** deployed on Linux VPS infrastructure:\n• **Multi-Step AI Agent Pipelines:** Connects LLMs (Google Gemini, REST APIs) with structured JSON outputs, memory buffers, and automated quality validation.\n• **Automated Data Ingestion & ETL:** Multi-source web scraping, anti-bot header mitigation, deduplication, and automated syncing to **Google Sheets**.\n• **CRM & CMS Orchestration:** End-to-end webhook pipelines integrating **Ghost CMS**, **Kit (ConvertKit)** subscriber tagging, and real-time email/chat alerts.\n\n💡 *Tip: Click the **"Workflow"** button in the top-right of this chat to inspect or download the actual `.json` n8n workflow powering this assistant!*`;
+    return `⚡ **Adrian's n8n & AI Automation Expertise:**\n\nAdrian architects and manages **25+ production n8n workflows** deployed on Linux VPS infrastructure:\n• **Multi-Step AI Agent Pipelines:** Connects LLMs (Google Gemini, REST APIs) with structured JSON outputs, memory buffers, and automated quality validation.\n• **Automated Data Ingestion & ETL:** Multi-source web scraping, anti-bot header mitigation, deduplication, and automated syncing to **Google Sheets**.\n• **CRM & CMS Orchestration:** End-to-end webhook pipelines integrating **Ghost CMS**, **Kit (ConvertKit)** subscriber tagging, and real-time email/chat alerts.\n\n💡 *Tip: Click **"Nodes"** in the top-right of this chat to inspect the active 4-node n8n architecture powering this assistant!*`;
   }
 
   if (q.includes('php') || q.includes('project') || q.includes('web') || q.includes('fullstack') || q.includes('full-stack') || q.includes('mysql') || q.includes('qrypt') || q.includes('obi') || q.includes('apptrade')) {

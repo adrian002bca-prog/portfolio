@@ -1051,19 +1051,23 @@
                 </div>
             </div>
 
-            <!-- Starter Quick Prompts -->
-            <div id="n8n-quick-prompts" class="px-3.5 py-2 bg-black/30 border-t border-white/5 flex items-center gap-1.5 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
-                <button type="button" data-prompt="What n8n workflows and AI automations has Adrian built?" class="n8n-chip shrink-0 px-2.5 py-1 rounded-full bg-purple-500/15 hover:bg-purple-500/30 border border-purple-500/30 text-[11px] text-purple-200 transition-all">
-                    ⚡ n8n Workflows
+            <!-- Starter Quick Prompts: 2x2 Responsive Grid (Zero Cut-Off) -->
+            <div id="n8n-quick-prompts" class="px-3 py-2 bg-black/40 border-t border-white/5 grid grid-cols-2 gap-1.5 shrink-0">
+                <button type="button" data-prompt="What n8n workflows and AI automations has Adrian built?" class="n8n-chip px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/25 border border-purple-500/25 text-[11px] text-purple-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
+                    <span class="text-xs group-hover:scale-110 transition-transform">⚡</span>
+                    <span class="truncate font-medium">n8n Workflows</span>
                 </button>
-                <button type="button" data-prompt="Tell me about Adrian's live Full-Stack PHP, MySQL & JS projects" class="n8n-chip shrink-0 px-2.5 py-1 rounded-full bg-cyan-500/15 hover:bg-cyan-500/30 border border-cyan-500/30 text-[11px] text-cyan-200 transition-all">
-                    💻 Live Web Projects
+                <button type="button" data-prompt="Tell me about Adrian's live Full-Stack PHP, MySQL & JS projects" class="n8n-chip px-2.5 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/25 text-[11px] text-cyan-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
+                    <span class="text-xs group-hover:scale-110 transition-transform">💻</span>
+                    <span class="truncate font-medium">Live Web Projects</span>
                 </button>
-                <button type="button" data-prompt="What is Adrian's technical skill stack?" class="n8n-chip shrink-0 px-2.5 py-1 rounded-full bg-indigo-500/15 hover:bg-indigo-500/30 border border-indigo-500/30 text-[11px] text-indigo-200 transition-all">
-                    🛠️ Tech Stack
+                <button type="button" data-prompt="What is Adrian's technical skill stack?" class="n8n-chip px-2.5 py-1.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/25 border border-indigo-500/25 text-[11px] text-indigo-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
+                    <span class="text-xs group-hover:scale-110 transition-transform">🛠️</span>
+                    <span class="truncate font-medium">Technical Stack</span>
                 </button>
-                <button type="button" data-prompt="How can I contact or hire Adrian?" class="n8n-chip shrink-0 px-2.5 py-1 rounded-full bg-emerald-500/15 hover:bg-emerald-500/30 border border-emerald-500/30 text-[11px] text-emerald-200 transition-all">
-                    📩 Hire / Contact
+                <button type="button" data-prompt="How can I contact or hire Adrian?" class="n8n-chip px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/25 text-[11px] text-emerald-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
+                    <span class="text-xs group-hover:scale-110 transition-transform">📄</span>
+                    <span class="truncate font-medium">Resume & Contact</span>
                 </button>
             </div>
 
@@ -2075,17 +2079,67 @@ Keep answers concise, confident, friendly, and formatted with clean bullet point
             }
 
             function formatMarkdown(text) {
-                const escaped = String(text || '')
+                if (!text) return '';
+
+                // 1. HTML Escape first
+                let s = String(text)
                     .replace(/&/g, '&amp;')
                     .replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;');
 
-                return escaped
-                    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
-                    .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-purple-950/80 border border-purple-500/30 text-cyan-300 font-mono text-[11px]">$1</code>')
-                    .replace(/(https?:\/\/[^\s<)]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline break-all">$1</a>')
-                    .replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, '<a href="mailto:$1" class="text-purple-300 hover:text-purple-200 underline">$1</a>')
-                    .replace(/\n/g, '<br>');
+                const tokens = [];
+                const saveToken = (html) => {
+                    const id = `@@TOKEN_${tokens.length}@@`;
+                    tokens.push(html);
+                    return id;
+                };
+
+                // 2. Extract code blocks `code`
+                s = s.replace(/`([^`]+)`/g, (m, code) => {
+                    return saveToken(`<code class="px-1.5 py-0.5 rounded bg-purple-950/80 border border-purple-500/30 text-cyan-300 font-mono text-[11px]">${code}</code>`);
+                });
+
+                // 3. Extract Markdown Links [label](url or mailto)
+                s = s.replace(/\[([^\]]+)\]\((mailto:[^\s)]+|https?:\/\/[^\s)]+|\/[^\s)]+)\)/g, (m, label, url) => {
+                    if (url.startsWith('mailto:')) {
+                        return saveToken(`<a href="${url}" class="text-purple-300 hover:text-purple-200 underline font-medium">${label}</a>`);
+                    }
+                    return saveToken(`<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline font-medium inline-flex items-center gap-1">${label} <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-70"></i></a>`);
+                });
+
+                // 4. Extract Standalone URLs (https://...)
+                s = s.replace(/https?:\/\/[^\s<)]+/g, (url) => {
+                    return saveToken(`<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline break-all">${url}</a>`);
+                });
+
+                // 5. Extract Standalone Emails (not preceded by @ or :)
+                s = s.replace(/\b([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b/g, (email) => {
+                    return saveToken(`<a href="mailto:${email}" class="text-purple-300 hover:text-purple-200 underline">${email}</a>`);
+                });
+
+                // 6. Headers (###, ##, #)
+                s = s.replace(/^###[ \t]+(.+)$/gm, '<div class="font-bold text-cyan-300 text-xs mt-2.5 mb-1">$1</div>');
+                s = s.replace(/^##[ \t]+(.+)$/gm, '<div class="font-bold text-white text-sm mt-3 mb-1">$1</div>');
+                s = s.replace(/^#[ \t]+(.+)$/gm, '<div class="font-bold text-white text-base mt-3 mb-1.5">$1</div>');
+
+                // 7. Bold text
+                s = s.replace(/\*\*(.+?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
+
+                // 8. Bullet points (* item, - item, • item)
+                s = s.replace(/^[ \t]*[*•-][ \t]+(.+)$/gm, '<div class="flex items-start gap-1.5 my-0.5"><span class="text-cyan-400 shrink-0 mt-0.5">•</span><span>$1</span></div>');
+
+                // 9. Clean up newlines around blocks
+                s = s.replace(/<\/div>\n/g, '</div>');
+                s = s.replace(/\n<div/g, '<div');
+                s = s.replace(/\n\n+/g, '<div class="h-2"></div>');
+                s = s.replace(/\n/g, '<br>');
+
+                // 10. Restore saved tokens
+                for (let i = 0; i < tokens.length; i++) {
+                    s = s.replace(`@@TOKEN_${i}@@`, tokens[i]);
+                }
+
+                return s;
             }
 
             function appendUserMessage(text) {
