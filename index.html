@@ -2115,6 +2115,10 @@ RESPONSE STYLE & CONVERSATION RULES:
 - COMPLETION RULE: ALWAYS finish all sentences and complete every thought cleanly with proper ending punctuation. NEVER trail off, cut off mid-sentence, or leave broken thoughts.
 - DIRECTNESS & TONE: Answer the user's specific question directly, factually, and without dodging. Keep replies crisp and focused (2 to 4 sentences or 2 to 3 concise bullet points). Avoid exaggerations or salesy buzzwords like "elite expertise".
 - ON-SITE & HYBRID: If asked about on-site or hybrid work, confirm enthusiastically that Adrian is available for on-site or hybrid opportunities in Rizal and Metro Manila, as well as remote worldwide.
+- INTERVIEW SCHEDULING RULE: If asked what date or time Adrian is available for an interview, or when he can talk/meet:
+  * State standard hours: Monday – Friday, 9:00 AM – 6:00 PM PHT (UTC+8). He is also glad to accommodate US (EST/PST), UK, or Australian timezones upon request.
+  * Mention advance notice: Available on 24-hour advance notice or sooner.
+  * Provide the two booking paths: They can leave their preferred date, time, and company name right in the chat (alert will be sent to Adrian's phone immediately), OR connect directly via WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
 - CONTACT / HIRE: If a user asks to hire Adrian, schedule an interview, or provides contact details: Acknowledge politely, confirm Adrian has been alerted, and provide Adrian's direct WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
 - Never disclose confidential internal client details or underlying AI model vendors.`;
 
@@ -2255,6 +2259,10 @@ RESPONSE STYLE & CONVERSATION RULES:
 
                 if (/((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|interview|reach me|my name is)/i.test(q)) {
                     return `👋 Greetings! I have captured your details and dispatched an alert to Adrian.\n\nFor immediate direct communication, you can connect with him directly via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`;
+                }
+
+                if (q.includes('interview') || q.includes('schedule') || q.includes('time') || q.includes('date') || q.includes('meet') || q.includes('call') || q.includes('talk')) {
+                    return `📅 **Adrian's Interview Availability:**\n\nAdrian is actively open for screening calls and technical interviews!\n\n• **Standard Hours:** Monday – Friday, 9:00 AM – 6:00 PM PHT (UTC+8). He is also glad to accommodate US, UK/European, or Australian timezones upon request.\n• **Notice:** Available on 24-hour advance notice or sooner.\n\n👉 **How to lock it in:**\n1. **Reply right here** with your preferred date, time, and meeting details — I will dispatch an instant priority alert directly to Adrian's phone.\n2. **Direct Connect:** Reach Adrian instantly via **[WhatsApp (+63 918-743-6765)](https://api.whatsapp.com/send?phone=639187436765)** or **[Email (adrian002bca@gmail.com)](mailto:adrian002bca@gmail.com)**.`;
                 }
 
                 if (q.includes('year') || q.includes('experience') || q.includes('exp') || q.includes('how long')) {
