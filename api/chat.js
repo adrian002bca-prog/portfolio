@@ -153,7 +153,11 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { message, history = [], sessionId = 'visitor', customWebhookUrl, customGeminiKey } = req.body || {};
+    let body = req.body;
+    if (typeof body === 'string') {
+      try { body = JSON.parse(body); } catch (_) {}
+    }
+    const { message, history = [], sessionId = 'visitor', customWebhookUrl, customGeminiKey } = body || {};
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Message is required' });
