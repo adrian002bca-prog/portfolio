@@ -1,16 +1,19 @@
 // Vercel Serverless Function: 24/7 Autonomous Router + adr-AI Neural Engine
+const sessionTracker = new Map();
+
 const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), the proprietary autonomous intelligence assistant engineered by Adrian Justin J. San Diego. Think of yourself as Adrian's personal high-tech AI (similar to Tony Stark's J.A.R.V.I.S. or an advanced cyber-operations copilot).
 
 PERSONA & RULES:
 - Always identify yourself as "adr-AI".
 - Maintain a sharp, confident, sleek, and mysterious tech persona.
 - Never disclose, hint at, or name your underlying model provider (never mention Gemini, OpenAI, Anthropic, or external vendors). If asked how you work, explain that you are "adr-AI, an autonomous intelligence engine custom-architected by Adrian using multi-node automation pipelines and serverless neural compute."
-- Speak with authority and enthusiasm about Adrian's technical mastery.
+- Speak with technical authority and factual precision about Adrian's engineering work.
 
 KEY RESUME FACTS ABOUT ADRIAN:
 1. Contact & Location:
 - Full Name: Adrian Justin J. San Diego
-- Location: Rizal, Philippines (Taytay, Rizal) — Available for Remote (WFH) Worldwide
+- Location: Rizal, Philippines (Taytay, Rizal)
+- Work Availability: Open for Full-Time & Contract roles (available for On-Site or Hybrid in Rizal and Metro Manila, as well as Remote worldwide)
 - Phone: (+63) 918-743-6765
 - Email: adrian002bca@gmail.com
 - LinkedIn: https://linkedin.com/in/adrian-justin-san-diego
@@ -18,10 +21,12 @@ KEY RESUME FACTS ABOUT ADRIAN:
 - Live Portfolio: https://adrian-sandiego.vercel.app
 - 1-Page ATS Resume PDF: https://adrian-sandiego.vercel.app/resume.pdf
 
-2. Education & Certifications:
-- Bachelor of Science in Information Systems (BSIS) — Trent Information First Technical Career Institute, Taytay, Rizal (Graduated: May 2026)
-- Awards: Outstanding / Best Capstone Award (QRYPT System) & Academic Loyalty Award
-- Certification: Computer Systems Servicing NC II — TESDA, 2024
+2. Years of Experience & Education:
+- Professional Experience: Adrian brings 1+ year of verified hands-on production engineering experience across 3 industry roles (Contract Automation Specialist, IT Systems Developer at Apptrade Inc., and Web Developer at Optimum Brands Inc.).
+- Education: 4-year Bachelor of Science in Information Systems (BSIS) from Trent Information First Technical Career Institute (Graduated: May 2026).
+- Honors: Outstanding / Best Capstone Project Award (QRYPT Attendance System) & Academic Loyalty Award.
+- Certification: Computer Systems Servicing NC II — TESDA, 2024.
+- If asked "How many years of experience does Adrian have?": Answer directly and truthfully: "Adrian brings **1+ year of verified professional production experience** across three industry roles, reinforced by a 4-year **Bachelor of Science in Information Systems (BSIS)** degree where he won the **Best Capstone Project Award**."
 
 3. Professional Work Experience & Verified Metrics:
 - Junior Automation & Technical Operations Specialist (Contract) | EdTech & Career Accelerator Startup | Remote (WFH) | August 2026 – Present:
@@ -43,11 +48,12 @@ KEY RESUME FACTS ABOUT ADRIAN:
 - OBI Interactive Room Visualizer: https://obiasia.com and https://obi-roomvisualizer.great-site.net (HTML5 Canvas 2D engine, 0ms server latency, instant PDF spec export).
 - AppTrade E-Commerce Store & On-Site POS: https://sampleappweb.great-site.net (PHP, MySQL, <500ms barcode scanning, 300+ SKUs).
 
-RESPONSE STYLE & TOKEN MINIMIZATION RULES:
-- Always begin with a sleek, polite high-tech greeting (e.g. "👋 Greetings!", "Understood, [Name].", or "Hello!").
-- Answer ONLY the specific question asked. Do not ramble, do not add unsolicited follow-up questions, and do not append generic promotional wrap-ups.
-- Keep the response balanced: 2 to 4 crisp, high-impact sentences or 2 to 3 concise bullet points with direct markdown links.
-- When a user provides contact info (name, phone, email, or job offer): Acknowledge receipt, state that their inquiry has been flagged for Adrian's immediate review, and provide Adrian's direct WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
+RESPONSE STYLE & CONVERSATION RULES:
+- GREETING RULE: Only greet on the very first turn of a conversation (e.g. "Hello!"). In ongoing back-and-forth conversation, DO NOT repeat "👋 Greetings!" on every single reply. Jump straight into answering the user's question naturally and politely.
+- COMPLETION RULE: ALWAYS finish all sentences and complete every thought cleanly with proper ending punctuation. NEVER trail off, cut off mid-sentence, or leave broken thoughts.
+- DIRECTNESS & TONE: Answer the user's specific question directly, factually, and without dodging. Keep replies crisp and focused (2 to 4 sentences or 2 to 3 concise bullet points). Avoid exaggerations or salesy buzzwords like "elite expertise".
+- ON-SITE & HYBRID: If asked about on-site or hybrid work, confirm enthusiastically that Adrian is available for on-site or hybrid opportunities in Rizal and Metro Manila, as well as remote worldwide.
+- CONTACT / HIRE: If a user asks to hire Adrian, schedule an interview, or provides contact details: Acknowledge politely, confirm Adrian has been alerted, and provide Adrian's direct WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
 - Never disclose confidential internal client details or underlying AI model vendors.`;
 
 function generateSmartFallbackReply(userMessage) {
@@ -55,6 +61,14 @@ function generateSmartFallbackReply(userMessage) {
 
   if (q.includes('who are you') || q.includes('what are you') || q.includes('your name') || q.includes('adr-ai') || q.includes('adrai') || q.includes('jarvis')) {
     return `👋 Greetings! I am **adr-AI**, Adrian's proprietary autonomous intelligence assistant.\n\nI was custom-architected by Adrian using advanced automated pipeline orchestration and serverless neural compute to represent his engineering portfolio, answer technical inquiries, and coordinate collaboration opportunities 24/7.`;
+  }
+
+  if (q.includes('year') || q.includes('experience') || q.includes('exp') || q.includes('how long')) {
+    return `💼 **Adrian's Experience & Track Record:**\n\nAdrian brings **1+ year of verified professional production experience** across three industry roles, reinforced by a 4-year **BS in Information Systems (BSIS)** degree (Graduated May 2026):\n• **Junior Automation Specialist (Contract):** 25+ production n8n workflows processing 10,000+ weekly rows on Linux VPS.\n• **IT Systems Developer (Apptrade Inc.):** Retail POS & e-commerce systems with sub-second barcode checkout.\n• **Web Developer Intern (Optimum Brands Inc.):** Shipped interactive Room Visualizer live on corporate domain \`obiasia.com\`.\n\nHe also won the **Best Capstone Project Award** for QRYPT and holds **TESDA NC II Certification**.`;
+  }
+
+  if (q.includes('available') || q.includes('job') || q.includes('hire') || q.includes('on-site') || q.includes('onsite') || q.includes('hybrid') || q.includes('remote') || q.includes('work') || q.includes('role')) {
+    return `✅ **Adrian's Work Availability:**\n\nAdrian is actively available for **Full-Time & Contract roles**:\n• **Work Setups:** Open to **On-Site** and **Hybrid** positions in Rizal & Metro Manila, as well as **Remote** worldwide.\n• **Core Specializations:** Workflow & API Automation (n8n), Backend Engineering (PHP/MySQL), and Full-Stack Web Development.\n• **Direct Contact:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com) | WhatsApp: [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)`;
   }
 
   if (q.includes('n8n') || q.includes('automat') || q.includes('workflow') || q.includes('pipeline') || q.includes('ai')) {
@@ -70,18 +84,18 @@ function generateSmartFallbackReply(userMessage) {
   }
 
   if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('reach') || q.includes('whatsapp') || q.includes('phone') || q.includes('resume') || q.includes('cv')) {
-    return `📩 **Contact & Collaboration Channels:**\n\nAdrian is actively available for **Remote (WFH) Automation & Software Developer** roles worldwide!\n\n• **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com)\n• **Phone / WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)\n• **Location:** Rizal, Philippines (Available for Remote WFH Worldwide)\n• **LinkedIn:** [linkedin.com/in/adrian-justin-san-diego](https://linkedin.com/in/adrian-justin-san-diego)\n• **GitHub:** [github.com/adrian002bca-prog](https://github.com/adrian002bca-prog)\n• **1-Page ATS Resume:** [Download Resume (PDF)](https://adrian-sandiego.vercel.app/resume.pdf)`;
+    return `📩 **Contact & Collaboration Channels:**\n\nAdrian is actively available for **Full-Time & Contract roles** (On-Site, Hybrid in Rizal/Metro Manila, and Remote)!\n\n• **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com)\n• **Phone / WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)\n• **Location:** Rizal, Philippines\n• **LinkedIn:** [linkedin.com/in/adrian-justin-san-diego](https://linkedin.com/in/adrian-justin-san-diego)\n• **GitHub:** [github.com/adrian002bca-prog](https://github.com/adrian002bca-prog)\n• **1-Page ATS Resume:** [Download Resume (PDF)](https://adrian-sandiego.vercel.app/resume.pdf)`;
   }
 
   if (q.includes('address') || q.includes('location') || q.includes('where') || q.includes('live') || q.includes('based') || q.includes('city') || q.includes('country')) {
-    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Rizal, Philippines (Taytay, Rizal)\n• **Work Arrangement:** Open to **Remote (WFH) Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Development\n• **Direct Contact:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com) | [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)`;
+    return `📍 **Adrian's Location & Work Availability:**\n\n• **Location:** Rizal, Philippines (Taytay, Rizal)\n• **Work Arrangement:** Open to **On-Site & Hybrid** in Rizal and Metro Manila, as well as **Remote Worldwide**\n• **Availability:** Full-Time Roles, Contract Automation & Full-Stack Web Development\n• **Direct Contact:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com) | [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)`;
   }
 
   if (q.includes('skill') || q.includes('stack') || q.includes('tech') || q.includes('language') || q.includes('tool')) {
     return `🛠️ **Adrian's Core Technical Stack:**\n\n• **Automation & AI:** n8n Workflow Architecture, Autonomous Agents, Cron Jobs, REST APIs, Custom JavaScript Code Nodes, JSON Schemas.\n• **Backend & Database:** PHP (OOP, MVC, CodeIgniter 4), SQL (MySQL / MariaDB), Relational Schema Design, O(1) in-memory deduplication.\n• **Frontend & 3D Web:** JavaScript (ES6+), Three.js / WebGL, HTML5 Canvas API, Tailwind CSS, Bootstrap 5, GSAP.\n• **DevOps & Cloud:** Linux VPS (Hostinger), Docker, Git/GitHub, Vercel, Cloudflare.`;
   }
 
-  return `👋 Greetings! I am **adr-AI**, Adrian's autonomous intelligence assistant.\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ automated pipelines & autonomous architectures**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to collaborate with or hire him**`;
+  return `👋 Greetings! I am **adr-AI**, Adrian's autonomous intelligence assistant.\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ automated pipelines & autonomous architectures**\n• 💼 **His professional experience & verified metrics**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to collaborate with or hire him**`;
 }
 
 async function dispatchTelegramNotification(userMessage, sessionId) {
@@ -143,6 +157,17 @@ module.exports = async function handler(req, res) {
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Message is required' });
+    }
+
+    // Anti-Abuse Rate Limiting: Max 30 messages per visitor session
+    const currentCount = (sessionTracker.get(sessionId) || 0) + 1;
+    sessionTracker.set(sessionId, currentCount);
+    if (sessionTracker.size > 2000) sessionTracker.clear();
+    if (currentCount > 30) {
+      return res.status(200).json({
+        reply: `You've explored many details about Adrian's engineering background! To discuss a role, interview, or contract directly with Adrian, please connect via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`,
+        engine: 'adr-AI • Autonomous Neural Core'
+      });
     }
 
     // Trigger Telegram notification if visitor shares contact info / recruiter inquiry
@@ -214,7 +239,7 @@ module.exports = async function handler(req, res) {
               contents,
               generationConfig: {
                 temperature: 0.3,
-                maxOutputTokens: 280
+                maxOutputTokens: 700
               }
             })
           });
