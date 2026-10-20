@@ -32,20 +32,20 @@ KEY RESUME FACTS ABOUT ADRIAN:
 - Junior Automation & Technical Operations Specialist (Contract) | EdTech & Career Accelerator Startup | Remote (WFH) | August 2026 – Present:
   * Architected and maintain 25+ production automated pipelines on self-hosted Linux VPS n8n processing 10,000+ data rows weekly with 99.8% uptime on 2-hour cycles.
   * Resolved live Cloudflare 403 blocks, HTTP 406/429 errors, and DNS failures; built REST API integrations (xAI Grok LLM, Google Sheets batchUpdate, Kit API).
-  * Authored custom JavaScript Code nodes with O(1) in-memory Set() deduplication, guaranteeing 0 duplicates.
+  * Authored custom JavaScript Code nodes with O(1) in-memory Set() deduplication, ensuring zero duplicate entries observed across consecutive batch runs.
   * Audited and restored 5 stale ingestion pipelines backfilling 1,300+ rows across Google Sheets; closed 50+ Jira sprint tickets.
 - IT Systems & Support Developer | Apptrade Inc. | Taytay, Rizal, Philippines | May 2026 – August 2026:
   * Co-engineered and deployed dual-channel retail software (on-premise POS & web storefront) in PHP & MySQL with sub-second (<500ms) barcode checkout.
   * Eliminated stock drift across 300+ active retail SKUs using atomic MySQL transactions and dynamic discount logic.
-  * Maintained 100% workstation uptime across store terminals.
+  * Maintained continuous workstation uptime across store terminals.
 - IT Intern – Web & System Developer | Optimum Brands Inc. (OBI) | Pasig City, Philippines | January 2026 – March 2026:
-  * Shipped the interactive OBI Room Visualizer to live corporate production on obiasia.com (0ms server latency via client-side HTML5 Canvas matrix engine).
+  * Shipped the interactive OBI Room Visualizer to live corporate production on obiasia.com (instant client-side rendering with no server round-trip via HTML5 Canvas matrix engine).
   * Built internal Quotation & Payment-Budget systems in PHP/MySQL, cutting sales quotation turnaround time by over 60%.
 
 4. Live Portfolio Projects:
 - Production n8n Fleet & AI Pipelines: Self-Hosted n8n on Hostinger VPS, xAI Grok API, JavaScript, REST APIs, Google Sheets (10,000+ rows/week, 99.8% uptime).
 - QRYPT (Best Capstone Awardee): https://qrypt.great-site.net (PHP, MySQL, WebRTC Camera QR Scanner, cuts gate entry bottlenecks by 75%, 1,500+ daily check-ins).
-- OBI Interactive Room Visualizer: https://obiasia.com and https://obi-roomvisualizer.great-site.net (HTML5 Canvas 2D engine, 0ms server latency, instant PDF spec export).
+- OBI Interactive Room Visualizer: https://obiasia.com and https://obi-roomvisualizer.great-site.net (HTML5 Canvas 2D engine, instant client-side rendering, instant PDF spec export).
 - AppTrade E-Commerce Store & On-Site POS: https://sampleappweb.great-site.net (PHP, MySQL, <500ms barcode scanning, 300+ SKUs).
 
 RESPONSE STYLE & CONVERSATION RULES:
