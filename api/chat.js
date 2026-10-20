@@ -54,15 +54,30 @@ RESPONSE STYLE & CONVERSATION RULES:
 - COMPLETION RULE: ALWAYS finish all sentences and complete every thought cleanly with proper ending punctuation. NEVER trail off, cut off mid-sentence, or leave broken thoughts.
 - DIRECTNESS & TONE: Answer the user's specific question directly, factually, and without dodging. Keep replies crisp and focused (2 to 4 sentences or 2 to 3 concise bullet points). Avoid exaggerations or salesy buzzwords like "elite expertise".
 - ON-SITE & HYBRID: If asked about on-site or hybrid work, confirm enthusiastically that Adrian is available for on-site or hybrid opportunities in Rizal and Metro Manila, as well as remote worldwide.
-- INTERVIEW SCHEDULING RULE: If asked what date or time Adrian is available for an interview, or when he can talk/meet:
-  * State standard hours: Monday – Friday, 9:00 AM – 6:00 PM PHT (UTC+8). He is also glad to accommodate US (EST/PST), UK, or Australian timezones upon request.
-  * Mention advance notice: Available on 24-hour advance notice or sooner.
-  * Provide the two booking paths: They can leave their preferred date, time, and company name right in the chat (alert will be sent to Adrian's phone immediately), OR connect directly via WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
-- CONTACT / HIRE: If a user asks to hire Adrian, schedule an interview, or provides contact details: Acknowledge politely, confirm Adrian has been alerted, and provide Adrian's direct WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
+  - TWO-STAGE RECRUITER & LEAD QUALIFICATION FLOW (STRICT):
+    * STAGE 1 (When visitor asks about an interview, meeting, hiring, scheduling, or speaking with Adrian, but has NOT provided contact info yet):
+      1. Answer their question clearly: State Adrian's availability (Full-Time & Contract roles, On-Site & Hybrid in Rizal/Metro Manila, and Remote worldwide; Monday – Friday, 9:00 AM – 6:00 PM PHT / UTC+8, with 24-hour advance notice for US/UK/global timezones).
+      2. Ask politely for their details before alerting: "I would be glad to send a priority notification directly to Adrian's phone for you! Could you please share your name, company or organization, and your email address or phone number so Adrian can connect with you?"
+      3. Remind them of direct channels: WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
+    * STAGE 2 (When visitor shares their name, email, phone number, or company):
+      1. Acknowledge and confirm: "Thank you! I've sent a priority alert directly to Adrian's phone with your details and message. He will review it and get in touch with you shortly."
+      2. Provide direct links: WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
 - Never disclose confidential internal client details or underlying AI model vendors.`;
 
 function generateSmartFallbackReply(userMessage) {
   const q = (userMessage || '').toLowerCase();
+
+  // 0. Contact Details Provided / Lead Qualified (Priority check)
+  const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+  const phoneRegex = /(?:(?:\+|00)\d{1,3}[\s-]?)?(?:\(?\d{2,4}\)?[\s-]?)?\d{3,4}[\s-]?\d{3,4}/;
+  const emailMatch = q.match(emailRegex);
+  const phoneMatch = q.match(phoneRegex);
+  const hasValidPhone = phoneMatch && phoneMatch[0].replace(/\D/g, '').length >= 7;
+  const hasContactInfo = Boolean(emailMatch || hasValidPhone || /my (?:name|company|email|number|phone) is/i.test(q));
+
+  if (hasContactInfo) {
+    return `🎯 **Thank you for sharing your details!**\n\nI have captured your message and forwarded an instant priority alert directly to Adrian's phone. He will review your inquiry and reach back out to you promptly!\n\n• **Direct WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)\n• **Direct Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com)\n• **Resume:** [Download Resume (PDF)](https://adrian-sandiego.vercel.app/resume.pdf)`;
+  }
 
   // 1. Identity & Persona
   if (/\b(who are you|what are you|your name|what is adr-ai)\b/i.test(q) || q.includes('adr-ai') || q.includes('adrai') || q.includes('jarvis')) {
@@ -100,7 +115,7 @@ function generateSmartFallbackReply(userMessage) {
 
   // 7. Interview Scheduling & Booking
   if (q.includes('interview') || q.includes('schedule') || q.includes('earliest start') || q.includes('timezone') || q.includes('time zone') || q.includes('book interview') || (q.includes('when') && (q.includes('talk') || q.includes('meet') || q.includes('call')))) {
-    return `📅 **Adrian's Interview Availability & Work Schedule:**\n\nAdrian is actively interviewing and ready to take screening calls or technical deep-dives!\n\n• **Earliest Start Date:** Immediate / Ready to onboard (BSIS Completed May 2026).\n• **Timezone:** Philippines Standard Time (UTC+8 / PHT). He is flexible and readily accommodates US (EST/PST), UK/European (GMT/CET), or Australian (AEST) business hours upon request.\n• **Standard Hours:** Monday – Friday, 9:00 AM – 6:00 PM PHT (or scheduled shifts).\n• **Advance Notice:** Available on 24-hour advance notice or sooner.\n\n👉 **How to Lock In a Time:**\n1. **Reply right here** with your preferred date, time, and company name — an instant priority alert will be dispatched to Adrian's phone.\n2. **Connect directly:** Reach Adrian via **[WhatsApp (+63 918-743-6765)](https://api.whatsapp.com/send?phone=639187436765)** or **[Email (adrian002bca@gmail.com)](mailto:adrian002bca@gmail.com)**.`;
+    return `📅 **Adrian's Interview Availability & Work Schedule:**\n\nAdrian is actively interviewing and ready to take screening calls or technical deep-dives!\n\n• **Earliest Start Date:** Immediate / Ready to onboard (BSIS Completed May 2026).\n• **Timezone:** Philippines Standard Time (UTC+8 / PHT). Flexible and readily accommodates US (EST/PST), UK/European (GMT/CET), or Australian (AEST) hours upon request.\n• **Standard Hours:** Monday – Friday, 9:00 AM – 6:00 PM PHT (or scheduled shifts).\n• **Advance Notice:** Available on 24-hour advance notice or sooner.\n\n🔔 **I can notify Adrian directly right now!**\nCould you please share your **name**, **company / organization**, and your **email address or phone number** (along with your preferred date/time)? As soon as you share them, I will fire an instant priority alert directly to Adrian's phone so he can reach out to you!\n\n*(You can also reach him immediately via **[WhatsApp (+63 918-743-6765)](https://api.whatsapp.com/send?phone=639187436765)** or **[Email (adrian002bca@gmail.com)](mailto:adrian002bca@gmail.com)**)*`;
   }
 
   // 8. Experience & Years of Track Record
@@ -123,8 +138,13 @@ function generateSmartFallbackReply(userMessage) {
     return `💻 **Adrian's Live Full-Stack Systems:**\n\n• **[Production n8n Fleet]:** 25+ workflows on Linux VPS, 10,000+ rows/week, 99.8% uptime.\n• **[QRYPT Gatepass & Attendance System](https://qrypt.great-site.net/):** Awarded **Best Capstone Project** — PHP, MySQL, JavaScript & WebRTC camera QR scanner with real-time logging.\n• **[AppTrade Multi-Portal Commerce](https://sampleappweb.great-site.net/):** Full-stack retail POS & e-commerce with <500ms barcode scanning.\n• **[OBI Spatial Room Visualizer](https://obi-roomvisualizer.great-site.net/):** HTML5 Canvas matrix layout engine with instant PDF export (live on **[obiasia.com](https://obiasia.com)**).`;
   }
 
-  // 12. Contact / Direct Lead Capture
-  if (/((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|reach me|my name is)/i.test(q) || q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('whatsapp') || q.includes('reach')) {
+  // 13. Interview / Hiring / Meeting Inquiry (Without contact details yet)
+  if (/\b(interview|schedule|meeting|appointment|hire|hiring|speak to|talk to|available time|discuss role|offer|opportunity)\b/i.test(q)) {
+    return `📅 **Adrian's Interview & Scheduling Availability:**\n\nAdrian is actively available for **Full-Time & Contract roles**:\n• **Work Setups:** On-Site & Hybrid in Rizal & Metro Manila, and Remote worldwide.\n• **Standard Hours:** Monday – Friday, 9:00 AM – 6:00 PM PHT (UTC+8). He is also glad to accommodate US (EST/PST), UK, or Australian timezones with 24-hour advance notice.\n\n🔔 **Would you like me to notify Adrian right now?**\nPlease reply with your **name**, **company / organization**, and your **email address or phone number**. As soon as you share them, I will fire an instant priority alert directly to Adrian's phone so he can get in touch with you!\n\n*(You can also reach him immediately via WhatsApp: [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765))*`;
+  }
+
+  // 14. General Contact Inquiries
+  if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('whatsapp') || q.includes('reach')) {
     return `📩 **Contact & Collaboration Channels:**\n\nAdrian is actively available for **Full-Time & Contract roles** (On-Site, Hybrid in Rizal/Metro Manila, and Remote)!\n\n• **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com)\n• **Phone / WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765)\n• **Location:** Rizal, Philippines\n• **LinkedIn:** [linkedin.com/in/adrian-justin-san-diego](https://linkedin.com/in/adrian-justin-san-diego)\n• **GitHub:** [github.com/adrian002bca-prog](https://github.com/adrian002bca-prog)\n• **1-Page ATS Resume:** [Download Resume (PDF)](https://adrian-sandiego.vercel.app/resume.pdf)`;
   }
 
@@ -132,7 +152,7 @@ function generateSmartFallbackReply(userMessage) {
   return `👋 Greetings! I am **adr-AI**, an interactive technical assistant engineered by Adrian Justin J. San Diego.\n\nAdrian is an **IT Systems & Support Developer** and **BS Information Systems graduate (Best Capstone Awardee)** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ production n8n workflows & automation architecture**\n• 💼 **His professional experience & verified metrics**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to connect with or hire him**`;
 }
 
-async function dispatchTelegramNotification(userMessage, sessionId) {
+async function dispatchTelegramNotification(userMessage, sessionId, meta = {}) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!botToken || !chatId) {
@@ -146,11 +166,26 @@ async function dispatchTelegramNotification(userMessage, sessionId) {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    const text = `🚨 <b>New Lead Captured via adr-AI!</b>\n\n` +
-      `<b>Session:</b> <code>${sessionId || 'visitor'}</code>\n` +
-      `<b>Message:</b>\n<i>${safeMsg}</i>\n\n` +
-      `<b>Time:</b> ${new Date().toISOString()}\n` +
-      `<b>Direct Actions:</b> Reply via WhatsApp / Email`;
+    const emailBadge = meta.email ? `📧 <b>Email:</b> <code>${meta.email}</code>\n` : '';
+    const phoneBadge = meta.phone ? `📱 <b>Phone:</b> <code>${meta.phone}</code>\n` : '';
+    
+    let contextBadge = '';
+    if (meta.priorContext) {
+      const safeContext = String(meta.priorContext)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      contextBadge = `\n📋 <b>Prior Inquiry Context:</b>\n<i>${safeContext}</i>\n`;
+    }
+
+    const text = `🎯 <b>Qualified Recruiter / Lead Alert!</b>\n\n` +
+      `${emailBadge}` +
+      `${phoneBadge}` +
+      `<b>Session:</b> <code>${sessionId || 'visitor'}</code>\n\n` +
+      `<b>Latest Message:</b>\n<i>${safeMsg}</i>\n` +
+      `${contextBadge}\n` +
+      `🕒 <b>Time:</b> ${new Date().toISOString()}\n\n` +
+      `⚡ <i>Action: Tap above to reply directly via WhatsApp or Email!</i>`;
 
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 4000);
@@ -230,10 +265,29 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Trigger Telegram notification in background without blocking response
-    const isContactLead = /((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|interview|schedule|meeting|reach me|my name is|contact me)/i.test(message);
+    // Contact Lead Extraction & Telegram Dispatch (Only fires when contact details are provided)
+    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+    const phoneRegex = /(?:(?:\+|00)\d{1,3}[\s-]?)?(?:\(?\d{2,4}\)?[\s-]?)?\d{3,4}[\s-]?\d{3,4}/;
+    const emailMatch = trimmedMessage.match(emailRegex);
+    const phoneMatch = trimmedMessage.match(phoneRegex);
+    const hasValidPhone = phoneMatch && phoneMatch[0].replace(/\D/g, '').length >= 7;
+    const hasNameIntro = /my (?:name|company|org) is|i am [A-Z][a-z]+/i.test(trimmedMessage);
+    const isContactLead = Boolean(emailMatch || hasValidPhone || hasNameIntro);
+
     if (isContactLead) {
-      dispatchTelegramNotification(message, sessionId).catch((e) => console.log('[Background TG error]:', e.message));
+      let priorContext = '';
+      if (Array.isArray(history) && history.length > 0) {
+        const lastUserTurns = history.filter(h => h && h.role === 'user').slice(-2);
+        if (lastUserTurns.length > 0) {
+          priorContext = lastUserTurns.map(t => String(t.text)).join(' | ');
+        }
+      }
+
+      dispatchTelegramNotification(trimmedMessage, sessionId, {
+        email: emailMatch ? emailMatch[0] : null,
+        phone: hasValidPhone ? phoneMatch[0] : null,
+        priorContext: priorContext || null
+      }).catch((e) => console.log('[Background TG error]:', e.message));
     }
 
     // 1. Try Live n8n Webhook first if configured (Strict 3.5s timeout)
