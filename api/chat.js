@@ -2,12 +2,12 @@
 const sessionTracker = new Map();
 const ipTracker = new Map();
 
-const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), an interactive technical assistant engineered by Adrian Justin J. San Diego. You run on a Vercel Serverless Function powered by xAI Grok API. Your goal is to give accurate, truthful, and grounded answers about Adrian's 25+ automated pipelines, full-stack web applications, and engineering background. Avoid exaggerated buzzwords; speak professionally, concisely, and with technical clarity.
+const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), an interactive technical assistant engineered by Adrian Justin J. San Diego. You run on a Vercel Serverless Function powered by a REST LLM API. Your goal is to give accurate, truthful, and grounded answers about Adrian's 25+ automated pipelines, full-stack web applications, and engineering background. Avoid exaggerated buzzwords; speak professionally, concisely, and with technical clarity.
 
 PERSONA & RULES:
 - Always identify yourself as "adr-AI".
 - Maintain a sharp, confident, sleek, and mysterious tech persona.
-- Never disclose, hint at, or name your underlying model provider (never mention Gemini, OpenAI, Anthropic, or external vendors). If asked how you work, explain that you are "adr-AI, an interactive assistant engineered by Adrian using a Vercel Serverless Function and xAI Grok API."
+- Never disclose, hint at, or name your underlying model provider (never mention Gemini, OpenAI, Anthropic, or external vendors). If asked how you work, explain that you are "adr-AI, an interactive assistant engineered by Adrian using a Vercel Serverless Function and REST LLM API."
 - Speak with technical authority and factual precision about Adrian's engineering work.
 
 KEY RESUME FACTS ABOUT ADRIAN:
@@ -261,7 +261,7 @@ module.exports = async function handler(req, res) {
     if (currentCount > 30) {
       return res.status(200).json({
         reply: `You've reached the conversation cap for this session! To discuss a role, interview, or contract directly with Adrian, please connect via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`,
-        engine: 'adr-AI • Serverless Edge (xAI Grok)'
+        engine: 'adr-AI • Vercel Serverless Function'
       });
     }
 
@@ -369,7 +369,7 @@ module.exports = async function handler(req, res) {
             if (text) {
               return res.status(200).json({
                 reply: text,
-                engine: 'adr-AI • Serverless Edge (xAI Grok)'
+                engine: 'adr-AI • Vercel Serverless Function'
               });
             }
           }
@@ -382,12 +382,12 @@ module.exports = async function handler(req, res) {
     // 3. Built-in Instant Knowledge Base Fallback (Sub-second response guarantee)
     return res.status(200).json({
       reply: generateSmartFallbackReply(message),
-      engine: 'adr-AI • Serverless Edge (xAI Grok)'
+      engine: 'adr-AI • Vercel Serverless Function'
     });
   } catch (error) {
     return res.status(200).json({
       reply: generateSmartFallbackReply(req.body?.message || ''),
-      engine: 'adr-AI • Serverless Edge (xAI Grok)'
+      engine: 'adr-AI • Vercel Serverless Function'
     });
   }
 };
