@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://adrian-sandiego.vercel.app/">
     <meta property="og:title" content="Adrian Justin San Diego | Automation & Full-Stack Developer">
-    <meta property="og:description" content="BSIS Graduate & Best Capstone Awardee. Maintaining 25+ production automated n8n pipelines (10k+ rows/wk, 99.8% uptime) and full-stack web applications.">
+    <meta property="og:description" content="BSIS Graduate & Best Capstone Awardee. Maintaining 25+ production automated n8n pipelines on Linux VPS (10k+ rows/wk, 99.8% host uptime) and full-stack web applications.">
     <meta property="og:image" content="https://adrian-sandiego.vercel.app/og.png?v=2">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -563,7 +563,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">Workflow Automation & ETL</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
-                            Production mastery in n8n orchestration self-hosted on Linux VPS. Specialized in authenticated API scraping, Cloudflare anti-bot mitigation, in-memory deduplication algorithms, and LLM prompt chaining with xAI Grok.
+                            Production experience in n8n orchestration self-hosted on a Linux VPS. Specialized in authenticated API scraping, Cloudflare anti-bot mitigation, in-memory deduplication algorithms, and LLM prompt chaining with xAI Grok.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-2 text-xs font-mono text-cyan-300">
@@ -761,7 +761,7 @@
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             <div>
                                 <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                                    Production n8n Fleet & Autonomous AI Architecture
+                                    Production n8n Automation Fleet & Resilient Pipelines
                                 </h3>
                                 <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
                                     Self-hosted production-grade automation infrastructure on Linux VPS processing <span class="text-white font-semibold">10,000+ data rows weekly</span> on 2-hour cron cycles. Features Cloudflare 403 rate-limit mitigation, <span class="text-cyan-300 font-semibold font-mono">O(1) in-memory Set deduplication</span>, xAI Grok JSON schema validation, and automated Google Sheets batch writes.
@@ -955,7 +955,7 @@
                             <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
                             <span class="text-xs font-semibold text-white">1,300+ Records Recovered</span>
                         </div>
-                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">100% Integrity</span>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Alert Webhooks on Drift</span>
                     </div>
                 </div>
 
@@ -1009,7 +1009,7 @@
                     <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
                         <div class="flex items-center gap-2">
                             <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
-                            <span class="text-xs font-semibold text-white">Zero Lost Updates Across 300+ SKUs</span>
+                            <span class="text-xs font-semibold text-white">No Lost Updates Observed (300+ SKUs)</span>
                         </div>
                         <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">&lt;500ms Scan</span>
                     </div>
@@ -1090,7 +1090,7 @@
                                     <i class="fa-solid fa-check text-emerald-400 mr-1"></i> Production Decision: Atomic InnoDB Pessimistic Row Locks
                                 </span>
                                 <p class="text-slate-200 text-xs">
-                                    Executed strict ACID transactions using <code class="text-emerald-300 font-mono">SELECT qty FROM inventory WHERE sku = ? FOR UPDATE</code>. Holds the specific SKU row lock for &lt;15ms before commit, preventing lost updates with zero cashier checkout retries.
+                                    Executed strict ACID transactions using <code class="text-emerald-300 font-mono">SELECT qty FROM inventory WHERE sku = ? FOR UPDATE</code>. Holds the specific SKU row lock for &lt;15ms before commit, preventing lost updates with no checkout retries observed in daily shifts.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-white/[0.02] border border-amber-500/20">
@@ -1098,7 +1098,7 @@
                                     <i class="fa-solid fa-scale-balanced text-amber-400 mr-1"></i> The Real Cost & When I Would Reverse This
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    Row locks introduce potential database deadlocks under heavy concurrent writes and require strict transaction timeouts with exponential retry handlers (<code class="text-amber-300 font-mono">ER_LOCK_DEADLOCK</code>). For high-scale e-commerce flash sales, I would transition to single-query atomic decrements (<code class="text-amber-300 font-mono">UPDATE ... SET qty = qty - 1 WHERE sku = ? AND qty &gt; 0</code>) or Redis distributed token buckets.
+                                    Row locks introduce potential database deadlocks under heavy concurrent writes and require strict transaction timeouts with exponential retry handlers (<code class="text-amber-300 font-mono">ER_LOCK_DEADLOCK</code>). In this POS, checkouts involve multi-item carts where item prices, customer loyalty discounts, and stock levels must be committed atomically in a single receipt transaction. For single-item high-scale flash sales, I would transition to atomic decrements (<code class="text-amber-300 font-mono">UPDATE ... SET qty = qty - 1 WHERE sku = ? AND qty &gt; 0</code>) or Redis distributed locks with atomic DECR.
                                 </p>
                             </div>
                         </div>
@@ -1128,7 +1128,7 @@
                                     <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected: Full 3D WebGL GLTF Asset Rendering
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    Loading full 3D GLTF room models and multi-angle PBR texture maps. While photorealistic, asset downloads totaled 8MB+ per scene, causing memory crashes and sub-20 FPS stutters on budget Android smartphones used by field sales agents and construction contractors.
+                                    Loading full 3D GLTF room models and multi-angle PBR texture maps (estimated 8MB+ asset downloads per scene), causing memory crashes and sub-20 FPS stutters on budget Android smartphones used by field sales agents and construction contractors.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-cyan-950/20 border border-cyan-500/20">
@@ -1136,7 +1136,7 @@
                                     <i class="fa-solid fa-check text-cyan-400 mr-1"></i> Production Decision: 2D Perspective Matrix Mapping (`setTransform`)
                                 </span>
                                 <p class="text-slate-200 text-xs">
-                                    Engineered a lightweight 2D affine matrix skew and perspective mapping algorithm directly in HTML5 Canvas. Renders instant finish projections under 5ms at a constant 60 FPS across all mobile browsers, with direct 1-click vector export to jsPDF architectural quote sheets.
+                                    Engineered a lightweight 2D affine matrix skew and perspective mapping algorithm directly in HTML5 Canvas. Renders instant finish projections under 5ms at a constant 60 FPS across major mobile browsers (Chrome, Safari), with direct 1-click vector export to jsPDF architectural quote sheets.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-white/[0.02] border border-amber-500/20">
@@ -1174,7 +1174,7 @@
                                     <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected: Per-Item External API Lookups
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    Issuing individual lookup calls to Google Sheets or database tables for every ingested candidate lead. Over 10,000+ items weekly, round-trip network latency created 2-hour cron stalls and exhausted the Google Sheets 100 req/min API rate limit (HTTP 429).
+                                    Issuing individual lookup calls to Google Sheets or database tables for every ingested candidate lead. Over 10,000+ items weekly, round-trip network latency created 2-hour cron stalls and exhausted Google Sheets API read limits (60 requests/min per user / 300 per project) with HTTP 429 errors.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-purple-950/20 border border-purple-500/20">
@@ -1190,14 +1190,14 @@
                                     <i class="fa-solid fa-scale-balanced text-amber-400 mr-1"></i> The Real Cost & When I Would Reverse This
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    An in-memory <code class="text-amber-300 font-mono">Set()</code> is ephemeral and dies when the execution finishes—it does not persist cross-execution state across multiple worker nodes. If scaling horizontally beyond a single VPS instance, I would migrate to a persistent Redis key-value cache with 30-day TTL keys.
+                                    While existing hashes are loaded from the sheet at cycle start, an in-memory <code class="text-amber-300 font-mono">Set()</code> is ephemeral per execution—costs include index memory scaling as dataset grows and potential race conditions if overlapping cron runs trigger simultaneously before rows commit. For distributed multi-worker scaling, I would transition to Redis distributed hash sets.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
                         <span>Trade-off: Ephemeral Per Execution</span>
-                        <span class="text-purple-400 font-semibold">Zero API Quota Exhaustions</span>
+                        <span class="text-purple-400 font-semibold">No API Quota Exhaustions Observed</span>
                     </div>
                 </div>
 
@@ -1228,7 +1228,7 @@
                                     <i class="fa-solid fa-check text-indigo-400 mr-1"></i> Production Decision: Time-Based Rotating HMAC SHA-256 Tokens
                                 </span>
                                 <p class="text-slate-200 text-xs">
-                                    Engineered a TOTP-style rotating token generated with student ID, salt, and timestamp hashed via HMAC SHA-256 that invalidates every 30 seconds. Shrinks the unauthorized screenshot-sharing window from permanent down to &lt;30s before turnstile arrival.
+                                    Engineered a TOTP-style rotating token generated with student ID, a server-stored secret key, and timestamp hashed via HMAC SHA-256 that invalidates every 30 seconds. Shrinks the unauthorized screenshot-sharing window from permanent down to &lt;30s before turnstile arrival.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-white/[0.02] border border-amber-500/20">
@@ -1413,10 +1413,10 @@
                                 <h4 class="text-base sm:text-lg font-bold text-white">Junior Automation & Technical Operations Specialist (Contract)</h4>
                                 <div class="text-xs sm:text-sm text-purple-300 font-medium mb-3">EdTech & Career Accelerator Startup • Remote (WFH)</div>
                                 <ul class="text-xs sm:text-sm text-slate-400 space-y-2.5 list-disc list-inside">
-                                    <li><strong class="text-slate-200 font-semibold">Architected & maintain 25+ autonomous n8n production pipelines</strong> on a self-hosted Hostinger Linux VPS, processing <span class="text-purple-300 font-semibold">10,000+ data rows weekly</span> on recurring 2-hour cron cycles with <span class="text-purple-300 font-semibold">99.8% uptime</span>.</li>
+                                    <li><strong class="text-slate-200 font-semibold">Architected & maintain 25+ autonomous n8n production pipelines</strong> on a self-hosted Hostinger Linux VPS, processing <span class="text-purple-300 font-semibold">10,000+ data rows weekly</span> on recurring 2-hour cron cycles with <span class="text-purple-300 font-semibold">99.8% host uptime</span>.</li>
                                     <li><strong class="text-slate-200 font-semibold">Engineered resilient data ingestion routines</strong> featuring custom browser header emulations to mitigate Cloudflare 403 rate-limits, coupled with an <span class="text-purple-300 font-semibold">O(1) in-memory Set deduplication engine</span> guaranteeing zero duplicate inserts.</li>
                                     <li><strong class="text-slate-200 font-semibold">Co-developed automated student intake & credentialing workflows</strong>, synchronizing webhooks, Google Sheets data lakes, and dynamic branded HTML-to-PDF certificate generation.</li>
-                                    <li><strong class="text-slate-200 font-semibold">Executed daily QA smoke tests and live diagnostic tracing</strong>, resolving <span class="text-purple-300 font-semibold">50+ Jira Kanban sprint tickets</span> to ensure zero data pipeline downtime.</li>
+                                    <li><strong class="text-slate-200 font-semibold">Executed daily QA smoke tests and live diagnostic tracing</strong>, resolving <span class="text-purple-300 font-semibold">50+ Jira Kanban sprint tickets</span> ensuring continuous data synchronization across active pipelines.</li>
                                 </ul>
                             </div>
                         </div>
@@ -1505,7 +1505,7 @@
                                 <h4 class="text-base sm:text-lg font-bold text-white">Bachelor of Science in Information Systems (BSIS)</h4>
                                 <div class="text-xs sm:text-sm text-amber-300 font-medium mb-3">Trent Information First Technical Career Institute</div>
                                 <ul class="text-xs sm:text-sm text-slate-400 space-y-2 list-disc list-inside mb-4">
-                                    <li><strong class="text-slate-200 font-semibold">Capstone Thesis:</strong> Conceived, engineered, and defended a WebRTC-powered attendance and visitor verification platform, <span class="text-amber-300 font-semibold">cutting campus gate queuing bottlenecks by 75%</span> while eliminating proxy sign-ins for 1,500+ daily entries.</li>
+                                    <li><strong class="text-slate-200 font-semibold">Capstone Thesis:</strong> Conceived, engineered, and defended a WebRTC-powered attendance and visitor verification platform, <span class="text-amber-300 font-semibold">cutting campus gate queuing bottlenecks by 75%</span> while shrinking the unauthorized remote proxy sign-in window to under 30 seconds for 1,500+ daily entries.</li>
                                     <li><strong class="text-slate-200 font-semibold">Academic Excellence:</strong> Conferred the Academic Loyalty Award for sustained academic distinction and cohort laboratory leadership.</li>
                                 </ul>
                                 <div class="flex flex-wrap gap-2">
@@ -1541,7 +1541,7 @@
                         Let's Build Something Exceptional
                     </h2>
                     <p class="text-slate-400 text-xs sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-                        Currently open to high-impact software engineering roles, enterprise n8n workflow contracts, and full-stack development opportunities.
+                        Currently open to high-impact software engineering roles, production automation contracts, and full-stack development opportunities.
                     </p>
 
                     <!-- Interactive Buttons (Direct WhatsApp API + Copy Email) -->
@@ -1656,20 +1656,20 @@
                 </div>
                 <div class="grid grid-cols-4 gap-2 text-center font-mono text-[10px]">
                     <div class="p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-200">
-                        <i class="fa-solid fa-satellite-dish block text-sm mb-1 text-rose-400"></i>
-                        1. Ingestion
+                        <i class="fa-solid fa-window-maximize block text-sm mb-1 text-rose-400"></i>
+                        1. Browser UI
                     </div>
                     <div class="p-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-200">
-                        <i class="fa-solid fa-robot block text-sm mb-1 text-purple-400"></i>
-                        2. Neural Agent
+                        <i class="fa-solid fa-server block text-sm mb-1 text-purple-400"></i>
+                        2. /api/chat.js
                     </div>
                     <div class="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-200">
-                        <i class="fa-solid fa-brain block text-sm mb-1 text-cyan-400"></i>
-                        3. Inference
+                        <i class="fa-solid fa-bolt block text-sm mb-1 text-cyan-400"></i>
+                        3. xAI Grok API
                     </div>
                     <div class="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
-                        <i class="fa-solid fa-database block text-sm mb-1 text-emerald-400"></i>
-                        4. Memory
+                        <i class="fa-solid fa-code block text-sm mb-1 text-emerald-400"></i>
+                        4. JSON Output
                     </div>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
@@ -1685,7 +1685,7 @@
                         <img src="adrai-avatar.jpg" alt="adr-AI" class="w-full h-full object-cover">
                     </div>
                     <div class="p-3.5 sm:p-4 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-white/10 text-slate-200 space-y-2 max-w-[85%]">
-                        <p>👋 Greetings! I am <strong class="text-white">adr-AI</strong>, Adrian's autonomous intelligence assistant.</p>
+                        <p>👋 Hello! I am <strong class="text-white">adr-AI</strong>, an interactive portfolio assistant powered by a Vercel Serverless Function and the xAI Grok API.</p>
                         <p class="text-slate-300">Ask me anything about Adrian's <span class="text-cyan-300 font-medium">25+ production automated workflows</span>, <span class="text-purple-300 font-medium">Full-Stack Systems (QRYPT, AppTrade, OBI)</span>, interview availability, or how to collaborate with him!</p>
                     </div>
                 </div>
