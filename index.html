@@ -393,7 +393,7 @@
                     <!-- Status Badge -->
                     <div id="hero-badge" class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full glass-panel border border-emerald-500/40 text-[10px] sm:text-xs font-mono text-emerald-300 shadow-inner max-w-full">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-                        <span>OPEN TO WORK • PHILIPPINES (UTC+8) • REMOTE / HYBRID READY</span>
+                        <span>AVAILABLE FOR WORK • ON-SITE • HYBRID • REMOTE (IMMEDIATE START)</span>
                     </div>
 
                     <!-- Main Headline -->
@@ -434,9 +434,16 @@
                             <i class="fa-solid fa-location-dot text-purple-400"></i> Rizal, Philippines
                         </span>
                         <span class="hidden sm:inline text-slate-700">•</span>
-                        <a href="mailto:adrian002bca@gmail.com" class="hover:text-purple-300 transition-colors flex items-center gap-1.5">
-                            <i class="fa-regular fa-envelope text-purple-400"></i> adrian002bca@gmail.com
-                        </a>
+                        <button id="hero-copy-email-btn" onclick="copyEmailToClipboard(this)" type="button" title="Click to copy email" class="relative group hover:text-purple-300 transition-colors flex items-center gap-1.5 cursor-pointer text-slate-400">
+                            <i class="fa-regular fa-envelope text-purple-400"></i>
+                            <span>adrian002bca@gmail.com</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-slate-300 font-mono group-hover:bg-purple-500/20 group-hover:text-purple-200 transition-all flex items-center gap-1">
+                                <i class="fa-regular fa-copy text-[9px]"></i> Copy
+                            </span>
+                            <span class="copy-floating-tooltip pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] font-sans opacity-0 scale-90 transition-all duration-200 shadow-lg whitespace-nowrap z-30">
+                                Copied to clipboard! ✓
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -578,10 +585,13 @@
                 <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full mt-4"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-8">
                 
-                <!-- Project 1: QRYPT (Capstone Awardee) -->
-                <div class="reveal-card tilt-card glass-panel rounded-3xl p-8 glowing-border flex flex-col justify-between group">
+                <!-- Live Production Systems: 3-Column Balanced Suite (Zero gaps, matching heights) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+                    
+                    <!-- Project 1: QRYPT (Capstone Awardee) -->
+                <div class="reveal-card tilt-card glass-panel rounded-3xl p-6 sm:p-8 glowing-border h-full flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between gap-4 mb-4">
                             <span class="px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-wide flex items-center gap-1.5">
@@ -624,8 +634,8 @@
                     </div>
                 </div>
 
-                <!-- Project 2: OBI Room Visualizer -->
-                <div class="reveal-card tilt-card glass-panel rounded-3xl p-8 glowing-border flex flex-col justify-between group">
+                    <!-- Project 2: OBI Room Visualizer -->
+                <div class="reveal-card tilt-card glass-panel rounded-3xl p-6 sm:p-8 glowing-border h-full flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between gap-4 mb-4">
                             <span class="px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold tracking-wide flex items-center gap-1.5">
@@ -667,8 +677,51 @@
                     </div>
                 </div>
 
+                    <!-- Project 4: Apptrade POS & Store -->
+                <div class="reveal-card tilt-card glass-panel rounded-3xl p-6 sm:p-8 glowing-border h-full flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between gap-4 mb-4">
+                            <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold tracking-wide flex items-center gap-1.5">
+                                <i class="fa-solid fa-cart-shopping"></i> Commercial Retail System
+                            </span>
+                            <span class="text-xs font-mono text-slate-500">May – Aug 2026</span>
+                        </div>
+
+                        <h3 class="text-2xl font-extrabold text-white group-hover:text-emerald-300 transition-colors">
+                            Apptrade POS & E-Commerce Web System
+                        </h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            Production retail point-of-sale and synchronized web e-commerce ecosystem. Engineered high-frequency <span class="text-slate-200 font-semibold">sub-second (&lt;500ms) barcode lookup and checkout routines</span>, automated receipt printing, and role-based access control. Implemented atomic MySQL inventory decrements with automated low-stock threshold triggers, eliminating stock discrepancies across <span class="text-slate-200 font-semibold">300+ active retail SKUs</span>.
+                        </p>
+
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2 mt-5">
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">PHP</span>
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">MySQL</span>
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">Barcode Scanning</span>
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">Bootstrap 5</span>
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">XAMPP</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/5">
+                        <button onclick="openProjectPreview('apptrade')" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-200 font-semibold text-xs flex items-center gap-2 hover:bg-emerald-500/30 transition-all shadow-lg shadow-emerald-600/20 cursor-pointer">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>📸 Quick Preview</span>
+                        </button>
+                        <a href="http://sampleappweb.great-site.net" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-emerald-600/30">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span>⚡ Live Store Demo <span class="text-[10px] text-emerald-200/80 font-normal">(Free tier • ~5s wake-up)</span></span>
+                        </a>
+                    </div>
+                </div>
+
+                </div>
+
+                <!-- Flagship Architecture Visualizer: Interactive Production n8n Fleet & Autonomous AI (Full Width) -->
                 <!-- Project 3: Interactive Production n8n Fleet & Architecture Visualizer -->
-                <div class="reveal-card glass-panel rounded-3xl p-6 sm:p-10 glowing-border flex flex-col justify-between group md:col-span-2 shadow-2xl relative overflow-hidden">
+                <div class="reveal-card glass-panel rounded-3xl p-6 sm:p-10 glowing-border flex flex-col justify-between group shadow-2xl relative overflow-hidden">
                     
                     <!-- Top Ribbon & Header -->
                     <div>
@@ -746,47 +799,7 @@
                     </div>
                 </div>
 
-                <!-- Project 4: Apptrade POS & Store -->
-                <div class="reveal-card tilt-card glass-panel rounded-3xl p-8 glowing-border flex flex-col justify-between group">
-                    <div>
-                        <div class="flex items-center justify-between gap-4 mb-4">
-                            <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold tracking-wide flex items-center gap-1.5">
-                                <i class="fa-solid fa-cart-shopping"></i> Commercial Retail System
-                            </span>
-                            <span class="text-xs font-mono text-slate-500">May – Aug 2026</span>
-                        </div>
-
-                        <h3 class="text-2xl font-extrabold text-white group-hover:text-emerald-300 transition-colors">
-                            Apptrade POS & E-Commerce Web System
-                        </h3>
-                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-                            Production retail point-of-sale and synchronized web e-commerce ecosystem. Engineered high-frequency <span class="text-slate-200 font-semibold">sub-second (&lt;500ms) barcode lookup and checkout routines</span>, automated receipt printing, and role-based access control. Implemented atomic MySQL inventory decrements with automated low-stock threshold triggers, eliminating stock discrepancies across <span class="text-slate-200 font-semibold">300+ active retail SKUs</span>.
-                        </p>
-
-                        <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 mt-5">
-                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">PHP</span>
-                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">MySQL</span>
-                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">Barcode Scanning</span>
-                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">Bootstrap 5</span>
-                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20 text-xs font-mono text-emerald-300">XAMPP</span>
-                        </div>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/5">
-                        <button onclick="openProjectPreview('apptrade')" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-200 font-semibold text-xs flex items-center gap-2 hover:bg-emerald-500/30 transition-all shadow-lg shadow-emerald-600/20 cursor-pointer">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>📸 Quick Preview</span>
-                        </button>
-                        <a href="http://sampleappweb.great-site.net" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-emerald-600/30">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            <span>⚡ Live Store Demo <span class="text-[10px] text-emerald-200/80 font-normal">(Free tier • ~5s wake-up)</span></span>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+            </div></div>
         </div>
     </section>
 
@@ -1311,10 +1324,16 @@
 
                     <!-- Interactive Buttons (Direct WhatsApp API + Copy Email) -->
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 w-full max-w-xl mx-auto">
-                        <button id="copy-email-btn" class="w-full sm:w-auto px-5 sm:px-7 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                            <i class="fa-regular fa-copy"></i>
-                            <span id="copy-btn-text">Copy Email: adrian002bca@gmail.com</span>
-                        </button>
+                        <div class="relative inline-block w-full sm:w-auto">
+                            <button id="copy-email-btn" onclick="copyEmailToClipboard(this)" type="button" class="w-full sm:w-auto px-5 sm:px-7 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-regular fa-copy"></i>
+                                <span id="copy-btn-text">Copy Email: adrian002bca@gmail.com</span>
+                            </button>
+                            <!-- Floating Success Toast / Tooltip -->
+                            <span class="copy-floating-tooltip pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-xs opacity-0 scale-90 transition-all duration-200 shadow-xl shadow-emerald-500/20 whitespace-nowrap z-30 flex items-center gap-1.5">
+                                <i class="fa-solid fa-check"></i> Copied to Clipboard!
+                            </span>
+                        </div>
                         
                         <!-- Fixed WhatsApp Link using direct API (prevents wa.me SSL certificate errors) -->
                         <a href="https://api.whatsapp.com/send?phone=639352726487" target="_blank" rel="noopener noreferrer" id="whatsapp-btn" class="w-full sm:w-auto px-5 sm:px-6 py-3.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs sm:text-sm hover:text-white hover:border-emerald-500/50 hover:scale-[1.03] transition-all flex items-center justify-center gap-2">
@@ -2453,23 +2472,54 @@
         });
 
         // -------------------------------------------------------------
-        // 7. COPY EMAIL & SMART WHATSAPP HANDLERS
+        // 7. COPY EMAIL & SMART WHATSAPP HANDLERS (With Floating Tooltip)
         // -------------------------------------------------------------
-        const copyBtn = document.getElementById('copy-email-btn');
-        const copyBtnText = document.getElementById('copy-btn-text');
+        window.copyEmailToClipboard = function(triggerEl) {
+            const email = 'adrian002bca@gmail.com';
+            const tooltip = triggerEl ? (triggerEl.querySelector('.copy-floating-tooltip') || triggerEl.parentElement.querySelector('.copy-floating-tooltip')) : null;
+            const btnText = triggerEl ? triggerEl.querySelector('#copy-btn-text') : null;
+            const originalText = btnText ? btnText.textContent : '';
 
-        if (copyBtn && copyBtnText) {
-            copyBtn.addEventListener('click', () => {
-                navigator.clipboard.writeText('adrian002bca@gmail.com').then(() => {
-                    const original = copyBtnText.textContent;
-                    copyBtnText.textContent = 'Copied to Clipboard! 🎉';
-                    copyBtn.classList.add('bg-emerald-600');
+            const showFeedback = () => {
+                if (tooltip) {
+                    tooltip.classList.remove('opacity-0', 'scale-90');
+                    tooltip.classList.add('opacity-100', 'scale-100');
                     setTimeout(() => {
-                        copyBtnText.textContent = original;
-                        copyBtn.classList.remove('bg-emerald-600');
-                    }, 2500);
+                        tooltip.classList.remove('opacity-100', 'scale-100');
+                        tooltip.classList.add('opacity-0', 'scale-90');
+                    }, 2200);
+                }
+                if (btnText) {
+                    btnText.textContent = 'Copied to Clipboard! 🎉';
+                    triggerEl.classList.add('bg-emerald-600');
+                    setTimeout(() => {
+                        btnText.textContent = originalText;
+                        triggerEl.classList.remove('bg-emerald-600');
+                    }, 2200);
+                }
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(showFeedback).catch(() => {
+                    fallbackCopy(email, showFeedback);
                 });
-            });
+            } else {
+                fallbackCopy(email, showFeedback);
+            }
+        };
+
+        function fallbackCopy(text, callback) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                callback();
+            } catch (_) {}
+            document.body.removeChild(ta);
         }
 
         const waBtn = document.getElementById('whatsapp-btn');
