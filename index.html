@@ -3951,6 +3951,22 @@ if (uniqueBatch.length > 0) {
                     }
                 },
 
+                // Architectural Decisions & System Trade-Offs
+                {
+                    id: 'decisions',
+                    title: 'Architectural Decisions & System Trade-Offs',
+                    desc: 'System choices: InnoDB row-locks, 2D Canvas matrix, O(1) Sets, and HMAC tokens',
+                    category: 'Architecture',
+                    icon: 'fa-code-fork',
+                    color: 'cyan',
+                    badge: '4 Trade-offs',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        const el = document.getElementById('decisions');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                },
+
                 // Real-World Production Incidents
                 {
                     id: 'incidents',
