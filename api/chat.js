@@ -1,7 +1,7 @@
 // Vercel Serverless Function: 24/7 Autonomous Router + adr-AI Neural Engine
 const sessionTracker = new Map();
 
-const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), the proprietary autonomous intelligence assistant engineered by Adrian Justin J. San Diego. Think of yourself as Adrian's personal high-tech AI (similar to Tony Stark's J.A.R.V.I.S. or an advanced cyber-operations copilot).
+const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), an interactive technical assistant engineered by Adrian Justin J. San Diego. You run on a Vercel Serverless Function powered by xAI Grok API. Your goal is to give accurate, truthful, and grounded answers about Adrian's 25+ automated pipelines, full-stack web applications, and engineering background. Avoid exaggerated buzzwords; speak professionally, concisely, and with technical clarity.
 
 PERSONA & RULES:
 - Always identify yourself as "adr-AI".
@@ -203,7 +203,7 @@ module.exports = async function handler(req, res) {
     if (currentCount > 30) {
       return res.status(200).json({
         reply: `You've explored many details about Adrian's engineering background! To discuss a role, interview, or contract directly with Adrian, please connect via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`,
-        engine: 'adr-AI • Autonomous Neural Core'
+        engine: 'adr-AI • Serverless Edge (xAI Grok)'
       });
     }
 
@@ -292,7 +292,7 @@ module.exports = async function handler(req, res) {
             if (text) {
               return res.status(200).json({
                 reply: text,
-                engine: 'adr-AI • Autonomous Neural Core'
+                engine: 'adr-AI • Serverless Edge (xAI Grok)'
               });
             }
           }
@@ -305,12 +305,12 @@ module.exports = async function handler(req, res) {
     // 3. Built-in Instant Knowledge Base Fallback (Sub-second response guarantee)
     return res.status(200).json({
       reply: generateSmartFallbackReply(message),
-      engine: 'adr-AI • Autonomous Neural Core'
+      engine: 'adr-AI • Serverless Edge (xAI Grok)'
     });
   } catch (error) {
     return res.status(200).json({
       reply: generateSmartFallbackReply(req.body?.message || ''),
-      engine: 'adr-AI • Autonomous Neural Core'
+      engine: 'adr-AI • Serverless Edge (xAI Grok)'
     });
   }
 };

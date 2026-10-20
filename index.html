@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrian Justin San Diego | Software & Automation Developer</title>
+    <title>Adrian Justin San Diego | Automation & Full-Stack Developer</title>
     <meta name="description" content="Portfolio of Adrian Justin J. San Diego — Automation & Integration Developer, Full-Stack Web Developer, Best Capstone Project Awardee.">
     <meta name="author" content="Adrian Justin J. San Diego">
     <meta name="robots" content="index, follow">
@@ -263,21 +263,7 @@
             cursor: grabbing;
         }
 
-        #tech-balls-canvas {
-            width: 100%;
-            height: 350px;
-            cursor: grab;
-            background: transparent;
-            touch-action: pan-y;
-        }
-        @media (min-width: 768px) {
-            #tech-balls-canvas {
-                height: 430px;
-            }
-        }
-        #tech-balls-canvas:active {
-            cursor: grabbing;
-        }
+
 
         /* Desktop GSAP initial state (prevents FOUC on desktop) */
         @media (min-width: 768px) {
@@ -383,6 +369,9 @@
             </a>
             <a href="#projects" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
                 <i class="fa-solid fa-laptop-code text-cyan-400 text-xs w-4"></i> Projects
+            </a>
+            <a href="#decisions" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
+                <i class="fa-solid fa-code-fork text-cyan-400 text-xs w-4"></i> Decisions
             </a>
             <a href="#incidents" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
                 <i class="fa-solid fa-shield-halved text-rose-400 text-xs w-4"></i> Incidents
@@ -738,7 +727,7 @@
                             <i class="fa-solid fa-diagram-project text-emerald-200 group-hover:scale-110 transition-transform"></i>
                             <span>🔍 Architecture & Dual-View Proof</span>
                         </button>
-                        <a href="http://sampleappweb.great-site.net" target="_blank" rel="noopener" class="px-3.5 py-2.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs flex items-center gap-2 hover:text-white hover:border-emerald-500/50 transition-colors">
+                        <a href="https://sampleappweb.great-site.net" target="_blank" rel="noopener" class="px-3.5 py-2.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs flex items-center gap-2 hover:text-white hover:border-emerald-500/50 transition-colors">
                             <i class="fa-solid fa-store text-emerald-400"></i>
                             <span>Web Storefront</span>
                         </a>
@@ -763,7 +752,7 @@
                                     <span>25+ Production Automated Pipelines</span>
                                 </span>
                                 <span class="hidden sm:inline-flex px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-300">
-                                    99.8% VPS Uptime
+                                    99.8% VPS Host Availability
                                 </span>
                             </div>
                             <span class="text-xs font-mono text-slate-500">Aug 2026 – Present • Hostinger Linux VPS</span>
@@ -870,7 +859,7 @@
                         </div>
 
                         <h3 class="text-lg font-bold text-white group-hover:text-rose-300 transition-colors leading-snug">
-                            Anti-Bot Blocks & Burst Concurrency Freezes
+                            Public Data Rate Throttles & Concurrency Stalls
                         </h3>
 
                         <!-- 3-Stage Post-Mortem Flow -->
@@ -889,7 +878,7 @@
                                     <i class="fa-solid fa-stethoscope mr-1"></i> Root Cause
                                 </span>
                                 <p class="text-slate-300">
-                                    Target server Cloudflare protection identified uniform HTTP headers and concurrent burst scraping patterns from the VPS IP, triggering behavioral fingerprint blocks and rate throttles.
+                                    Public board Cloudflare endpoint rate-limits triggered on rapid cron execution and concurrent burst scraping patterns from the VPS IP, triggering behavioral fingerprint blocks and rate throttles.
                                 </p>
                             </div>
 
@@ -926,7 +915,7 @@
                         </div>
 
                         <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition-colors leading-snug">
-                            Silent Ingestion Stalls & 1,300-Row Backfill
+                            Silent Ingestion Stalls & 1,300-Row Backfill (Availability ≠ Correctness)
                         </h3>
 
                         <!-- 3-Stage Post-Mortem Flow -->
@@ -936,7 +925,7 @@
                                     <i class="fa-solid fa-circle-exclamation mr-1"></i> Problem
                                 </span>
                                 <p class="text-slate-300">
-                                    5 crucial upstream ingestion workflows silently stopped recording leads to operational spreadsheets, creating a multi-week data gap without throwing loud system-level crashes.
+                                    While the Linux VPS and n8n daemon maintained 99.8% host uptime, 5 crucial upstream ingestion workflows silently stopped recording leads to operational spreadsheets, creating an undetected multi-week data gap without throwing fatal 500 errors.
                                 </p>
                             </div>
 
@@ -1001,7 +990,7 @@
                                     <i class="fa-solid fa-stethoscope mr-1"></i> Root Cause
                                 </span>
                                 <p class="text-slate-300">
-                                    Registers and web carts were executing non-atomic MySQL read-modify-write queries without row-level database locks, causing classic dirty reads and lost update concurrency conflicts.
+                                    Registers and web carts were executing non-atomic MySQL read-modify-write queries without row-level database locks, causing lost updates and race condition conflicts during concurrent checkouts.
                                 </p>
                             </div>
 
@@ -1084,31 +1073,39 @@
                             <span class="text-xs font-mono text-slate-400">Apptrade POS</span>
                         </div>
                         <h3 class="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                            Why InnoDB Row-Level Locking (`FOR UPDATE`) Instead of Table Locks?
+                            Why Pessimistic Row Locking (`FOR UPDATE`) Over Optimistic Version Checking?
                         </h3>
                         
                         <div class="mt-5 space-y-3 text-xs sm:text-sm">
                             <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
                                 <span class="text-slate-400 font-semibold block text-[11px] uppercase tracking-wider mb-1 text-rose-300">
-                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected
+                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected: Optimistic Version Column Locking
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    Standard MyISAM table locks or application-layer state checks. Table locks caused the entire register database to freeze during busy checkout hours, while client checks resulted in dirty reads and overselling when 2 cashiers checked out the final unit of an item at the exact same second.
+                                    Optimistic concurrency (<code class="text-purple-300 font-mono">UPDATE ... WHERE version = v</code>) or non-atomic reads. Non-atomic reads produced lost updates during concurrent cashier barcode scans, while optimistic versioning forced checkout aborts and customer retries at peak retail rush hours.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/20">
                                 <span class="text-emerald-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
-                                    <i class="fa-solid fa-check text-emerald-400 mr-1"></i> Production Trade-Off Chosen
+                                    <i class="fa-solid fa-check text-emerald-400 mr-1"></i> Production Decision: Atomic InnoDB Pessimistic Row Locks
                                 </span>
                                 <p class="text-slate-200 text-xs">
-                                    Architected atomic MySQL transactions with <code class="text-emerald-300 font-mono">SELECT ... FOR UPDATE</code>. Only locks the specific SKU row being scanned for &lt;15ms, maintaining microsecond throughput across multiple physical POS terminals and web buyers.
+                                    Executed strict ACID transactions using <code class="text-emerald-300 font-mono">SELECT qty FROM inventory WHERE sku = ? FOR UPDATE</code>. Holds the specific SKU row lock for &lt;15ms before commit, preventing lost updates with zero cashier checkout retries.
+                                </p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/[0.02] border border-amber-500/20">
+                                <span class="text-amber-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
+                                    <i class="fa-solid fa-scale-balanced text-amber-400 mr-1"></i> The Real Cost & When I Would Reverse This
+                                </span>
+                                <p class="text-slate-300 text-xs">
+                                    Row locks introduce potential database deadlocks under heavy concurrent writes and require strict transaction timeouts with exponential retry handlers (<code class="text-amber-300 font-mono">ER_LOCK_DEADLOCK</code>). For high-scale e-commerce flash sales, I would transition to single-query atomic decrements (<code class="text-amber-300 font-mono">UPDATE ... SET qty = qty - 1 WHERE sku = ? AND qty &gt; 0</code>) or Redis distributed token buckets.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
-                        <span>Outcome: 0 Race Conditions</span>
-                        <span class="text-emerald-400 font-semibold">300+ SKUs Synchronized</span>
+                        <span>Trade-off: Requires Deadlock Handlers</span>
+                        <span class="text-emerald-400 font-semibold">Sub-50ms Transaction Latency</span>
                     </div>
                 </div>
 
@@ -1122,31 +1119,39 @@
                             <span class="text-xs font-mono text-slate-400">OBI Spatial Visualizer</span>
                         </div>
                         <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                            Why HTML5 Canvas 2D Matrix Engine Instead of 3D WebGL / Three.js?
+                            Why HTML5 Canvas 2D Affine Matrix Transforms Over 3D WebGL Mesh Scenes?
                         </h3>
                         
                         <div class="mt-5 space-y-3 text-xs sm:text-sm">
                             <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
                                 <span class="text-slate-400 font-semibold block text-[11px] uppercase tracking-wider mb-1 text-rose-300">
-                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected
+                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected: Full 3D WebGL GLTF Asset Rendering
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    A full Three.js 3D mesh model of each interior room. While visually impressive, it added 8MB+ bundle overhead, drained battery, and suffered severe frame-rate drops on budget Android smartphones used by onsite construction contractors and sales reps.
+                                    Loading full 3D GLTF room models and multi-angle PBR texture maps. While photorealistic, asset downloads totaled 8MB+ per scene, causing memory crashes and sub-20 FPS stutters on budget Android smartphones used by field sales agents and construction contractors.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-cyan-950/20 border border-cyan-500/20">
                                 <span class="text-cyan-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
-                                    <i class="fa-solid fa-check text-cyan-400 mr-1"></i> Production Trade-Off Chosen
+                                    <i class="fa-solid fa-check text-cyan-400 mr-1"></i> Production Decision: 2D Perspective Matrix Mapping (`setTransform`)
                                 </span>
                                 <p class="text-slate-200 text-xs">
-                                    Engineered an ultra-lean 2D affine matrix transformation engine (`setTransform` / skew matrix). Delivers sub-5ms pattern projection at a rock-solid 60 FPS on any browser, with direct zero-latency export to jsPDF architectural quotation sheets.
+                                    Engineered a lightweight 2D affine matrix skew and perspective mapping algorithm directly in HTML5 Canvas. Renders instant finish projections under 5ms at a constant 60 FPS across all mobile browsers, with direct 1-click vector export to jsPDF architectural quote sheets.
+                                </p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/[0.02] border border-amber-500/20">
+                                <span class="text-amber-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
+                                    <i class="fa-solid fa-scale-balanced text-amber-400 mr-1"></i> The Real Cost & When I Would Reverse This
+                                </span>
+                                <p class="text-slate-300 text-xs">
+                                    Canvas 2D affine transforms cannot calculate real-time dynamic specular light bounces or full 360° camera orbits. If corporate clients expand to full architectural walkthroughs with variable sun angles, I would rebuild the visualizer in Three.js/WebGL with deferred texture streaming.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
-                        <span>Outcome: 60 FPS Mobile Performance</span>
-                        <span class="text-cyan-400 font-semibold">Live on obiasia.com</span>
+                        <span>Trade-off: Fixed Perspective View</span>
+                        <span class="text-cyan-400 font-semibold">60 FPS on Any Mobile Browser</span>
                     </div>
                 </div>
 
@@ -1160,31 +1165,39 @@
                             <span class="text-xs font-mono text-slate-400">n8n VPS Fleet</span>
                         </div>
                         <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
-                            Why In-Memory `Set()` O(1) Deduplication Instead of DB Queries?
+                            Why In-Memory `Set()` O(1) Intra-Batch Deduplication Over Per-Item DB Queries?
                         </h3>
                         
                         <div class="mt-5 space-y-3 text-xs sm:text-sm">
                             <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
                                 <span class="text-slate-400 font-semibold block text-[11px] uppercase tracking-wider mb-1 text-rose-300">
-                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected
+                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected: Per-Item External API Lookups
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    Issuing an API search query (`SELECT ... WHERE hash = ?`) to Google Sheets or the database for every single incoming scraped lead. At 10,000+ items weekly, this triggered Google API 429 quota exhaustion within minutes and caused 2-hour pipeline timeouts.
+                                    Issuing individual lookup calls to Google Sheets or database tables for every ingested candidate lead. Over 10,000+ items weekly, round-trip network latency created 2-hour cron stalls and exhausted the Google Sheets 100 req/min API rate limit (HTTP 429).
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-purple-950/20 border border-purple-500/20">
                                 <span class="text-purple-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
-                                    <i class="fa-solid fa-check text-purple-400 mr-1"></i> Production Trade-Off Chosen
+                                    <i class="fa-solid fa-check text-purple-400 mr-1"></i> Production Decision: Single Batch Index Fetch + JavaScript `Set()`
                                 </span>
                                 <p class="text-slate-200 text-xs">
-                                    Pre-fetched the active hash index once per cycle into a JavaScript <code class="text-purple-300 font-mono">new Set()</code> hash table in the n8n Code node. Reduced deduplication from O(n) roundtrips to an O(1) in-memory lookup, completing batch deduplication in under 120ms.
+                                    Pre-fetches existing unique record hashes in a single batch read, constructing a JavaScript <code class="text-purple-300 font-mono">new Set()</code> inside the n8n Code node. Reduces validation from O(n) round-trips to an O(1) memory lookup, deduplicating 1,000 incoming rows in &lt;120ms.
+                                </p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/[0.02] border border-amber-500/20">
+                                <span class="text-amber-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
+                                    <i class="fa-solid fa-scale-balanced text-amber-400 mr-1"></i> The Real Cost & When I Would Reverse This
+                                </span>
+                                <p class="text-slate-300 text-xs">
+                                    An in-memory <code class="text-amber-300 font-mono">Set()</code> is ephemeral and dies when the execution finishes—it does not persist cross-execution state across multiple worker nodes. If scaling horizontally beyond a single VPS instance, I would migrate to a persistent Redis key-value cache with 30-day TTL keys.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
-                        <span>Outcome: 0 Quota Exhaustions</span>
-                        <span class="text-purple-400 font-semibold">10k+ Rows Processed/Wk</span>
+                        <span>Trade-off: Ephemeral Per Execution</span>
+                        <span class="text-purple-400 font-semibold">Zero API Quota Exhaustions</span>
                     </div>
                 </div>
 
@@ -1198,31 +1211,39 @@
                             <span class="text-xs font-mono text-slate-400">QRYPT Gatepass</span>
                         </div>
                         <h3 class="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
-                            Why Rotating HMAC SHA-256 Tokens Over Static Student QR Cards?
+                            Why Rotating HMAC SHA-256 Tokens Over Static QR ID Badges?
                         </h3>
                         
                         <div class="mt-5 space-y-3 text-xs sm:text-sm">
                             <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
                                 <span class="text-slate-400 font-semibold block text-[11px] uppercase tracking-wider mb-1 text-rose-300">
-                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected
+                                    <i class="fa-solid fa-xmark text-rose-400 mr-1"></i> Alternative Rejected: Static Barcodes or Printed QR IDs
                                 </span>
                                 <p class="text-slate-300 text-xs">
-                                    Static QR codes printed on physical plastic ID badges or static screenshots. Students easily bypassed attendance rules by sending screenshots of their ID QR codes to classmates over Messenger to time-in on their behalf (proxy attendance).
+                                    Static QR codes printed on plastic ID cards or saved as gallery images. Students routinely forwarded screenshots to classmates on messaging apps to clock in on their behalf (remote proxy attendance), undermining gate attendance records.
                                 </p>
                             </div>
                             <div class="p-3 rounded-xl bg-indigo-950/20 border border-indigo-500/20">
                                 <span class="text-indigo-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
-                                    <i class="fa-solid fa-check text-indigo-400 mr-1"></i> Production Trade-Off Chosen
+                                    <i class="fa-solid fa-check text-indigo-400 mr-1"></i> Production Decision: Time-Based Rotating HMAC SHA-256 Tokens
                                 </span>
                                 <p class="text-slate-200 text-xs">
-                                    Engineered time-based TOTP-style rotating QR codes with HMAC SHA-256 signatures that invalidate every 30 seconds. Turnstile WebRTC camera verifies signature on arrival before triggering the turnstile GPIO relay, completely eradicating proxy fraud.
+                                    Engineered a TOTP-style rotating token generated with student ID, salt, and timestamp hashed via HMAC SHA-256 that invalidates every 30 seconds. Shrinks the unauthorized screenshot-sharing window from permanent down to &lt;30s before turnstile arrival.
+                                </p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/[0.02] border border-amber-500/20">
+                                <span class="text-amber-300 font-semibold block text-[11px] uppercase tracking-wider mb-1">
+                                    <i class="fa-solid fa-scale-balanced text-amber-400 mr-1"></i> The Real Cost & When I Would Reverse This
+                                </span>
+                                <p class="text-slate-300 text-xs">
+                                    Rotating tokens require mobile phone connectivity and clock synchronization (NTP) between the student's device and the gate scanner; client clock drift beyond 30s causes legitimate scan rejections. For non-smartphone environments, I would combine static RFID chips with camera face verification.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
-                        <span>Outcome: 0 Proxy Check-ins</span>
-                        <span class="text-indigo-400 font-semibold">Best Capstone Award</span>
+                        <span>Trade-off: Requires Client Clock Sync</span>
+                        <span class="text-indigo-400 font-semibold">&lt;30s Proxy Window (Down from Static)</span>
                     </div>
                 </div>
 
@@ -1240,19 +1261,8 @@
                 <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full mt-4"></div>
             </div>
 
-            <!-- Free-floating 3D Tech Canvas (NO dark box container!) -->
-            <div class="relative w-full max-w-6xl mx-auto flex flex-col items-center">
-                <canvas id="tech-balls-canvas"></canvas>
-
-                <!-- Clean subtle HUD indicator -->
-                <div class="mt-4 inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 rounded-2xl sm:rounded-full glass-panel border border-white/10 text-xs font-mono text-purple-300 shadow-xl max-w-full text-left">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse flex-shrink-0"></span>
-                    <span id="active-tech-label">Hover or drag any 3D ball to explore</span>
-                </div>
-            </div>
-
-            <!-- Categorized Skills Matrix Breakdown (Below 3D balls for Recruiters & Keywords) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+            <!-- Categorized Skills Matrix Breakdown for Recruiters & Engineering Leads -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
                 
                 <!-- Category 1 -->
                 <div class="reveal-card glass-panel p-6 rounded-2xl glowing-border">
@@ -1575,7 +1585,7 @@
 
             <!-- Copyright -->
             <div class="mt-16 text-slate-500 text-xs font-mono">
-                &copy; 2026 Adrian Justin J. San Diego. Crafted with Three.js & Tailwind CSS. Deployed via Vercel.
+                &copy; 2026 Adrian Justin J. San Diego. Built with modern web standards, WCAG AA accessibility, and serverless edge functions. Deployed on Vercel.
             </div>
 
         </div>
@@ -1616,7 +1626,7 @@
                     </div>
                     <div class="min-w-0">
                         <div class="flex items-center gap-2">
-                            <h3 class="text-white font-bold text-sm sm:text-base tracking-tight truncate">adr-AI Autonomous Assistant</h3>
+                            <h3 class="text-white font-bold text-sm sm:text-base tracking-tight truncate">adr-AI • Interactive Portfolio Assistant</h3>
                             <span class="px-1.5 py-0.5 text-[9px] font-mono font-semibold uppercase rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Online</span>
                         </div>
                         <p id="n8n-engine-badge" class="text-[10px] font-mono text-cyan-300/90 truncate">Autonomous Neural Core • Powered by Adrian San Diego</p>
@@ -2201,513 +2211,7 @@
             animateHeroCore();
         })();
 
-        // -------------------------------------------------------------
-        // 5. SIGNATURE 3D TECH BALLS CANVAS (Accurate JavaScript Mastery Style)
-        // -------------------------------------------------------------
-        (function initTechBalls() {
-            const canvas = document.getElementById('tech-balls-canvas');
-            if (!canvas || typeof THREE === 'undefined') return;
 
-            const scene = new THREE.Scene();
-            const camera = new THREE.OrthographicCamera(-10, 10, 10, -10, 0.1, 100);
-            camera.position.z = 25;
-
-            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-
-            // Balanced Studio Shading & Lighting for Sapphire Crystal Spheres
-            const ambient = new THREE.AmbientLight(0xffffff, 0.95);
-            scene.add(ambient);
-
-            const dirLight = new THREE.DirectionalLight(0xffffff, 0.85);
-            dirLight.position.set(5, 12, 10);
-            scene.add(dirLight);
-
-            const softFill = new THREE.DirectionalLight(0x818cf8, 0.45);
-            softFill.position.set(-8, -6, 6);
-            scene.add(softFill);
-
-            // Generate crisp vector graphic logo texture on 512x512 canvas (properly bounded with padding)
-            function createTechLogoTexture(techId) {
-                const c = document.createElement('canvas');
-                c.width = 512;
-                c.height = 512;
-                const ctx = c.getContext('2d');
-                ctx.clearRect(0, 0, 512, 512);
-
-                if (techId === 'n8n') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#ea580c';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#fdba74';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 135px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('n8n', 256, 220);
-
-                    ctx.fillStyle = '#ffedd5';
-                    ctx.font = 'bold 36px "JetBrains Mono", monospace';
-                    ctx.fillText('AUTOMATION', 256, 310);
-                } 
-                else if (techId === 'js') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#f7df1e';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#fef08a';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#000000';
-                    ctx.font = '900 180px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('JS', 256, 256);
-                }
-                else if (techId === 'php') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#4f46e5';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#a5b4fc';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 140px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('php', 256, 245);
-                }
-                else if (techId === 'sql') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#0284c7';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#7dd3fc';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 115px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('SQL', 256, 215);
-
-                    ctx.fillStyle = '#f97316';
-                    ctx.font = 'bold 42px "JetBrains Mono", monospace';
-                    ctx.fillText('MySQL', 256, 305);
-                }
-                else if (techId === 'py') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#0f172a';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#38bdf8';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#38bdf8';
-                    ctx.font = '900 135px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('Py', 256, 220);
-
-                    ctx.fillStyle = '#facc15';
-                    ctx.font = 'bold 38px "JetBrains Mono", monospace';
-                    ctx.fillText('Python', 256, 310);
-                }
-                else if (techId === 'tw') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#082f49';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#38bdf8';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#38bdf8';
-                    ctx.font = '900 105px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('TAIL', 256, 215);
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 40px "JetBrains Mono", monospace';
-                    ctx.fillText('WIND CSS', 256, 305);
-                }
-                else if (techId === 'html') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#ea580c';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#fdba74';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 125px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('H5', 256, 215);
-
-                    ctx.fillStyle = '#ffedd5';
-                    ctx.font = 'bold 38px "JetBrains Mono", monospace';
-                    ctx.fillText('HTML5', 256, 305);
-                }
-                else if (techId === 'css') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#0284c7';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#7dd3fc';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 125px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('C3', 256, 215);
-
-                    ctx.fillStyle = '#e0f2fe';
-                    ctx.font = 'bold 38px "JetBrains Mono", monospace';
-                    ctx.fillText('CSS3', 256, 305);
-                }
-                else if (techId === 'git') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#dc2626';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#fca5a5';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 115px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('GIT', 256, 256);
-                }
-                else if (techId === 'node') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#052e16';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#4ade80';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#4ade80';
-                    ctx.font = 'bold 110px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('node', 256, 256);
-                }
-                else if (techId === 'api') {
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#6b21a8';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#d8b4fe';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 115px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('API', 256, 215);
-
-                    ctx.fillStyle = '#f3e8ff';
-                    ctx.font = 'bold 38px "JetBrains Mono", monospace';
-                    ctx.fillText('REST/JSON', 256, 305);
-                }
-                else if (techId === 'docker') {
-                    // Docker & Linux (Crisp, perfectly bounded inside circle)
-                    ctx.beginPath();
-                    ctx.arc(256, 256, 210, 0, Math.PI * 2);
-                    ctx.fillStyle = '#0369a1';
-                    ctx.fill();
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = '#38bdf8';
-                    ctx.stroke();
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 68px "Plus Jakarta Sans", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('DOCKER', 256, 215);
-
-                    ctx.fillStyle = '#e0f2fe';
-                    ctx.font = 'bold 30px "JetBrains Mono", monospace';
-                    ctx.fillText('LINUX VPS', 256, 305);
-                }
-
-                const texture = new THREE.CanvasTexture(c);
-                texture.needsUpdate = true;
-                return texture;
-            }
-
-            const techItems = [
-                { id: 'n8n', name: 'n8n Automation', desc: 'Enterprise workflow automation fleet (25+ production workflows on Linux VPS)' },
-                { id: 'js', name: 'JavaScript (ES6+)', desc: 'Modern Vanilla JS, DOM manipulation, Canvas API, asynchronous REST handling' },
-                { id: 'php', name: 'PHP 8+ Backend', desc: 'Object-oriented PHP, PDO database queries, secure session auth, REST endpoints' },
-                { id: 'sql', name: 'MySQL / MariaDB', desc: 'Relational database schema architecture, indexing, stored procedures, joins' },
-                { id: 'py', name: 'Python', desc: 'Automation scripts, web scrapers, data transformation, ETL ingestion pipelines' },
-                { id: 'tw', name: 'Tailwind CSS', desc: 'Modern utility-first styling, glassmorphism, responsive mobile-first UI' },
-                { id: 'html', name: 'HTML5 Semantic Web', desc: 'Semantic structure, WebRTC camera QR scanner feeds, accessibility' },
-                { id: 'css', name: 'CSS3 Animations', desc: 'Keyframe animations, Flexbox, Grid, 3D tilt effects, backdrop filters' },
-                { id: 'git', name: 'Git & GitHub', desc: 'Version control, atomic commits, branch workflows, open-source repositories' },
-                { id: 'node', name: 'Node.js', desc: 'Runtime scripting, package management, developer CLI tools' },
-                { id: 'api', name: 'REST APIs & Webhooks', desc: 'xAI Grok API chaining, Cloudflare anti-bot header mitigation, JSON contracts' },
-                { id: 'docker', name: 'Linux VPS & Docker', desc: 'Hostinger Linux environment, crontab automation, background daemons, server triage' }
-            ];
-
-            const ballMeshes = [];
-            const icosaGeo = new THREE.IcosahedronGeometry(1.62, 1);
-            // Perfectly proportioned decal disc centered inside the sapphire sphere
-            const decalGeo = new THREE.CircleGeometry(0.98, 32);
-
-            techItems.forEach((item, i) => {
-                const group = new THREE.Group();
-
-                // Faceted Sapphire Crystal (Soft luxury shading without harsh glaring triangles)
-                const ballMat = new THREE.MeshStandardMaterial({
-                    color: 0x312e81,          // Deep sapphire indigo
-                    emissive: 0x1e1b4b,       // Subtle dark violet core glow
-                    emissiveIntensity: 0.35,
-                    roughness: 0.52,          // Soft diffuse finish that diffuses highlights beautifully
-                    metalness: 0.3,           // Premium crystal luster
-                    flatShading: true         // Crisp geometric facets
-                });
-                const ballMesh = new THREE.Mesh(icosaGeo, ballMat);
-                group.add(ballMesh);
-
-                // Decal Disc sitting centered on front face with zero parallax shift
-                const tex = createTechLogoTexture(item.id);
-                const decalMat = new THREE.MeshBasicMaterial({
-                    map: tex,
-                    transparent: true,
-                    depthTest: false,
-                    depthWrite: false
-                });
-                const decalMesh = new THREE.Mesh(decalGeo, decalMat);
-                decalMesh.position.set(0, 0, 1.05);
-                decalMesh.renderOrder = 10;
-                group.add(decalMesh);
-
-                group.userData = {
-                    index: i,
-                    item: item,
-                    baseX: 0,
-                    baseY: 0,
-                    phase: i * 0.7
-                };
-
-                scene.add(group);
-                ballMeshes.push(group);
-            });
-
-            let currentGridCols = null;
-            let lastCanvasW = 0;
-            let lastCanvasH = 0;
-
-            function layoutTechScene() {
-                const screenW = window.innerWidth || document.documentElement.clientWidth || canvas.clientWidth;
-                const isMobile = screenW < 768;
-                const cols = isMobile ? 4 : 6;
-                const rows = isMobile ? 3 : 2;
-                currentGridCols = cols;
-
-                const spacingX = isMobile ? 3.5 : 4.6;
-                const spacingY = isMobile ? 3.5 : 4.6;
-
-                const cW = Math.max(canvas.clientWidth || (isMobile ? 360 : 700), 200);
-                const cH = Math.max(canvas.clientHeight || (isMobile ? 350 : 430), 200);
-                lastCanvasW = cW;
-                lastCanvasH = cH;
-
-                const aspect = cW / cH;
-                const ballRadius = isMobile ? 1.30 : 1.62;
-
-                const gridW = (cols - 1) * spacingX + ballRadius * 2;
-                const gridH = (rows - 1) * spacingY + ballRadius * 2;
-
-                let frustumW = gridW + (isMobile ? 1.4 : 2.5);
-                let frustumH = frustumW / aspect;
-                if (frustumH < gridH + (isMobile ? 1.2 : 2.0)) {
-                    frustumH = gridH + (isMobile ? 1.2 : 2.0);
-                    frustumW = frustumH * aspect;
-                }
-
-                camera.left = -frustumW / 2;
-                camera.right = frustumW / 2;
-                camera.top = frustumH / 2;
-                camera.bottom = -frustumH / 2;
-                camera.updateProjectionMatrix();
-                renderer.setSize(cW, cH);
-
-                ballMeshes.forEach((ball, i) => {
-                    const r = Math.floor(i / cols);
-                    const c = i % cols;
-                    const itemsInRow = Math.min(cols, ballMeshes.length - r * cols);
-                    const offsetX = ((itemsInRow - 1) * spacingX) / 2;
-                    const offsetY = ((rows - 1) * spacingY) / 2;
-
-                    ball.userData.baseX = (c * spacingX) - offsetX;
-                    ball.userData.baseY = -(r * spacingY) + offsetY;
-
-                    ball.position.x = ball.userData.baseX;
-                    ball.position.y = ball.userData.baseY;
-
-                    const scale = isMobile ? 0.82 : 1.0;
-                    ball.scale.set(scale, scale, scale);
-                });
-            }
-            layoutTechScene();
-            window.addEventListener('resize', layoutTechScene);
-
-            // Raycaster & Mouse Drag Interactions
-            const raycaster = new THREE.Raycaster();
-            const mouse = new THREE.Vector2(-999, -999);
-            const activeLabel = document.getElementById('active-tech-label');
-
-            let hoveredBall = null;
-            let activeDragBall = null;
-            let lastMousePos = { x: 0, y: 0 };
-            let isCanvasDragging = false;
-
-            canvas.addEventListener('mousemove', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouse.x = ((e.clientX - rect.left) / canvas.clientWidth) * 2 - 1;
-                mouse.y = -((e.clientY - rect.top) / canvas.clientHeight) * 2 + 1;
-
-                if (isCanvasDragging && activeDragBall) {
-                    const dx = e.clientX - lastMousePos.x;
-                    const dy = e.clientY - lastMousePos.y;
-                    activeDragBall.rotation.y += dx * 0.012;
-                    activeDragBall.rotation.x += dy * 0.012;
-                    lastMousePos = { x: e.clientX, y: e.clientY };
-                }
-            });
-
-            canvas.addEventListener('mousedown', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouse.x = ((e.clientX - rect.left) / canvas.clientWidth) * 2 - 1;
-                mouse.y = -((e.clientY - rect.top) / canvas.clientHeight) * 2 + 1;
-
-                raycaster.setFromCamera(mouse, camera);
-                const intersects = raycaster.intersectObjects(scene.children, true);
-
-                if (intersects.length > 0) {
-                    let obj = intersects[0].object;
-                    while (obj.parent && obj.parent !== scene) {
-                        obj = obj.parent;
-                    }
-                    activeDragBall = obj;
-                    isCanvasDragging = true;
-                    lastMousePos = { x: e.clientX, y: e.clientY };
-                }
-            });
-
-            window.addEventListener('mouseup', () => {
-                isCanvasDragging = false;
-                activeDragBall = null;
-            });
-
-            canvas.addEventListener('mouseleave', () => {
-                mouse.x = -999;
-                mouse.y = -999;
-                if (activeLabel) {
-                    activeLabel.textContent = 'Hover or drag any 3D ball to explore';
-                    activeLabel.classList.remove('text-cyan-300');
-                    activeLabel.classList.add('text-purple-300');
-                }
-            });
-
-            canvas.addEventListener('touchmove', (e) => {
-                if (e.touches.length > 0) {
-                    const rect = canvas.getBoundingClientRect();
-                    mouse.x = ((e.touches[0].clientX - rect.left) / canvas.clientWidth) * 2 - 1;
-                    mouse.y = -((e.touches[0].clientY - rect.top) / canvas.clientHeight) * 2 + 1;
-                }
-            }, { passive: true });
-
-            let time = 0;
-            function animateTechBalls() {
-                if (prefersReducedMotion) {
-                    renderer.render(scene, camera);
-                    return;
-                }
-                requestAnimationFrame(animateTechBalls);
-                time += 0.018;
-
-                raycaster.setFromCamera(mouse, camera);
-                const intersects = raycaster.intersectObjects(scene.children, true);
-
-                let currentHovered = null;
-                if (intersects.length > 0) {
-                    let obj = intersects[0].object;
-                    while (obj.parent && obj.parent !== scene) {
-                        obj = obj.parent;
-                    }
-                    currentHovered = obj;
-                }
-
-                if (currentHovered && currentHovered.userData && currentHovered.userData.item) {
-                    if (activeLabel && hoveredBall !== currentHovered) {
-                        activeLabel.textContent = `⚡ ${currentHovered.userData.item.name}: ${currentHovered.userData.item.desc}`;
-                        activeLabel.classList.remove('text-purple-300');
-                        activeLabel.classList.add('text-cyan-300');
-                    }
-                    hoveredBall = currentHovered;
-                }
-
-                // Continuously adapt layout if viewport or canvas dimensions change
-                const checkW = window.innerWidth || document.documentElement.clientWidth || canvas.clientWidth;
-                const isMobileView = checkW < 768;
-                const checkCols = isMobileView ? 4 : 6;
-                if (checkCols !== currentGridCols || canvas.clientWidth !== lastCanvasW || canvas.clientHeight !== lastCanvasH) {
-                    layoutTechScene();
-                }
-
-                ballMeshes.forEach((ball) => {
-                    const data = ball.userData;
-                    ball.position.x += (data.baseX - ball.position.x) * 0.12;
-                    ball.position.y = data.baseY + Math.sin(time * 2.0 + data.phase) * 0.20;
-
-                    if (ball === activeDragBall && isCanvasDragging) {
-                        // Dragging
-                    } else if (ball === hoveredBall) {
-                        const hScale = isMobileView ? 0.95 : 1.12;
-                        ball.scale.lerp(new THREE.Vector3(hScale, hScale, hScale), 0.1);
-                        ball.position.z = 0.5;
-                    } else {
-                        const targetRotX = Math.sin(time * 1.4 + data.phase) * 0.11;
-                        const targetRotY = Math.cos(time * 1.4 + data.phase) * 0.14;
-                        const targetRotZ = Math.sin(time * 0.9 + data.phase) * 0.03;
-
-                        ball.rotation.x += (targetRotX - ball.rotation.x) * 0.06;
-                        ball.rotation.y += (targetRotY - ball.rotation.y) * 0.06;
-                        ball.rotation.z += (targetRotZ - ball.rotation.z) * 0.06;
-
-                        const bScale = isMobileView ? 0.82 : 1.0;
-                        ball.scale.lerp(new THREE.Vector3(bScale, bScale, bScale), 0.08);
-                        ball.position.z = 0;
-                    }
-                });
-
-                renderer.render(scene, camera);
-            }
-            animateTechBalls();
-        })();
 
         // -------------------------------------------------------------
         // 6. 3D TILT EFFECT ON PROJECT CARDS (Respects Reduced Motion)
@@ -3098,7 +2602,7 @@
                 }
 
                 // Default Fallback
-                return `👋 Greetings! I am **adr-AI**, Adrian's autonomous intelligence assistant.\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ automated pipelines & autonomous architectures**\n• 💼 **His professional experience & verified metrics**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to collaborate with or hire him**`;
+                return `👋 Hello! I am **adr-AI**, an interactive portfolio assistant built by Adrian using a Vercel Serverless Function and xAI Grok API.\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ automated pipelines & autonomous architectures**\n• 💼 **His professional experience & verified metrics**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to collaborate with or hire him**`;
             }
 
             async function sendMessage(userText) {
@@ -3125,7 +2629,7 @@
                         if (apiData && apiData.reply) {
                             removeTypingIndicator();
                             chatHistory.push({ role: 'user', text: cleanText }, { role: 'model', text: apiData.reply });
-                            appendBotMessage(apiData.reply, apiData.engine || 'adr-AI • Autonomous Neural Core');
+                            appendBotMessage(apiData.reply, apiData.engine || 'adr-AI • Vercel Edge Serverless (xAI Grok)');
                             return;
                         }
                     }
@@ -3138,7 +2642,7 @@
                     removeTypingIndicator();
                     const reply = localSmartFallback(cleanText);
                     chatHistory.push({ role: 'user', text: cleanText }, { role: 'model', text: reply });
-                    appendBotMessage(reply, 'adr-AI • Autonomous Neural Core');
+                    appendBotMessage(reply, 'adr-AI • Vercel Edge Serverless (xAI Grok)');
                 }, 350);
             }
 
@@ -3620,7 +3124,7 @@ if (uniqueBatch.length > 0) {
                     ],
                     stack: ['PHP', 'MySQL (InnoDB)', 'Barcode Scanning API', 'Bootstrap 5', 'XAMPP', 'Receipt Printer'],
                     actions: [
-                        { label: '⚡ Live Store Demo (Free tier • ~5s wake-up)', href: 'http://sampleappweb.great-site.net', primary: true, icon: 'fa-solid fa-arrow-up-right-from-square' }
+                        { label: '⚡ Live Store Demo (Free tier • ~5s wake-up)', href: 'https://sampleappweb.great-site.net', primary: true, icon: 'fa-solid fa-arrow-up-right-from-square' }
                     ]
                 }
             };
@@ -3854,7 +3358,7 @@ if (uniqueBatch.length > 0) {
                 // Quick Actions
                 {
                     id: 'ai-chat',
-                    title: 'Ask adr-AI Autonomous Assistant',
+                    title: 'Ask adr-AI • Interactive Portfolio Assistant',
                     desc: "Prompt Adrian's neural core on n8n workflows, full-stack apps, or background",
                     category: 'AI Core',
                     icon: 'fa-robot',
