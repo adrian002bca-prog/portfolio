@@ -293,6 +293,20 @@
                 transform: none !important;
             }
         }
+
+        /* WCAG AA Accessibility: Respect Reduced Motion Preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal-header, .reveal-card, .reveal-timeline-left, .reveal-timeline-right {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-brand-dark font-sans relative antialiased selection:bg-purple-600 selection:text-white">
@@ -1645,13 +1659,14 @@
     <!-- SCRIPTS -->
     <script>
         // -------------------------------------------------------------
-        // 1. LENIS SMOOTH SCROLL INITIALIZATION (Desktop Only - Never Locks Mobile)
+        // 1. LENIS SMOOTH SCROLL INITIALIZATION (Desktop Only - Respects Reduced Motion & Never Locks Mobile)
         // -------------------------------------------------------------
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let lenis = null;
         function updateLenis() {
             try {
                 const isMobile = window.innerWidth < 1024;
-                if (isMobile) {
+                if (isMobile || prefersReducedMotion) {
                     if (lenis) {
                         lenis.destroy();
                         lenis = null;
@@ -1851,6 +1866,10 @@
             }, { passive: true });
 
             function animateStars() {
+                if (prefersReducedMotion) {
+                    renderer.render(scene, camera);
+                    return;
+                }
                 requestAnimationFrame(animateStars);
 
                 // Continuous slow cosmic rotation
@@ -1970,6 +1989,10 @@
             window.addEventListener('resize', resizeHeroCore);
 
             function animateHeroCore() {
+                if (prefersReducedMotion) {
+                    renderer.render(scene, camera);
+                    return;
+                }
                 requestAnimationFrame(animateHeroCore);
 
                 targetX += (mouseX - targetX) * 0.05;
@@ -2434,6 +2457,10 @@
 
             let time = 0;
             function animateTechBalls() {
+                if (prefersReducedMotion) {
+                    renderer.render(scene, camera);
+                    return;
+                }
                 requestAnimationFrame(animateTechBalls);
                 time += 0.018;
 
@@ -2498,9 +2525,10 @@
         })();
 
         // -------------------------------------------------------------
-        // 6. 3D TILT EFFECT ON PROJECT CARDS
+        // 6. 3D TILT EFFECT ON PROJECT CARDS (Respects Reduced Motion)
         // -------------------------------------------------------------
-        document.querySelectorAll('.tilt-card').forEach(card => {
+        if (!prefersReducedMotion) {
+            document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -2519,6 +2547,7 @@
                 card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
             });
         });
+        }
 
         // -------------------------------------------------------------
         // 7. COPY EMAIL & SMART WHATSAPP HANDLERS (With Floating Tooltip)
