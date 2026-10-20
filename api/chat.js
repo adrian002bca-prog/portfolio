@@ -182,18 +182,18 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Trigger Telegram notification if visitor shares contact info / recruiter inquiry
+    // Trigger Telegram notification in background without blocking response
     const isContactLead = /((\+?\d[\d\s-]{7,}\d)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|call me|hire|job|opportunity|interview|schedule|meeting|reach me|my name is|contact me)/i.test(message);
     if (isContactLead) {
-      await dispatchTelegramNotification(message, sessionId);
+      dispatchTelegramNotification(message, sessionId).catch((e) => console.log('[Background TG error]:', e.message));
     }
 
-    // 1. Try Live n8n Webhook first if configured
+    // 1. Try Live n8n Webhook first if configured (Strict 3.5s timeout)
     const webhookUrl = customWebhookUrl || process.env.N8N_WEBHOOK_URL;
     if (webhookUrl && webhookUrl.startsWith('http')) {
       try {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 8000);
+        const timeout = setTimeout(() => controller.abort(), 3500);
         const n8nResp = await fetch(webhookUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -213,11 +213,11 @@ module.exports = async function handler(req, res) {
           }
         }
       } catch (err) {
-        // Automatic zero-downtime failover to direct Google Gemini API
+        // Automatic fast failover to direct Google Gemini API
       }
     }
 
-    // 2. Call Google Gemini API (24/7 Cloud Execution with identical n8n System Prompt)
+    // 2. Call Google Gemini API (Strict 4s timeout per attempt, valid model targets)
     const apiKey = process.env.GEMINI_API_KEY || customGeminiKey;
     if (apiKey) {
       const contents = [];
@@ -237,9 +237,12 @@ module.exports = async function handler(req, res) {
         parts: [{ text: message }]
       });
 
-      const modelsToTry = ['gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.8-flash'];
+      const modelsToTry = ['gemini-1.5-flash', 'gemini-2.0-flash'];
       for (const modelName of modelsToTry) {
         try {
+          const geminiController = new AbortController();
+          const geminiTimeout = setTimeout(() => geminiController.abort(), 4000);
+
           const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
           const geminiResp = await fetch(geminiUrl, {
             method: 'POST',
@@ -253,8 +256,10 @@ module.exports = async function handler(req, res) {
                 temperature: 0.3,
                 maxOutputTokens: 700
               }
-            })
+            }),
+            signal: geminiController.signal
           });
+          clearTimeout(geminiTimeout);
 
           if (geminiResp.ok) {
             const data = await geminiResp.json();
@@ -267,12 +272,12 @@ module.exports = async function handler(req, res) {
             }
           }
         } catch (geminiErr) {
-          // Try next model
+          // Fast try next model or instant knowledge fallback
         }
       }
     }
 
-    // 3. Built-in Instant Knowledge Base Fallback (Guaranteed 0ms response)
+    // 3. Built-in Instant Knowledge Base Fallback (Sub-second response guarantee)
     return res.status(200).json({
       reply: generateSmartFallbackReply(message),
       engine: 'adr-AI • Autonomous Neural Core'
