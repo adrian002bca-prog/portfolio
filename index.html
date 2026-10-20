@@ -157,7 +157,10 @@
         /* Prevent scroll chaining from modal to background */
         #n8n-chat-modal-overlay,
         #n8n-chat-window,
-        #n8n-chat-messages {
+        #n8n-chat-messages,
+        #project-preview-modal,
+        #project-preview-window,
+        #project-preview-scroll {
             overscroll-behavior: contain;
         }
 
@@ -606,13 +609,17 @@
 
                     <!-- Action Buttons -->
                     <div class="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/5">
-                        <a href="https://qrypt.great-site.net" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-purple-600/30">
+                        <button onclick="openProjectPreview('qrypt')" type="button" class="px-4 py-2.5 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-200 font-semibold text-xs flex items-center gap-2 hover:bg-purple-500/30 transition-all shadow-lg shadow-purple-600/20 cursor-pointer">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>📸 Quick Preview</span>
+                        </button>
+                        <a href="https://qrypt.great-site.net" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-purple-600/30">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            <span>Live System Demo</span>
+                            <span>⚡ Live Demo <span class="text-[10px] text-purple-200/80 font-normal">(Free tier • ~5s wake-up)</span></span>
                         </a>
-                        <a href="https://github.com/adrian002bca-prog/qrypt-attendance-system" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs flex items-center gap-2 hover:text-white hover:border-purple-500/50 transition-colors">
+                        <a href="https://github.com/adrian002bca-prog/qrypt-attendance-system" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs flex items-center gap-2 hover:text-white hover:border-purple-500/50 transition-colors">
                             <i class="fa-brands fa-github"></i>
-                            <span>GitHub Repository</span>
+                            <span>GitHub</span>
                         </a>
                     </div>
                 </div>
@@ -645,13 +652,17 @@
 
                     <!-- Action Buttons -->
                     <div class="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/5">
-                        <a href="https://obiasia.com" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-cyan-600/30">
+                        <button onclick="openProjectPreview('obi')" type="button" class="px-4 py-2.5 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-200 font-semibold text-xs flex items-center gap-2 hover:bg-cyan-500/30 transition-all shadow-lg shadow-cyan-600/20 cursor-pointer">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>📸 Quick Preview</span>
+                        </button>
+                        <a href="https://obiasia.com" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-cyan-600/30">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             <span>Live on obiasia.com</span>
                         </a>
-                        <a href="https://obi-roomvisualizer.great-site.net" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs flex items-center gap-2 hover:text-white hover:border-cyan-500/50 transition-colors">
+                        <a href="https://obi-roomvisualizer.great-site.net" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs flex items-center gap-2 hover:text-white hover:border-cyan-500/50 transition-colors">
                             <i class="fa-solid fa-play"></i>
-                            <span>Interactive Staging Demo</span>
+                            <span>⚡ Staging Demo <span class="text-[10px] text-cyan-200/80 font-normal">(Free tier • ~5s wake-up)</span></span>
                         </a>
                     </div>
                 </div>
@@ -764,9 +775,13 @@
 
                     <!-- Action Buttons -->
                     <div class="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/5">
-                        <a href="http://sampleappweb.great-site.net" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-emerald-600/30">
+                        <button onclick="openProjectPreview('apptrade')" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-200 font-semibold text-xs flex items-center gap-2 hover:bg-emerald-500/30 transition-all shadow-lg shadow-emerald-600/20 cursor-pointer">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>📸 Quick Preview</span>
+                        </button>
+                        <a href="http://sampleappweb.great-site.net" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-indigo-600 text-white font-semibold text-xs flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-emerald-600/30">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            <span>Live Store Demo</span>
+                            <span>⚡ Live Store Demo <span class="text-[10px] text-emerald-200/80 font-normal">(Free tier • ~5s wake-up)</span></span>
                         </a>
                     </div>
                 </div>
@@ -1463,6 +1478,99 @@
                     <span>Send</span>
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- PROJECT QUICK PREVIEW MODAL (INSTANT ZERO-WAIT DEMOS)          -->
+    <!-- ============================================================= -->
+    <div id="project-preview-modal" data-lenis-prevent="true" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all duration-300">
+        
+        <!-- Modal Dialog Window -->
+        <div id="project-preview-window" data-lenis-prevent="true" class="relative w-full max-w-4xl max-h-[90vh] rounded-2xl sm:rounded-3xl border border-white/15 bg-[#070614]/98 backdrop-blur-2xl shadow-[0_0_60px_rgba(145,94,255,0.25)] flex flex-col overflow-hidden font-sans">
+            
+            <!-- Modal Header -->
+            <div class="px-5 sm:px-6 py-4 bg-gradient-to-r from-purple-950/80 via-slate-900/90 to-cyan-950/80 border-b border-white/10 flex items-center justify-between gap-4 shrink-0">
+                <div class="min-w-0 flex items-center gap-3">
+                    <span id="preview-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shrink-0">
+                        <!-- Populated dynamically -->
+                    </span>
+                    <h3 id="preview-title" class="text-white font-extrabold text-base sm:text-lg tracking-tight truncate">
+                        <!-- Populated dynamically -->
+                    </h3>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="project-preview-close" onclick="closeProjectPreview()" type="button" aria-label="Close Preview" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-slate-300 hover:text-rose-300 flex items-center justify-center text-sm transition-all cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scrollable Modal Body -->
+            <div id="project-preview-scroll" data-lenis-prevent="true" class="overflow-y-auto p-5 sm:p-8 space-y-6 custom-scrollbar overscroll-contain">
+                
+                <!-- High-Resolution Image Preview Frame -->
+                <div class="relative rounded-2xl border border-white/15 bg-slate-950/80 overflow-hidden shadow-2xl group">
+                    <div class="flex items-center justify-between px-4 py-2.5 bg-white/5 border-b border-white/10 text-[11px] font-mono text-slate-400">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 shrink-0"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 shrink-0"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shrink-0"></span>
+                            <span id="preview-window-title" class="ml-2 text-slate-300 font-semibold truncate"></span>
+                        </div>
+                        <span class="text-[10px] text-cyan-400 font-semibold flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-bolt"></i> Instant Local Preview • 0s Load
+                        </span>
+                    </div>
+                    <div class="relative bg-slate-950/90 flex items-center justify-center p-2 sm:p-4">
+                        <img id="preview-img" src="" alt="Project Preview Screenshot" class="w-full h-auto max-h-[460px] object-contain rounded-xl shadow-inner transition-transform duration-500 group-hover:scale-[1.01]" />
+                    </div>
+                </div>
+
+                <!-- Verified KPI Metrics Grid -->
+                <div>
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-simple text-purple-400"></i> Verified Production Impact
+                    </h4>
+                    <div id="preview-metrics-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Technical Architectural Highlights -->
+                <div>
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-microchip text-cyan-400"></i> Core Engineering Innovations
+                    </h4>
+                    <div id="preview-highlights-list" class="space-y-2 text-xs sm:text-sm text-slate-300">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Verified Production Tech Stack -->
+                <div>
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-emerald-400"></i> Technology Stack
+                    </h4>
+                    <div id="preview-tech-stack" class="flex flex-wrap gap-2">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer with CTA Buttons -->
+            <div class="px-5 sm:px-6 py-4 bg-slate-950/90 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 shrink-0">
+                <div class="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-check text-emerald-400"></i>
+                    <span>Production Architecture & Source Verified</span>
+                </div>
+                <div id="preview-footer-actions" class="flex flex-wrap items-center gap-2.5">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -2997,6 +3105,204 @@ if (uniqueBatch.length > 0) {
 
             renderNodes();
             renderInspector();
+        })();
+
+        // -------------------------------------------------------------
+        // PROJECT QUICK PREVIEW MODAL CONTROLLER
+        // -------------------------------------------------------------
+        (function() {
+            const projectData = {
+                qrypt: {
+                    title: "QRYPT: QR Code Attendance & Visitor System",
+                    windowTitle: "QRYPT Gate Security Core • Terminal #01 (Active Scan Station)",
+                    badge: '<i class="fa-solid fa-trophy mr-1 text-amber-300"></i> Best Capstone Project Award',
+                    badgeClass: 'bg-amber-500/15 border border-amber-500/30 text-amber-300',
+                    image: 'preview-qrypt.jpg',
+                    imageAlt: 'QRYPT QR Attendance & Gatepass System UI Screenshot',
+                    metrics: [
+                        { label: 'Gate Bottleneck', value: '-75%', icon: 'fa-bolt', color: 'purple' },
+                        { label: 'Daily Scans', value: '1,500+', icon: 'fa-users', color: 'cyan' },
+                        { label: 'Camera Latency', value: '<400ms', icon: 'fa-gauge-high', color: 'emerald' },
+                        { label: 'Proxy Safeguard', value: '100% ACID', icon: 'fa-shield-halved', color: 'amber' }
+                    ],
+                    highlights: [
+                        'Sub-second WebRTC camera scanning (&lt;400ms decode) with client-side canvas analysis.',
+                        'Time-In / Time-Out dual-state machine logic preventing duplicate scans and proxy attendance.',
+                        'Cryptographic single-use visitor tokens with dynamic QR regeneration and role-based access.',
+                        'Strict MySQL PDO ACID transactions with rollback safeguards preventing partial or corrupt attendance writes.'
+                    ],
+                    stack: ['PHP 8+', 'MySQL / PDO', 'WebRTC Camera API', 'JavaScript', 'Bootstrap 4', 'TCPDF'],
+                    actions: [
+                        { label: '⚡ Live System Demo (Free tier • ~5s wake-up)', href: 'https://qrypt.great-site.net', primary: true, icon: 'fa-solid fa-arrow-up-right-from-square' },
+                        { label: 'GitHub Repository', href: 'https://github.com/adrian002bca-prog/qrypt-attendance-system', primary: false, icon: 'fa-brands fa-github' }
+                    ]
+                },
+                obi: {
+                    title: "OBI Interactive Room Visualizer",
+                    windowTitle: "obiasia.com/room-visualizer • Living Room 3D Perspective",
+                    badge: '<i class="fa-solid fa-building mr-1 text-cyan-300"></i> Live Client Production (obiasia.com)',
+                    badgeClass: 'bg-cyan-500/15 border border-cyan-500/30 text-cyan-300',
+                    image: 'preview-obi.png',
+                    imageAlt: 'OBI Spatial Room Visualizer Interactive Canvas Render',
+                    metrics: [
+                        { label: 'Flooring Finishes', value: '20+ Finishes', icon: 'fa-layer-group', color: 'cyan' },
+                        { label: 'Architectural Rooms', value: '5+ Environments', icon: 'fa-house', color: 'purple' },
+                        { label: 'Finish Swapping', value: '0ms (Client)', icon: 'fa-bolt', color: 'emerald' },
+                        { label: 'Spec Sheet Export', value: 'PDF & PNG', icon: 'fa-file-pdf', color: 'amber' }
+                    ],
+                    highlights: [
+                        'Engineered client-side HTML5 Canvas matrix transformation with perspective texture mapping.',
+                        'Zero server roundtrip lag — instant finish swapping and angle rotation operating smoothly at 60 FPS.',
+                        'Multi-layer alpha lighting and directional shadow blending maintaining authentic architectural room depth.',
+                        'Automated client-side PDF specification sheet & high-resolution PNG quotation export pipeline.'
+                    ],
+                    stack: ['HTML5 Canvas API', 'JavaScript (ES6+)', 'PHP', 'MySQL', 'Responsive CSS', 'jsPDF'],
+                    actions: [
+                        { label: '🏢 Live on obiasia.com', href: 'https://obiasia.com', primary: true, icon: 'fa-solid fa-arrow-up-right-from-square' },
+                        { label: '⚡ Staging Demo (Free tier • ~5s wake-up)', href: 'https://obi-roomvisualizer.great-site.net', primary: false, icon: 'fa-solid fa-play' }
+                    ]
+                },
+                apptrade: {
+                    title: "Apptrade POS & Dual-Channel E-Commerce System",
+                    windowTitle: "Apptrade Retail POS • Terminal #02 (Active Cashier Register)",
+                    badge: '<i class="fa-solid fa-cart-shopping mr-1 text-emerald-300"></i> Commercial Retail System',
+                    badgeClass: 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-300',
+                    image: 'preview-apptrade.jpg',
+                    imageAlt: 'Apptrade Retail POS Cashier Terminal & Inventory Dashboard',
+                    metrics: [
+                        { label: 'Active Retail SKUs', value: '300+ Items', icon: 'fa-boxes-stacked', color: 'emerald' },
+                        { label: 'Barcode Lookup', value: '<500ms', icon: 'fa-barcode', color: 'cyan' },
+                        { label: 'Tax & Invoicing', value: '12% VAT', icon: 'fa-receipt', color: 'purple' },
+                        { label: 'Inventory Accuracy', value: '100% Locked', icon: 'fa-check-double', color: 'amber' }
+                    ],
+                    highlights: [
+                        'High-frequency sub-second (&lt;500ms) barcode scanner routines and keyboard-driven cashier register UX.',
+                        'Atomic MySQL inventory decrements with SELECT ... FOR UPDATE row-level locks preventing race conditions.',
+                        'Automated low-stock threshold triggers and restock notification pipeline eliminating stockout delays.',
+                        'Synchronized dual-channel inventory ensuring physical counter sales instantly deduct online web availability.'
+                    ],
+                    stack: ['PHP', 'MySQL (InnoDB)', 'Barcode Scanning API', 'Bootstrap 5', 'XAMPP', 'Receipt Printer'],
+                    actions: [
+                        { label: '⚡ Live Store Demo (Free tier • ~5s wake-up)', href: 'http://sampleappweb.great-site.net', primary: true, icon: 'fa-solid fa-arrow-up-right-from-square' }
+                    ]
+                }
+            };
+
+            window.openProjectPreview = function(projectId) {
+                const data = projectData[projectId];
+                if (!data) return;
+
+                const modal = document.getElementById('project-preview-modal');
+                const badgeEl = document.getElementById('preview-badge');
+                const titleEl = document.getElementById('preview-title');
+                const winTitleEl = document.getElementById('preview-window-title');
+                const imgEl = document.getElementById('preview-img');
+                const metricsGrid = document.getElementById('preview-metrics-grid');
+                const highlightsList = document.getElementById('preview-highlights-list');
+                const techStackEl = document.getElementById('preview-tech-stack');
+                const actionsEl = document.getElementById('preview-footer-actions');
+                const scrollEl = document.getElementById('project-preview-scroll');
+
+                if (!modal) return;
+
+                badgeEl.className = 'px-3 py-1 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shrink-0 ' + data.badgeClass;
+                badgeEl.innerHTML = data.badge;
+                titleEl.textContent = data.title;
+                winTitleEl.textContent = data.windowTitle;
+                imgEl.src = data.image;
+                imgEl.alt = data.imageAlt;
+
+                metricsGrid.innerHTML = data.metrics.map(m => `
+                    <div class="glass-panel p-3 rounded-xl border border-white/10 bg-slate-900/60 flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-slate-400 text-xs mb-1">
+                            <span class="text-[10px] uppercase font-mono tracking-wider truncate">${m.label}</span>
+                            <i class="fa-solid ${m.icon} text-${m.color}-400 text-xs"></i>
+                        </div>
+                        <div class="text-base sm:text-lg font-extrabold text-white">${m.value}</div>
+                    </div>
+                `).join('');
+
+                highlightsList.innerHTML = data.highlights.map(h => `
+                    <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
+                        <i class="fa-solid fa-circle-check text-cyan-400 text-xs mt-0.5 shrink-0"></i>
+                        <span>${h}</span>
+                    </div>
+                `).join('');
+
+                techStackEl.innerHTML = data.stack.map(s => `
+                    <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">
+                        ${s}
+                    </span>
+                `).join('');
+
+                actionsEl.innerHTML = data.actions.map(a => `
+                    <a href="${a.href}" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all ${
+                        a.primary 
+                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white shadow-lg shadow-purple-600/30' 
+                        : 'glass-panel text-slate-200 hover:text-white hover:border-purple-500/50'
+                    }">
+                        <i class="${a.icon}"></i>
+                        <span>${a.label}</span>
+                    </a>
+                `).join('') + `
+                    <button onclick="closeProjectPreview()" type="button" class="px-4 py-2 rounded-xl glass-panel text-slate-400 hover:text-white text-xs font-medium transition-colors cursor-pointer">
+                        Close
+                    </button>
+                `;
+
+                if (scrollEl) scrollEl.scrollTop = 0;
+
+                modal.classList.remove('hidden');
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+                if (window.lenis) {
+                    try { window.lenis.stop(); } catch (_) {}
+                }
+            };
+
+            window.closeProjectPreview = function() {
+                const modal = document.getElementById('project-preview-modal');
+                if (!modal) return;
+                modal.classList.add('hidden');
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
+                if (window.lenis) {
+                    try { window.lenis.start(); } catch (_) {}
+                }
+            };
+
+            const previewModal = document.getElementById('project-preview-modal');
+            const previewScroll = document.getElementById('project-preview-scroll');
+            if (previewModal && previewScroll) {
+                previewModal.addEventListener('click', (e) => {
+                    if (e.target === previewModal) window.closeProjectPreview();
+                });
+
+                previewScroll.addEventListener('wheel', (e) => {
+                    previewScroll.scrollTop += e.deltaY;
+                    e.preventDefault();
+                    e.stopPropagation();
+                }, { passive: false });
+
+                previewModal.addEventListener('wheel', (e) => {
+                    if (!e.target.closest('#project-preview-scroll')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, { passive: false });
+
+                previewModal.addEventListener('touchmove', (e) => {
+                    if (!e.target.closest('#project-preview-scroll')) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !previewModal.classList.contains('hidden')) {
+                        window.closeProjectPreview();
+                    }
+                });
+            }
         })();
     </script>
 </body>
