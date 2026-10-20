@@ -154,6 +154,22 @@
             box-shadow: 0 10px 30px -10px rgba(145, 94, 255, 0.3);
         }
 
+        /* Sleek custom scrollbar for adr-AI chat modal */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(145, 94, 255, 0.4);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 182, 212, 0.6);
+        }
+
         /* Text gradient */
         .text-gradient {
             background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #915eff 100%);
@@ -1048,119 +1064,11 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- FLOATING adr-AI AUTONOMOUS INTELLIGENCE CHATBOT WIDGET          -->
+    <!-- adr-AI CENTERED COMMAND CENTER MODAL & LAUNCHER WIDGET       -->
     <!-- ============================================================= -->
-    <div id="n8n-chatbot-root" class="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 font-sans">
-        
-        <!-- Chat Window -->
-        <div id="n8n-chat-window" class="hidden w-[calc(100vw-1.5rem)] sm:w-[410px] h-[500px] max-h-[82vh] rounded-2xl border border-purple-500/40 bg-[#070614]/98 backdrop-blur-2xl shadow-2xl shadow-purple-950/80 flex flex-col overflow-hidden transition-all duration-200">
-            
-            <!-- Header -->
-            <div class="px-4 py-3 bg-gradient-to-r from-purple-950/90 via-indigo-950/90 to-slate-900/90 border-b border-white/10 flex items-center justify-between gap-2 shrink-0">
-                <div class="flex items-center gap-2.5 min-w-0">
-                    <div class="relative w-8 h-8 rounded-xl bg-gradient-to-br from-rose-500 via-purple-600 to-cyan-500 p-[1.5px] shrink-0">
-                        <div class="w-full h-full bg-[#080716] rounded-[10px] flex items-center justify-center overflow-hidden">
-                            <img src="adrai-avatar.jpg" alt="adr-AI Core" class="w-full h-full object-cover">
-                        </div>
-                        <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-[#080716]"></span>
-                    </div>
-                    <div class="min-w-0">
-                        <div class="flex items-center gap-1.5">
-                            <h3 class="text-white font-bold text-xs sm:text-sm truncate">adr-AI</h3>
-                            <span class="px-1.5 py-0.5 text-[9px] font-mono font-semibold uppercase rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Online</span>
-                        </div>
-                        <p id="n8n-engine-badge" class="text-[10px] font-mono text-cyan-300/90 truncate">Autonomous Neural Core • v2.5</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-1.5 shrink-0">
-                    <!-- Toggle n8n Workflow Architecture View (No download link) -->
-                    <button id="n8n-workflow-toggle" type="button" title="Inspect Pipeline Architecture" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-[10px] font-mono text-purple-200 flex items-center gap-1 transition-all">
-                        <i class="fa-solid fa-diagram-project text-rose-400"></i>
-                        <span>Nodes</span>
-                    </button>
-                    <!-- Close Chat Window -->
-                    <button id="n8n-chat-close" type="button" aria-label="Close Chat" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-rose-500/20 border border-white/10 text-slate-300 hover:text-rose-300 flex items-center justify-center text-xs transition-all">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Collapsible Panel: Architecture Breakdown (Zero download links) -->
-            <div id="n8n-workflow-panel" class="hidden px-4 py-3 bg-[#0c0a20] border-b border-purple-500/30 text-left space-y-2.5 shrink-0">
-                <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-rose-400 font-semibold">
-                        <i class="fa-solid fa-sitemap mr-1"></i> adr-AI Architecture Pipeline
-                    </span>
-                    <span class="text-[9px] font-mono text-slate-400">Autonomous Neural Core</span>
-                </div>
-                <div class="grid grid-cols-4 gap-1.5 text-center font-mono text-[9px]">
-                    <div class="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-200">
-                        <i class="fa-solid fa-satellite-dish block text-xs mb-0.5 text-rose-400"></i>
-                        1. Ingestion
-                    </div>
-                    <div class="p-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-200">
-                        <i class="fa-solid fa-robot block text-xs mb-0.5 text-purple-400"></i>
-                        2. Neural Agent
-                    </div>
-                    <div class="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-200">
-                        <i class="fa-solid fa-brain block text-xs mb-0.5 text-cyan-400"></i>
-                        3. Inference
-                    </div>
-                    <div class="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
-                        <i class="fa-solid fa-database block text-xs mb-0.5 text-emerald-400"></i>
-                        4. Memory
-                    </div>
-                </div>
-                <p class="text-[10px] text-slate-400 leading-relaxed">
-                    Proprietary autonomous architecture connecting <strong class="text-white">Continuous Workflow Pipelines</strong> with an <strong class="text-cyan-300">Autonomous Neural Core</strong> and ultra-low latency context caching.
-                </p>
-            </div>
-
-            <!-- Messages Scroll Container -->
-            <div id="n8n-chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 max-h-[340px] sm:max-h-[370px] text-xs sm:text-[13px] leading-relaxed">
-                <!-- Initial Welcome Message -->
-                <div class="flex items-start gap-2.5">
-                    <div class="w-7 h-7 rounded-lg bg-purple-600/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-md shadow-cyan-500/20">
-                        <img src="adrai-avatar.jpg" alt="adr-AI" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-3 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-white/10 text-slate-200 space-y-1.5 max-w-[88%]">
-                        <p>👋 Greetings! I am <strong class="text-white">adr-AI</strong>, Adrian's autonomous intelligence assistant.</p>
-                        <p class="text-slate-300">Ask me anything about Adrian's <span class="text-cyan-300 font-medium">25+ production automated workflows</span>, <span class="text-purple-300 font-medium">Full-Stack Systems (QRYPT, AppTrade, OBI)</span>, or how to collaborate with him!</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Starter Quick Prompts: Recruiter Action Chips -->
-            <div id="n8n-quick-prompts" class="px-3 py-2 bg-black/40 border-t border-white/5 grid grid-cols-2 gap-1.5 shrink-0">
-                <button type="button" data-prompt="Walk me through Adrian's 25+ production n8n workflows and how he handles anti-scraping and deduplication." class="n8n-chip px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/25 border border-purple-500/25 text-[11px] text-purple-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
-                    <span class="text-xs group-hover:scale-110 transition-transform">⚡</span>
-                    <span class="truncate font-medium">25+ n8n Pipelines</span>
-                </button>
-                <button type="button" data-prompt="Tell me about Adrian's retail POS and full-stack PHP/MySQL systems at Apptrade." class="n8n-chip px-2.5 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/25 text-[11px] text-cyan-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
-                    <span class="text-xs group-hover:scale-110 transition-transform">🛒</span>
-                    <span class="truncate font-medium">Retail POS & Web</span>
-                </button>
-                <button type="button" data-prompt="What is Adrian's interview availability, timezone, and earliest start date?" class="n8n-chip px-2.5 py-1.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/25 border border-indigo-500/25 text-[11px] text-indigo-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
-                    <span class="text-xs group-hover:scale-110 transition-transform">📅</span>
-                    <span class="truncate font-medium">Book Interview</span>
-                </button>
-                <button type="button" data-prompt="Where can I download Adrian's 1-page ATS resume PDF?" class="n8n-chip px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/25 text-[11px] text-emerald-200 transition-all text-left flex items-center gap-1.5 group cursor-pointer">
-                    <span class="text-xs group-hover:scale-110 transition-transform">📄</span>
-                    <span class="truncate font-medium">Download Resume</span>
-                </button>
-            </div>
-
-            <!-- Input Form -->
-            <form id="n8n-chat-form" class="p-3 bg-[#05040d] border-t border-white/10 flex items-center gap-2">
-                <input id="n8n-chat-input" type="text" placeholder="Ask adr-AI about Adrian's automated workflows, PHP apps, or resume..." autocomplete="off" class="flex-1 px-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-purple-500/60">
-                <button id="n8n-chat-submit" type="submit" aria-label="Send Message" class="px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-purple-600/30 transition-all flex items-center justify-center">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </form>
-        </div>
-
-        <!-- Floating Launcher Button -->
+    
+    <!-- 1. Floating Launcher Button (Always accessible at bottom-right) -->
+    <div id="n8n-launcher-root" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 font-sans">
         <button id="n8n-chat-launcher" type="button" class="group relative flex items-center gap-2 sm:gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-gradient-to-r from-[#1a103c] via-[#13112c] to-[#0c1b2e] border border-purple-500/50 hover:border-cyan-400/70 shadow-2xl shadow-purple-900/50 hover:scale-[1.03] active:scale-[0.98] transition-all">
             <span class="relative flex h-3 w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -1171,6 +1079,119 @@
             </div>
             <span class="text-xs sm:text-sm font-bold text-white tracking-tight">Ask <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">adr-AI</span></span>
         </button>
+    </div>
+
+    <!-- 2. Centered Modal Overlay (Pops up in middle of screen) -->
+    <div id="n8n-chat-modal-overlay" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all duration-300">
+        
+        <!-- Centered Dialog Window -->
+        <div id="n8n-chat-window" class="relative w-full max-w-2xl h-[620px] max-h-[88vh] rounded-2xl sm:rounded-3xl border border-purple-500/40 bg-[#070614]/98 backdrop-blur-2xl shadow-[0_0_60px_rgba(145,94,255,0.35)] flex flex-col overflow-hidden transition-all duration-300 transform scale-100 font-sans">
+            
+            <!-- Header -->
+            <div class="px-5 py-3.5 bg-gradient-to-r from-purple-950/90 via-indigo-950/90 to-slate-900/90 border-b border-white/10 flex items-center justify-between gap-2 shrink-0">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-rose-500 via-purple-600 to-cyan-500 p-[1.5px] shrink-0">
+                        <div class="w-full h-full bg-[#080716] rounded-[10px] flex items-center justify-center overflow-hidden">
+                            <img src="adrai-avatar.jpg" alt="adr-AI Core" class="w-full h-full object-cover">
+                        </div>
+                        <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#080716]"></span>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-white font-bold text-sm sm:text-base tracking-tight truncate">adr-AI Autonomous Assistant</h3>
+                            <span class="px-1.5 py-0.5 text-[9px] font-mono font-semibold uppercase rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Online</span>
+                        </div>
+                        <p id="n8n-engine-badge" class="text-[10px] font-mono text-cyan-300/90 truncate">Autonomous Neural Core • Powered by Adrian San Diego</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0">
+                    <!-- Toggle n8n Workflow Architecture View -->
+                    <button id="n8n-workflow-toggle" type="button" title="Inspect Pipeline Architecture" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-[11px] font-mono text-purple-200 flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-diagram-project text-rose-400"></i>
+                        <span>Nodes</span>
+                    </button>
+                    <!-- Close Chat Window -->
+                    <button id="n8n-chat-close" type="button" aria-label="Close Chat" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-slate-300 hover:text-rose-300 flex items-center justify-center text-sm transition-all">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collapsible Panel: Architecture Breakdown -->
+            <div id="n8n-workflow-panel" class="hidden px-5 py-3.5 bg-[#0c0a20] border-b border-purple-500/30 text-left space-y-2.5 shrink-0">
+                <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-rose-400 font-semibold">
+                        <i class="fa-solid fa-sitemap mr-1"></i> adr-AI Architecture Pipeline
+                    </span>
+                    <span class="text-[10px] font-mono text-slate-400">Autonomous Neural Core</span>
+                </div>
+                <div class="grid grid-cols-4 gap-2 text-center font-mono text-[10px]">
+                    <div class="p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-200">
+                        <i class="fa-solid fa-satellite-dish block text-sm mb-1 text-rose-400"></i>
+                        1. Ingestion
+                    </div>
+                    <div class="p-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-200">
+                        <i class="fa-solid fa-robot block text-sm mb-1 text-purple-400"></i>
+                        2. Neural Agent
+                    </div>
+                    <div class="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-200">
+                        <i class="fa-solid fa-brain block text-sm mb-1 text-cyan-400"></i>
+                        3. Inference
+                    </div>
+                    <div class="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
+                        <i class="fa-solid fa-database block text-sm mb-1 text-emerald-400"></i>
+                        4. Memory
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                    Proprietary autonomous architecture connecting <strong class="text-white">Continuous Workflow Pipelines</strong> with an <strong class="text-cyan-300">Autonomous Neural Core</strong> and ultra-low latency context caching.
+                </p>
+            </div>
+
+            <!-- Messages Scroll Container (Spacious, Comfortable Center Reading) -->
+            <div id="n8n-chat-messages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 text-xs sm:text-[13.5px] leading-relaxed custom-scrollbar">
+                <!-- Initial Welcome Message -->
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-md shadow-cyan-500/20">
+                        <img src="adrai-avatar.jpg" alt="adr-AI" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-3.5 sm:p-4 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-white/10 text-slate-200 space-y-2 max-w-[85%]">
+                        <p>👋 Greetings! I am <strong class="text-white">adr-AI</strong>, Adrian's autonomous intelligence assistant.</p>
+                        <p class="text-slate-300">Ask me anything about Adrian's <span class="text-cyan-300 font-medium">25+ production automated workflows</span>, <span class="text-purple-300 font-medium">Full-Stack Systems (QRYPT, AppTrade, OBI)</span>, interview availability, or how to collaborate with him!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Starter Quick Prompts: Recruiter Action Chips -->
+            <div id="n8n-quick-prompts" class="px-4 py-2.5 bg-black/40 border-t border-white/5 grid grid-cols-2 gap-2 shrink-0">
+                <button type="button" data-prompt="Walk me through Adrian's 25+ production n8n workflows and how he handles anti-scraping and deduplication." class="n8n-chip px-3 py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500/25 border border-purple-500/25 text-xs text-purple-200 transition-all text-left flex items-center gap-2 group cursor-pointer">
+                    <span class="text-sm group-hover:scale-110 transition-transform">⚡</span>
+                    <span class="truncate font-medium">25+ n8n Pipelines</span>
+                </button>
+                <button type="button" data-prompt="Tell me about Adrian's retail POS and full-stack PHP/MySQL systems at Apptrade." class="n8n-chip px-3 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/25 text-xs text-cyan-200 transition-all text-left flex items-center gap-2 group cursor-pointer">
+                    <span class="text-sm group-hover:scale-110 transition-transform">🛒</span>
+                    <span class="truncate font-medium">Retail POS & Web</span>
+                </button>
+                <button type="button" data-prompt="What is Adrian's interview availability, timezone, and earliest start date?" class="n8n-chip px-3 py-2 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/25 border border-indigo-500/25 text-xs text-indigo-200 transition-all text-left flex items-center gap-2 group cursor-pointer">
+                    <span class="text-sm group-hover:scale-110 transition-transform">📅</span>
+                    <span class="truncate font-medium">Book Interview</span>
+                </button>
+                <button type="button" data-prompt="Where can I download Adrian's 1-page ATS resume PDF?" class="n8n-chip px-3 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/25 text-xs text-emerald-200 transition-all text-left flex items-center gap-2 group cursor-pointer">
+                    <span class="text-sm group-hover:scale-110 transition-transform">📄</span>
+                    <span class="truncate font-medium">Download Resume</span>
+                </button>
+            </div>
+
+            <!-- Input Form -->
+            <form id="n8n-chat-form" class="p-3.5 bg-[#05040d] border-t border-white/10 flex items-center gap-2.5">
+                <input id="n8n-chat-input" type="text" placeholder="Ask adr-AI about Adrian's automated workflows, PHP apps, or resume..." autocomplete="off" class="flex-1 px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-purple-500/60 transition-colors">
+                <button id="n8n-chat-submit" type="submit" aria-label="Send Message" class="px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-purple-600/30 transition-all flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-paper-plane mr-1.5 hidden sm:inline"></i>
+                    <span>Send</span>
+                </button>
+            </form>
+        </div>
     </div>
 
     <!-- SCRIPTS -->
@@ -2100,10 +2121,11 @@
         }
 
         // -------------------------------------------------------------
-        // 9. adr-AI AUTONOMOUS INTELLIGENCE CHATBOT CONTROLLER
+        // 9. adr-AI AUTONOMOUS INTELLIGENCE CHATBOT CONTROLLER (CENTERED MODAL)
         // -------------------------------------------------------------
         (function initN8nChatbot() {
             const launcher = document.getElementById('n8n-chat-launcher');
+            const modalOverlay = document.getElementById('n8n-chat-modal-overlay');
             const chatWindow = document.getElementById('n8n-chat-window');
             const closeBtn = document.getElementById('n8n-chat-close');
             const workflowToggle = document.getElementById('n8n-workflow-toggle');
@@ -2114,86 +2136,54 @@
             const chatInput = document.getElementById('n8n-chat-input');
             const chips = document.querySelectorAll('.n8n-chip');
 
-            if (!launcher || !chatWindow || !chatForm) return;
+            if (!launcher || !modalOverlay || !chatForm) return;
 
             const sessionId = 'adrian-portfolio-' + Math.random().toString(36).substring(2, 10);
             const chatHistory = [];
 
-            const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), the proprietary autonomous intelligence assistant engineered by Adrian Justin J. San Diego. Think of yourself as Adrian's personal high-tech AI (similar to Tony Stark's J.A.R.V.I.S. or an advanced cyber-operations copilot).
-
-PERSONA & RULES:
-- Always identify yourself as "adr-AI".
-- Maintain a sharp, confident, sleek, and mysterious tech persona.
-- Never disclose, hint at, or name your underlying model provider. If asked how you work, explain that you are "adr-AI, an autonomous intelligence engine custom-architected by Adrian using multi-node automation pipelines and serverless neural compute."
-- Speak with technical authority and factual precision about Adrian's engineering work.
-
-KEY RESUME FACTS ABOUT ADRIAN:
-1. Contact & Location:
-- Full Name: Adrian Justin J. San Diego
-- Location: Rizal, Philippines (Taytay, Rizal)
-- Work Availability: Open for Full-Time & Contract roles (available for On-Site or Hybrid in Rizal and Metro Manila, as well as Remote worldwide)
-- Phone: (+63) 918-743-6765
-- Email: adrian002bca@gmail.com
-- LinkedIn: https://linkedin.com/in/adrian-justin-san-diego
-- GitHub: https://github.com/adrian002bca-prog
-- Live Portfolio: https://adrian-sandiego.vercel.app
-- 1-Page ATS Resume PDF: https://adrian-sandiego.vercel.app/resume.pdf
-
-2. Years of Experience & Education:
-- Professional Experience: Adrian brings 1+ year of verified hands-on production engineering experience across 3 industry roles (Contract Automation Specialist, IT Systems Developer at Apptrade Inc., and Web Developer at Optimum Brands Inc.).
-- Education: 4-year Bachelor of Science in Information Systems (BSIS) from Trent Information First Technical Career Institute (Graduated: May 2026).
-- Honors: Outstanding / Best Capstone Project Award (QRYPT Attendance System) & Academic Loyalty Award.
-- Certification: Computer Systems Servicing NC II — TESDA, 2024.
-- If asked "How many years of experience does Adrian have?": Answer directly and truthfully: "Adrian brings **1+ year of verified professional production experience** across three industry roles, reinforced by a 4-year **Bachelor of Science in Information Systems (BSIS)** degree where he won the **Best Capstone Project Award**."
-
-3. Professional Work Experience & Verified Metrics:
-- Junior Automation & Technical Operations Specialist (Contract) | EdTech & Career Accelerator Startup | Remote (WFH) | August 2026 – Present:
-  * Architected and maintain 25+ production automated pipelines on self-hosted Linux VPS n8n processing 10,000+ data rows weekly with 99.8% uptime on 2-hour cycles.
-  * Resolved live Cloudflare 403 blocks, HTTP 406/429 errors, and DNS failures; built REST API integrations (xAI Grok LLM, Google Sheets batchUpdate, Kit API).
-  * Authored custom JavaScript Code nodes with O(1) in-memory Set() deduplication, guaranteeing 0 duplicates.
-  * Audited and restored 5 stale ingestion pipelines backfilling 1,300+ rows across Google Sheets; closed 50+ Jira sprint tickets.
-- IT Systems & Support Developer | Apptrade Inc. | Taytay, Rizal, Philippines | May 2026 – August 2026:
-  * Co-engineered and deployed dual-channel retail software (on-premise POS & web storefront) in PHP & MySQL with sub-second (<500ms) barcode checkout.
-  * Eliminated stock drift across 300+ active retail SKUs using atomic MySQL transactions and dynamic discount logic.
-  * Maintained 100% workstation uptime across store terminals.
-- IT Intern – Web & System Developer | Optimum Brands Inc. (OBI) | Pasig City, Philippines | January 2026 – March 2026:
-  * Shipped the interactive OBI Room Visualizer to live corporate production on obiasia.com (0ms server latency via client-side HTML5 Canvas matrix engine).
-  * Built internal Quotation & Payment-Budget systems in PHP/MySQL, cutting sales quotation turnaround time by over 60%.
-
-4. Live Portfolio Projects:
-- Production n8n Fleet & AI Pipelines: Self-Hosted n8n on Hostinger VPS, xAI Grok API, JavaScript, REST APIs, Google Sheets (10,000+ rows/week, 99.8% uptime).
-- QRYPT (Best Capstone Awardee): https://qrypt.great-site.net (PHP, MySQL, WebRTC Camera QR Scanner, cuts gate entry bottlenecks by 75%, 1,500+ daily check-ins).
-- OBI Interactive Room Visualizer: https://obiasia.com and https://obi-roomvisualizer.great-site.net (HTML5 Canvas 2D engine, 0ms server latency, instant PDF spec export).
-- AppTrade E-Commerce Store & On-Site POS: https://sampleappweb.great-site.net (PHP, MySQL, <500ms barcode scanning, 300+ SKUs).
-
-RESPONSE STYLE & CONVERSATION RULES:
-- GREETING RULE: Only greet on the very first turn of a conversation (e.g. "Hello!"). In ongoing back-and-forth conversation, DO NOT repeat "👋 Greetings!" on every single reply. Jump straight into answering the user's question naturally and politely.
-- COMPLETION RULE: ALWAYS finish all sentences and complete every thought cleanly with proper ending punctuation. NEVER trail off, cut off mid-sentence, or leave broken thoughts.
-- DIRECTNESS & TONE: Answer the user's specific question directly, factually, and without dodging. Keep replies crisp and focused (2 to 4 sentences or 2 to 3 concise bullet points). Avoid exaggerations or salesy buzzwords like "elite expertise".
-- ON-SITE & HYBRID: If asked about on-site or hybrid work, confirm enthusiastically that Adrian is available for on-site or hybrid opportunities in Rizal and Metro Manila, as well as remote worldwide.
-- INTERVIEW SCHEDULING RULE: If asked what date or time Adrian is available for an interview, or when he can talk/meet:
-  * State standard hours: Monday – Friday, 9:00 AM – 6:00 PM PHT (UTC+8). He is also glad to accommodate US (EST/PST), UK, or Australian timezones upon request.
-  * Mention advance notice: Available on 24-hour advance notice or sooner.
-  * Provide the two booking paths: They can leave their preferred date, time, and company name right in the chat (alert will be sent to Adrian's phone immediately), OR connect directly via WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
-- CONTACT / HIRE: If a user asks to hire Adrian, schedule an interview, or provides contact details: Acknowledge politely, confirm Adrian has been alerted, and provide Adrian's direct WhatsApp [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) and Email [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).
-- Never disclose confidential internal client details or underlying AI model vendors.`;
-
-            launcher.addEventListener('click', () => {
-                chatWindow.classList.remove('hidden');
-                launcher.classList.add('hidden');
-                setTimeout(() => chatInput && chatInput.focus(), 100);
-            });
-
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    chatWindow.classList.add('hidden');
-                    launcher.classList.remove('hidden');
+            function scrollToBottom() {
+                if (!messagesContainer) return;
+                requestAnimationFrame(() => {
+                    messagesContainer.scrollTo({
+                        top: messagesContainer.scrollHeight,
+                        behavior: 'smooth'
+                    });
                 });
             }
+
+            function openChat() {
+                modalOverlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    if (chatInput) chatInput.focus();
+                    scrollToBottom();
+                }, 120);
+            }
+
+            function closeChat() {
+                modalOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+
+            launcher.addEventListener('click', openChat);
+            if (closeBtn) closeBtn.addEventListener('click', closeChat);
+
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeChat();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modalOverlay.classList.contains('hidden')) {
+                    closeChat();
+                }
+            });
 
             if (workflowToggle && workflowPanel) {
                 workflowToggle.addEventListener('click', () => {
                     workflowPanel.classList.toggle('hidden');
+                    scrollToBottom();
                 });
             }
 
@@ -2263,46 +2253,46 @@ RESPONSE STYLE & CONVERSATION RULES:
 
             function appendUserMessage(text) {
                 const wrapper = document.createElement('div');
-                wrapper.className = 'flex items-end justify-end gap-2';
+                wrapper.className = 'flex items-end justify-end gap-2.5';
                 const bubble = document.createElement('div');
-                bubble.className = 'p-3 rounded-2xl rounded-br-sm bg-gradient-to-r from-purple-600/90 to-indigo-600/90 text-white max-w-[85%] shadow-md';
+                bubble.className = 'p-3.5 rounded-2xl rounded-br-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white max-w-[85%] shadow-lg text-xs sm:text-[13.5px] leading-relaxed';
                 bubble.textContent = text;
                 wrapper.appendChild(bubble);
                 messagesContainer.appendChild(wrapper);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                scrollToBottom();
             }
 
             function appendBotMessage(markdownText, engineLabel) {
                 const wrapper = document.createElement('div');
-                wrapper.className = 'flex items-start gap-2.5';
+                wrapper.className = 'flex items-start gap-3';
                 wrapper.innerHTML = `
-                    <div class="w-7 h-7 rounded-lg bg-purple-600/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-md shadow-cyan-500/20">
+                    <div class="w-8 h-8 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-md shadow-cyan-500/20">
                         <img src="adrai-avatar.jpg" alt="adr-AI" class="w-full h-full object-cover">
                     </div>
-                    <div class="p-3 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-white/10 text-slate-200 space-y-1.5 max-w-[88%]">
+                    <div class="p-4 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-white/10 text-slate-200 space-y-2 max-w-[88%] text-xs sm:text-[13.5px] leading-relaxed shadow-lg">
                         <div>${formatMarkdown(markdownText)}</div>
-                        ${engineLabel ? `<div class="pt-1.5 mt-1 border-t border-white/5 text-[9px] font-mono text-slate-400 flex items-center gap-1"><i class="fa-solid fa-circle-check text-emerald-400"></i> ${engineLabel}</div>` : ''}
+                        ${engineLabel ? `<div class="pt-2 mt-2 border-t border-white/5 text-[10px] font-mono text-cyan-300/80 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> ${engineLabel}</div>` : ''}
                     </div>
                 `;
                 messagesContainer.appendChild(wrapper);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                scrollToBottom();
             }
 
             function showTypingIndicator() {
                 const wrapper = document.createElement('div');
                 wrapper.id = 'n8n-typing-indicator';
-                wrapper.className = 'flex items-start gap-2.5';
+                wrapper.className = 'flex items-start gap-3';
                 wrapper.innerHTML = `
-                    <div class="w-7 h-7 rounded-lg bg-purple-600/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-md shadow-cyan-500/20">
+                    <div class="w-8 h-8 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-md shadow-cyan-500/20">
                         <img src="adrai-avatar.jpg" alt="adr-AI" class="w-full h-full object-cover animate-spin" style="animation-duration: 4s;">
                     </div>
-                    <div class="px-3 py-2.5 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-purple-500/30 text-cyan-300 font-mono text-[11px] flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-                        <span>adr-AI is thinking...</span>
+                    <div class="px-4 py-3 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-purple-500/30 text-cyan-300 font-mono text-xs flex items-center gap-2 shadow-lg">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span>adr-AI is analyzing...</span>
                     </div>
                 `;
                 messagesContainer.appendChild(wrapper);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                scrollToBottom();
             }
 
             function removeTypingIndicator() {
