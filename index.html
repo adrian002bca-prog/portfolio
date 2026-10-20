@@ -1089,10 +1089,10 @@
     </div>
 
     <!-- 2. Centered Modal Overlay (Pops up in middle of screen) -->
-    <div id="n8n-chat-modal-overlay" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all duration-300">
+    <div id="n8n-chat-modal-overlay" data-lenis-prevent="true" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all duration-300">
         
         <!-- Centered Dialog Window -->
-        <div id="n8n-chat-window" class="relative w-full max-w-2xl h-[620px] max-h-[88vh] rounded-2xl sm:rounded-3xl border border-purple-500/40 bg-[#070614]/98 backdrop-blur-2xl shadow-[0_0_60px_rgba(145,94,255,0.35)] flex flex-col overflow-hidden transition-all duration-300 transform scale-100 font-sans">
+        <div id="n8n-chat-window" data-lenis-prevent="true" class="relative w-full max-w-2xl h-[620px] max-h-[88vh] rounded-2xl sm:rounded-3xl border border-purple-500/40 bg-[#070614]/98 backdrop-blur-2xl shadow-[0_0_60px_rgba(145,94,255,0.35)] flex flex-col overflow-hidden transition-all duration-300 transform scale-100 font-sans">
             
             <!-- Header -->
             <div class="px-5 py-3.5 bg-gradient-to-r from-purple-950/90 via-indigo-950/90 to-slate-900/90 border-b border-white/10 flex items-center justify-between gap-2 shrink-0">
@@ -1157,7 +1157,7 @@
             </div>
 
             <!-- Messages Scroll Container (Spacious, Comfortable Center Reading) -->
-            <div id="n8n-chat-messages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 text-xs sm:text-[13.5px] leading-relaxed custom-scrollbar">
+            <div id="n8n-chat-messages" data-lenis-prevent="true" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 text-xs sm:text-[13.5px] leading-relaxed custom-scrollbar">
                 <!-- Initial Welcome Message -->
                 <div class="flex items-start gap-3">
                     <div class="w-8 h-8 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-md shadow-cyan-500/20">
@@ -1214,6 +1214,7 @@
                     if (lenis) {
                         lenis.destroy();
                         lenis = null;
+                        window.lenis = null;
                         if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
                     }
                     return;
@@ -1228,12 +1229,14 @@
                         wheelMultiplier: 1.0,
                         syncTouch: false
                     });
+                    window.lenis = lenis;
 
                     if (typeof ScrollTrigger !== 'undefined') {
                         lenis.on('scroll', ScrollTrigger.update);
                     }
                 } else if (lenis) {
                     lenis.resize();
+                    window.lenis = lenis;
                 }
             } catch (e) {
                 console.warn('Lenis could not be initialized:', e);
@@ -2162,6 +2165,9 @@
                 modalOverlay.classList.remove('hidden');
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.overflow = 'hidden';
+                if (window.lenis) {
+                    try { window.lenis.stop(); } catch (_) {}
+                }
                 setTimeout(() => {
                     if (chatInput) chatInput.focus();
                     scrollToBottom();
@@ -2172,6 +2178,9 @@
                 modalOverlay.classList.add('hidden');
                 document.documentElement.style.overflow = '';
                 document.body.style.overflow = '';
+                if (window.lenis) {
+                    try { window.lenis.start(); } catch (_) {}
+                }
             }
 
             launcher.addEventListener('click', openChat);
@@ -2189,25 +2198,22 @@
                 }
             });
 
-            // Prevent mouse wheel events on modal from scrolling the background portfolio page
+            // 1. Direct active wheel handler on chat messages container
+            messagesContainer.addEventListener('wheel', (e) => {
+                messagesContainer.scrollTop += e.deltaY;
+                e.preventDefault();
+                e.stopPropagation();
+            }, { passive: false });
+
+            // 2. Block all wheel events anywhere else on the modal overlay (backdrop, header, chips, form)
             modalOverlay.addEventListener('wheel', (e) => {
                 if (!e.target.closest('#n8n-chat-messages')) {
                     e.preventDefault();
-                    return;
-                }
-
-                // If inside messages container, prevent chaining when reaching boundaries
-                const { scrollTop, scrollHeight, clientHeight } = messagesContainer;
-                const delta = e.deltaY;
-                const atTop = delta < 0 && scrollTop <= 0;
-                const atBottom = delta > 0 && (scrollTop + clientHeight >= scrollHeight - 1);
-
-                if (atTop || atBottom) {
-                    e.preventDefault();
+                    e.stopPropagation();
                 }
             }, { passive: false });
 
-            // Prevent mobile touch swipe chaining
+            // 3. Prevent mobile touch swipe bleed outside messages container
             modalOverlay.addEventListener('touchmove', (e) => {
                 if (!e.target.closest('#n8n-chat-messages')) {
                     e.preventDefault();
