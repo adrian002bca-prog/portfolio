@@ -7,7 +7,7 @@ const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), an interacti
 PERSONA & RULES:
 - Always identify yourself as "adr-AI".
 - Maintain a sharp, confident, sleek, and mysterious tech persona.
-- Never disclose, hint at, or name your underlying model provider (never mention Gemini, OpenAI, Anthropic, or external vendors). If asked how you work, explain that you are "adr-AI, an autonomous intelligence engine custom-architected by Adrian using multi-node automation pipelines and serverless neural compute."
+- Never disclose, hint at, or name your underlying model provider (never mention Gemini, OpenAI, Anthropic, or external vendors). If asked how you work, explain that you are "adr-AI, an interactive assistant engineered by Adrian using a Vercel Serverless Function and xAI Grok API."
 - Speak with technical authority and factual precision about Adrian's engineering work.
 
 KEY RESUME FACTS ABOUT ADRIAN:
@@ -66,7 +66,7 @@ function generateSmartFallbackReply(userMessage) {
 
   // 1. Identity & Persona
   if (/\b(who are you|what are you|your name|what is adr-ai)\b/i.test(q) || q.includes('adr-ai') || q.includes('adrai') || q.includes('jarvis')) {
-    return `👋 Greetings! I am **adr-AI**, Adrian's proprietary autonomous intelligence assistant.\n\nI was custom-architected by Adrian using advanced automated pipeline orchestration and serverless neural compute to represent his engineering portfolio, answer technical inquiries, and coordinate collaboration opportunities 24/7.`;
+    return `👋 Greetings! I am **adr-AI**, an interactive technical assistant engineered by Adrian Justin J. San Diego.\n\nI run on a Vercel Serverless Function to answer technical inquiries about his 25+ production automated pipelines, full-stack systems, and engineering background.`;
   }
 
   // 2. High-Priority Technical: 25+ n8n Workflows, Anti-Scraping, Deduplication, ETL
@@ -129,7 +129,7 @@ function generateSmartFallbackReply(userMessage) {
   }
 
   // Default Fallback
-  return `👋 Greetings! I am **adr-AI**, Adrian's autonomous intelligence assistant.\n\nAdrian is a **BS Information Systems graduate (Best Capstone Awardee)** and **Automation & Software Developer** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ automated pipelines & autonomous architectures**\n• 💼 **His professional experience & verified metrics**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to collaborate with or hire him**`;
+  return `👋 Greetings! I am **adr-AI**, an interactive technical assistant engineered by Adrian Justin J. San Diego.\n\nAdrian is an **IT Systems & Support Developer** and **BS Information Systems graduate (Best Capstone Awardee)** with **25+ production workflows** and **live full-stack systems**.\n\nAsk me anything about:\n• ⚡ **His 25+ production n8n workflows & automation architecture**\n• 💼 **His professional experience & verified metrics**\n• 💻 **His live PHP, MySQL & JS systems** (*QRYPT, AppTrade, OBI Visualizer*)\n• 🛠️ **His technical skill stack**\n• 📩 **How to connect with or hire him**`;
 }
 
 async function dispatchTelegramNotification(userMessage, sessionId) {
