@@ -1542,8 +1542,9 @@
                             <!-- Switcher tabs if multiple views exist -->
                         </div>
                     </div>
-                    <div class="relative bg-slate-950/90 flex items-center justify-center p-2 sm:p-4">
+                    <div class="relative bg-slate-950/90 flex items-center justify-center p-2 sm:p-4 min-h-[280px]">
                         <img id="preview-img" src="" alt="Project Preview Screenshot" class="w-full h-auto max-h-[460px] object-contain rounded-xl shadow-inner transition-transform duration-500 group-hover:scale-[1.01]" />
+                        <div id="preview-architecture" class="hidden w-full p-1 sm:p-2"></div>
                     </div>
                 </div>
 
@@ -3161,14 +3162,55 @@ if (uniqueBatch.length > 0) {
         // PROJECT QUICK PREVIEW MODAL CONTROLLER
         // -------------------------------------------------------------
         (function() {
-            const projectData = {
+                        const projectData = {
                 qrypt: {
                     title: "QRYPT: QR Code Attendance & Visitor System",
-                    windowTitle: "QRYPT Gate Security Core • Terminal #01 (Active Scan Station)",
+                    windowTitle: "qrypt.great-site.net • Scanner Station",
                     badge: '<i class="fa-solid fa-trophy mr-1 text-amber-300"></i> Best Capstone Project Award',
                     badgeClass: 'bg-amber-500/15 border border-amber-500/30 text-amber-300',
                     image: 'preview-qrypt.png',
                     imageAlt: 'QRYPT QR Attendance & Gatepass System UI Screenshot',
+                    views: [
+                        { name: '📸 Live Screenshot', type: 'image', windowTitle: 'qrypt.great-site.net • Scanner Station', image: 'preview-qrypt.png' },
+                        { name: '📐 System Architecture', type: 'architecture', windowTitle: 'QRYPT High-Throughput Gatepass Architecture' }
+                    ],
+                    architecture: {
+                        title: "QRYPT Edge-to-Database Turnstile Pipeline",
+                        steps: [
+                            {
+                                num: "01",
+                                title: "WebRTC Video Stream",
+                                desc: "Continuous 60 FPS video capture feed; frame buffer extracted to offscreen HTML5 2D canvas at sub-second (<400ms) intervals.",
+                                tag: "Client Camera API",
+                                icon: "fa-video",
+                                color: "purple"
+                            },
+                            {
+                                num: "02",
+                                title: "Cryptographic QR Check",
+                                desc: "HMAC token validation & anti-replay checks; dynamically resolves role (Student, Faculty, Visitor) against semester schedules.",
+                                tag: "HMAC / Session Token",
+                                icon: "fa-shield-halved",
+                                color: "cyan"
+                            },
+                            {
+                                num: "03",
+                                title: "Dual-State ACID Write",
+                                desc: "Evaluates active state machine (TIME_IN vs TIME_OUT); executes atomic MySQL InnoDB write with automatic rollback on duplicate pass.",
+                                tag: "MySQL InnoDB / PDO",
+                                icon: "fa-database",
+                                color: "emerald"
+                            },
+                            {
+                                num: "04",
+                                title: "Gate Trigger & Audit Log",
+                                desc: "Dispatches ACCESS_GRANTED signal to turnstile controller; live admin monitor table and CSV/PDF export tables update synchronously.",
+                                tag: "Audit Event Stream",
+                                icon: "fa-door-open",
+                                color: "amber"
+                            }
+                        ]
+                    },
                     metrics: [
                         { label: 'Gate Bottleneck', value: '-75%', icon: 'fa-bolt', color: 'purple' },
                         { label: 'Daily Scans', value: '1,500+', icon: 'fa-users', color: 'cyan' },
@@ -3189,11 +3231,52 @@ if (uniqueBatch.length > 0) {
                 },
                 obi: {
                     title: "OBI Interactive Room Visualizer",
-                    windowTitle: "obiasia.com/room-visualizer • Living Room 3D Perspective",
+                    windowTitle: "obi-roomvisualizer.great-site.net • Living Room Canvas",
                     badge: '<i class="fa-solid fa-building mr-1 text-cyan-300"></i> Live Client Production (obiasia.com)',
                     badgeClass: 'bg-cyan-500/15 border border-cyan-500/30 text-cyan-300',
                     image: 'preview-obi.png',
                     imageAlt: 'OBI Spatial Room Visualizer Interactive Canvas Render',
+                    views: [
+                        { name: '📸 Live Screenshot', type: 'image', windowTitle: 'obi-roomvisualizer.great-site.net • Living Room Canvas', image: 'preview-obi.png' },
+                        { name: '📐 Matrix & Canvas Engine', type: 'architecture', windowTitle: 'OBI Client-Side Spatial Matrix Pipeline' }
+                    ],
+                    architecture: {
+                        title: "OBI Real-Time Spatial Rendering Pipeline",
+                        steps: [
+                            {
+                                num: "01",
+                                title: "Scene & Polygon Calibration",
+                                desc: "Loads high-resolution room backdrop; calculates normalized vector coordinates defining the floor surface boundaries.",
+                                tag: "Scene Geometry",
+                                icon: "fa-vector-square",
+                                color: "cyan"
+                            },
+                            {
+                                num: "02",
+                                title: "Affine Perspective Matrix",
+                                desc: "Calculates 2D projective transformation matrix mapping tile textures to room perspective and user rotation angles (0°–180°).",
+                                tag: "Canvas 2D Matrix API",
+                                icon: "fa-cube",
+                                color: "purple"
+                            },
+                            {
+                                num: "03",
+                                title: "Multi-Pass Alpha Compositing",
+                                desc: "Blends directional room lighting masks and ambient occlusion shadow layers to maintain realistic furniture depth without 3D overhead.",
+                                tag: "Alpha Compositing",
+                                icon: "fa-sun",
+                                color: "amber"
+                            },
+                            {
+                                num: "04",
+                                title: "Client-Side Export Pipeline",
+                                desc: "Generates high-resolution offscreen canvas render; packages architectural specification sheet and quotation PDF via jsPDF in 0ms server lag.",
+                                tag: "jsPDF & PNG Buffer",
+                                icon: "fa-file-pdf",
+                                color: "emerald"
+                            }
+                        ]
+                    },
                     metrics: [
                         { label: 'Flooring Finishes', value: '20+ Finishes', icon: 'fa-layer-group', color: 'cyan' },
                         { label: 'Architectural Rooms', value: '5+ Environments', icon: 'fa-house', color: 'purple' },
@@ -3220,9 +3303,47 @@ if (uniqueBatch.length > 0) {
                     image: 'preview-apptrade-pos.png',
                     imageAlt: 'Apptrade Retail POS Cashier Terminal',
                     views: [
-                        { name: '🖥️ Retail POS Register', windowTitle: 'localhost/Pos-system/pos.php • Active Cashier Terminal', image: 'preview-apptrade-pos.png' },
-                        { name: '🛒 Online E-Commerce Store', windowTitle: 'sampleappweb.great-site.net • Dual-Channel Storefront', image: 'preview-apptrade-store.png' }
+                        { name: '🖥️ POS Cashier Register', type: 'image', windowTitle: 'localhost/Pos-system/pos.php • Active Cashier Terminal', image: 'preview-apptrade-pos.png' },
+                        { name: '🛒 Online E-Commerce Store', type: 'image', windowTitle: 'sampleappweb.great-site.net • Dual-Channel Storefront', image: 'preview-apptrade-store.png' },
+                        { name: '📐 Concurrency Architecture', type: 'architecture', windowTitle: 'Apptrade Dual-Channel Concurrency Flow' }
                     ],
+                    architecture: {
+                        title: "Apptrade Concurrency & Dual-Channel Pipeline",
+                        steps: [
+                            {
+                                num: "01",
+                                title: "Barcode Ingestion (<500ms)",
+                                desc: "Sub-second barcode scan resolution via indexed MySQL SKU lookup; real-time cart state calculation with 12% VAT and line discount deduction.",
+                                tag: "POS Cashier Station",
+                                icon: "fa-barcode",
+                                color: "emerald"
+                            },
+                            {
+                                num: "02",
+                                title: "Row-Level InnoDB Lock",
+                                desc: "Executes SELECT stock_qty FROM products WHERE sku = ? FOR UPDATE; serializes simultaneous counter checkouts to prevent overselling.",
+                                tag: "InnoDB Row Locking",
+                                icon: "fa-lock",
+                                color: "purple"
+                            },
+                            {
+                                num: "03",
+                                title: "Dual-Channel Stock Sync",
+                                desc: "Decrements in-store counter inventory and immediately reflects updated availability on the live public e-commerce web storefront.",
+                                tag: "Atomic Decrement",
+                                icon: "fa-rotate",
+                                color: "cyan"
+                            },
+                            {
+                                num: "04",
+                                title: "Receipt & Restock Alert",
+                                desc: "Emits serialized invoice record (INV-2026-XXXX) for thermal printing; triggers low-stock automated alerts when SKU units fall below 5.",
+                                tag: "ESC/POS & Reorder Alert",
+                                icon: "fa-receipt",
+                                color: "amber"
+                            }
+                        ]
+                    },
                     metrics: [
                         { label: 'Active Retail SKUs', value: '300+ Items', icon: 'fa-boxes-stacked', color: 'emerald' },
                         { label: 'Barcode Lookup', value: '<500ms', icon: 'fa-barcode', color: 'cyan' },
@@ -3242,14 +3363,64 @@ if (uniqueBatch.length > 0) {
                 }
             };
 
+            function renderArchitectureDiagram(arch) {
+                if (!arch || !arch.steps) return '';
+                return `
+                    <div class="space-y-4 py-2 w-full">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                                <span class="text-xs font-mono font-semibold text-cyan-300 uppercase tracking-wider">${arch.title}</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-slate-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
+                                End-to-End Data Lifecycle
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 relative">
+                            ${arch.steps.map((s, idx) => `
+                                <div class="glass-panel p-4 rounded-xl border border-white/10 bg-slate-900/80 flex flex-col justify-between relative group hover:border-${s.color}-500/50 transition-all">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="px-2 py-0.5 rounded-md bg-${s.color}-500/15 border border-${s.color}-500/30 text-[10px] font-mono font-bold text-${s.color}-300">
+                                            STEP ${s.num}
+                                        </span>
+                                        <i class="fa-solid ${s.icon} text-${s.color}-400 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-sm font-bold text-white mb-1.5">${s.title}</h5>
+                                    <p class="text-xs text-slate-300/90 leading-relaxed mb-3">${s.desc}</p>
+                                    <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                                        <span class="text-${s.color}-300 truncate font-semibold">${s.tag}</span>
+                                        ${idx < 3 ? '<i class="fa-solid fa-arrow-right text-slate-500 hidden lg:inline"></i>' : '<i class="fa-solid fa-check text-emerald-400"></i>'}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
             window.switchPreviewView = function(projectId, idx) {
                 const data = projectData[projectId];
                 if (!data || !data.views || !data.views[idx]) return;
                 const v = data.views[idx];
                 const imgEl = document.getElementById('preview-img');
+                const archEl = document.getElementById('preview-architecture');
                 const winTitleEl = document.getElementById('preview-window-title');
-                if (imgEl) imgEl.src = v.image;
                 if (winTitleEl) winTitleEl.textContent = v.windowTitle;
+
+                if (v.type === 'architecture') {
+                    if (imgEl) imgEl.classList.add('hidden');
+                    if (archEl) {
+                        archEl.classList.remove('hidden');
+                        archEl.innerHTML = renderArchitectureDiagram(data.architecture);
+                    }
+                } else {
+                    if (archEl) archEl.classList.add('hidden');
+                    if (imgEl) {
+                        imgEl.classList.remove('hidden');
+                        imgEl.src = v.image;
+                    }
+                }
 
                 data.views.forEach((_, i) => {
                     const tab = document.getElementById(`preview-tab-${i}`);
@@ -3271,6 +3442,7 @@ if (uniqueBatch.length > 0) {
                 const titleEl = document.getElementById('preview-title');
                 const winTitleEl = document.getElementById('preview-window-title');
                 const imgEl = document.getElementById('preview-img');
+                const archEl = document.getElementById('preview-architecture');
                 const metricsGrid = document.getElementById('preview-metrics-grid');
                 const highlightsList = document.getElementById('preview-highlights-list');
                 const techStackEl = document.getElementById('preview-tech-stack');
@@ -3284,8 +3456,14 @@ if (uniqueBatch.length > 0) {
                 badgeEl.innerHTML = data.badge;
                 titleEl.textContent = data.title;
                 winTitleEl.textContent = data.windowTitle;
-                imgEl.src = data.image;
-                imgEl.alt = data.imageAlt;
+                
+                // Reset to image view
+                if (archEl) archEl.classList.add('hidden');
+                if (imgEl) {
+                    imgEl.classList.remove('hidden');
+                    imgEl.src = data.image;
+                    imgEl.alt = data.imageAlt;
+                }
 
                 if (viewsEl) {
                     if (data.views && data.views.length > 1) {
