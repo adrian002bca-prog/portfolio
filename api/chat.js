@@ -1,5 +1,6 @@
 // Vercel Serverless Function: 24/7 Autonomous Router + adr-AI Neural Engine
 const sessionTracker = new Map();
+const ipTracker = new Map();
 
 const SYSTEM_PROMPT = `You are adr-AI (pronounced "ay-dee-ar eye"), an interactive technical assistant engineered by Adrian Justin J. San Diego. You run on a Vercel Serverless Function powered by xAI Grok API. Your goal is to give accurate, truthful, and grounded answers about Adrian's 25+ automated pipelines, full-stack web applications, and engineering background. Avoid exaggerated buzzwords; speak professionally, concisely, and with technical clarity.
 
@@ -192,17 +193,39 @@ module.exports = async function handler(req, res) {
     }
     const { message, history = [], sessionId = 'visitor', customWebhookUrl, customGeminiKey } = body || {};
 
+    // 1. IP-Based Sliding Window Rate Limiter (Defense against automated curl floods)
+    const clientIp = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown').split(',')[0].trim();
+    const now = Date.now();
+    const ipTimestamps = (ipTracker.get(clientIp) || []).filter(ts => now - ts < 60000);
+    if (ipTimestamps.length >= 15) {
+      return res.status(429).json({
+        error: 'Too many requests. Please wait 60 seconds before sending another message.',
+        reply: 'Rate limit reached: Please wait 60 seconds before sending more messages.'
+      });
+    }
+    ipTimestamps.push(now);
+    ipTracker.set(clientIp, ipTimestamps);
+    if (ipTracker.size > 2000) ipTracker.clear();
+
+    // 2. Strict Input Validation & 500-Character Hard Length Cap
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Message is required' });
     }
+    const trimmedMessage = message.trim();
+    if (!trimmedMessage) {
+      return res.status(400).json({ error: 'Message cannot be empty' });
+    }
+    if (trimmedMessage.length > 500) {
+      return res.status(400).json({ error: 'Message exceeds maximum length of 500 characters' });
+    }
 
-    // Anti-Abuse Rate Limiting: Max 30 messages per visitor session
+    // 3. UI Message Cap Per Session: Max 30 messages per visitor session
     const currentCount = (sessionTracker.get(sessionId) || 0) + 1;
     sessionTracker.set(sessionId, currentCount);
     if (sessionTracker.size > 2000) sessionTracker.clear();
     if (currentCount > 30) {
       return res.status(200).json({
-        reply: `You've explored many details about Adrian's engineering background! To discuss a role, interview, or contract directly with Adrian, please connect via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`,
+        reply: `You've reached the conversation cap for this session! To discuss a role, interview, or contract directly with Adrian, please connect via **WhatsApp:** [(+63) 918-743-6765](https://api.whatsapp.com/send?phone=639187436765) or **Email:** [adrian002bca@gmail.com](mailto:adrian002bca@gmail.com).`,
         engine: 'adr-AI • Serverless Edge (xAI Grok)'
       });
     }
@@ -252,7 +275,7 @@ module.exports = async function handler(req, res) {
           if (turn && turn.text) {
             contents.push({
               role: turn.role === 'user' ? 'user' : 'model',
-              parts: [{ text: String(turn.text) }]
+              parts: [{ text: String(turn.text).slice(0, 500) }]
             });
           }
         });
@@ -279,7 +302,7 @@ module.exports = async function handler(req, res) {
               contents,
               generationConfig: {
                 temperature: 0.3,
-                maxOutputTokens: 700
+                maxOutputTokens: 500
               }
             }),
             signal: geminiController.signal
