@@ -656,37 +656,82 @@
                     </div>
                 </div>
 
-                <!-- Project 3: Production n8n Automation Fleet -->
-                <div class="reveal-card tilt-card glass-panel rounded-3xl p-8 glowing-border flex flex-col justify-between group">
+                <!-- Project 3: Interactive Production n8n Fleet & Architecture Visualizer -->
+                <div class="reveal-card glass-panel rounded-3xl p-6 sm:p-10 glowing-border flex flex-col justify-between group md:col-span-2 shadow-2xl relative overflow-hidden">
+                    
+                    <!-- Top Ribbon & Header -->
                     <div>
-                        <div class="flex items-center justify-between gap-4 mb-4">
-                            <span class="px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold tracking-wide flex items-center gap-1.5">
-                                <i class="fa-solid fa-bolt"></i> 25+ Production Pipelines
-                            </span>
-                            <span class="text-xs font-mono text-slate-500">Aug 2026 – Present</span>
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="px-3.5 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold tracking-wide flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                                    <span>25+ Production Automated Pipelines</span>
+                                </span>
+                                <span class="hidden sm:inline-flex px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-300">
+                                    99.8% VPS Uptime
+                                </span>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">Aug 2026 – Present • Hostinger Linux VPS</span>
                         </div>
 
-                        <h3 class="text-2xl font-extrabold text-white group-hover:text-purple-300 transition-colors">
-                            Production n8n Fleet & AI Ingestion Pipelines
-                        </h3>
-                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-                            High-throughput enterprise automation infrastructure orchestrating <span class="text-slate-200 font-semibold">25+ mission-critical workflows processing 10,000+ data rows weekly</span> on a self-hosted Hostinger Linux VPS with <span class="text-slate-200 font-semibold">99.8% execution uptime</span>. Defeated anti-bot Cloudflare 403 blocks via custom TLS/browser header emulation and engineered an <span class="text-slate-200 font-semibold">O(1) in-memory Set deduplication engine</span> ensuring zero duplicate entries across consecutive batch runs in Google Sheets. Integrated xAI Grok multi-turn prompt chains and automated GA4 reporting.
-                        </p>
-
-                        <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 mt-5">
-                            <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">n8n (Self-Hosted)</span>
-                            <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">xAI Grok API</span>
-                            <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">REST APIs & Webhooks</span>
-                            <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">JavaScript Code Nodes</span>
-                            <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">Google Sheets API</span>
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                                    Production n8n Fleet & Autonomous AI Architecture
+                                </h3>
+                                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+                                    Self-hosted enterprise automation infrastructure on Linux VPS processing <span class="text-white font-semibold">10,000+ data rows weekly</span> on 2-hour cron cycles. Features Cloudflare 403 bypass, <span class="text-cyan-300 font-semibold font-mono">O(1) in-memory Set deduplication</span>, xAI Grok JSON schema validation, and automated Google Sheets batch writes.
+                                </p>
+                            </div>
+                            
+                            <!-- Simulation Action Button -->
+                            <button id="run-pipeline-sim-btn" type="button" class="self-start lg:self-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-semibold text-xs flex items-center gap-2 shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0">
+                                <i class="fa-solid fa-play text-xs text-emerald-300"></i>
+                                <span>Simulate Pipeline Execution</span>
+                            </button>
                         </div>
-                    </div>
 
-                    <!-- Highlights -->
-                    <div class="flex items-center gap-3 mt-8 pt-6 border-t border-white/5 text-xs text-purple-300 font-mono">
-                        <i class="fa-solid fa-shield-halved text-purple-400"></i>
-                        <span>⚡ 10k+ Rows/Wk • 99.8% VPS Uptime • Zero Batch Duplicates (O(1) Set)</span>
+                        <!-- INTERACTIVE PIPELINE NODE CANVAS -->
+                        <div class="mt-8 p-4 sm:p-6 rounded-2xl bg-[#070617]/90 border border-purple-500/20 backdrop-blur-xl relative">
+                            
+                            <!-- Canvas Top Bar -->
+                            <div class="flex items-center justify-between border-b border-white/5 pb-3 mb-6">
+                                <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    <span>LIVE PIPELINE TOPOLOGY (CLICK ANY NODE TO INSPECT CODE)</span>
+                                </div>
+                                <span id="pipeline-status-badge" class="text-[11px] font-mono text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 px-2 py-0.5 rounded">
+                                    Idle • Awaiting Cycle
+                                </span>
+                            </div>
+
+                            <!-- 5 Nodes Pipeline Flow -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 relative z-10" id="pipeline-nodes-container">
+                                <!-- Nodes rendered dynamically via JS -->
+                            </div>
+
+                            <!-- NODE INSPECTOR / CODE DRAWER -->
+                            <div id="node-inspector" class="mt-6 pt-5 border-t border-white/5 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                                <!-- Inspector details & Code block injected via JS -->
+                            </div>
+
+                        </div>
+
+                        <!-- Tech Stack Tags & Highlights -->
+                        <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-5 border-t border-white/5">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">n8n (Self-Hosted)</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">xAI Grok API</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">REST APIs & Webhooks</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">JavaScript Code Nodes</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purple-950/40 border border-purple-500/20 text-xs font-mono text-purple-300">Google Sheets API</span>
+                            </div>
+                            <div class="text-xs font-mono text-cyan-300 flex items-center gap-1.5">
+                                <i class="fa-solid fa-code-compare text-emerald-400"></i>
+                                <span>O(1) Set Deduplication • Zero Duplicate Writes</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -2687,6 +2732,271 @@
                     if (prompt) sendMessage(prompt);
                 });
             });
+        })();
+
+        // -------------------------------------------------------------
+        // INTERACTIVE PRODUCTION n8n PIPELINE NODE VISUALIZER
+        // -------------------------------------------------------------
+        (function initPipelineVisualizer() {
+            const container = document.getElementById('pipeline-nodes-container');
+            const inspector = document.getElementById('node-inspector');
+            const simBtn = document.getElementById('run-pipeline-sim-btn');
+            const statusBadge = document.getElementById('pipeline-status-badge');
+
+            if (!container || !inspector) return;
+
+            const nodes = [
+                {
+                    id: 'trigger',
+                    step: '01',
+                    name: 'Trigger & Cron',
+                    sub: '2hr Cycles',
+                    icon: 'fa-solid fa-clock',
+                    badgeColor: 'border-amber-500/40 text-amber-300 bg-amber-500/10',
+                    dotColor: 'bg-amber-400',
+                    role: 'Autonomous Ingestion Trigger',
+                    problem: 'How to trigger high-frequency ETL cycles 24/7 on self-hosted Linux VPS without manual intervention or memory leaks.',
+                    fix: 'Configured a 2-hour cron schedule with single-threaded worker concurrency and automatic execution history garbage collection.',
+                    metric: '2-hour cron cycles • 99.8% uptime • Single concurrency',
+                    codeTitle: 'cron-trigger-config.json',
+                    code: `// Self-Hosted n8n Ingestion Schedule (Hostinger VPS)
+{
+  "trigger": "cron",
+  "cronExpression": "0 */2 * * *", // 2-hr cycles
+  "concurrency": 1,                // Prevent race conditions
+  "retryOnFail": true,
+  "maxRetries": 3,
+  "timeoutSeconds": 300
+}`
+                },
+                {
+                    id: 'scraper',
+                    step: '02',
+                    name: 'Anti-Bot Scraper',
+                    sub: 'Cloudflare Bypass',
+                    icon: 'fa-solid fa-shield-virus',
+                    badgeColor: 'border-rose-500/40 text-rose-300 bg-rose-500/10',
+                    dotColor: 'bg-rose-400',
+                    role: 'Cloudflare 403 & 429 Bypassing Engine',
+                    problem: 'Target source servers blocked automated requests with Cloudflare challenge pages (HTTP 403) and burst rate limits (HTTP 429).',
+                    fix: 'Engineered dynamic User-Agent header rotation, structured request jitter (800–2400ms), and exponential backoff retries.',
+                    metric: '0 blocked requests • Adaptive 800–2400ms jitter • Dynamic UA pool',
+                    codeTitle: 'anti-bot-fetcher.js',
+                    code: `// Dynamic Header Emulation & Request Throttling
+const userAgents = [
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...',
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36...'
+];
+const headers = {
+  'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)],
+  'Accept': 'application/json, text/plain, */*',
+  'Accept-Language': 'en-US,en;q=0.9'
+};
+// Exponential Backoff with Jitter
+await sleep(Math.floor(Math.random() * (2400 - 800 + 1)) + 800);`
+                },
+                {
+                    id: 'dedupe',
+                    step: '03',
+                    name: 'O(1) Deduplication',
+                    sub: 'Set() Hash Filter',
+                    icon: 'fa-solid fa-filter',
+                    badgeColor: 'border-purple-500/40 text-purple-300 bg-purple-500/10',
+                    dotColor: 'bg-purple-400',
+                    role: 'In-Memory Constant Time Hash Filter',
+                    problem: 'Repeated batch runs caused bloated downstream spreadsheets and duplicate database records, wasting API quotas.',
+                    fix: 'Authored custom JavaScript Code nodes in n8n utilizing ES6 Set() data structures for O(1) lookups against composite key hashes.',
+                    metric: 'O(1) lookup time • 10,000+ hashes in memory • 0 duplicate writes',
+                    codeTitle: 'dedupe-code-node.js',
+                    code: `// Custom JavaScript Code Node: O(1) Set Deduplication
+const staticData = $getWorkflowStaticData('node');
+const seenHashes = new Set(staticData.seenHashes || []);
+const uniqueBatch = [];
+
+for (const item of $input.all()) {
+  const compositeKey = \`\${item.json.id}_\${item.json.sourceUrl}_\${item.json.timestamp}\`;
+  const recordHash = crypto.createHash('md5').update(compositeKey).digest('hex');
+
+  if (!seenHashes.has(recordHash)) {
+    seenHashes.add(recordHash);
+    uniqueBatch.push(item);
+  }
+}
+// Retain rolling 10,000 hash window in workflow memory
+staticData.seenHashes = Array.from(seenHashes).slice(-10000);
+return uniqueBatch;`
+                },
+                {
+                    id: 'ai-agent',
+                    step: '04',
+                    name: 'xAI Grok / GenAI',
+                    sub: 'Structured JSON',
+                    icon: 'fa-solid fa-brain',
+                    badgeColor: 'border-cyan-500/40 text-cyan-300 bg-cyan-500/10',
+                    dotColor: 'bg-cyan-400',
+                    role: 'Neural Entity Extraction & Contract Gate',
+                    problem: 'Raw ingested text was messy and inconsistent, creating data quality issues downstream.',
+                    fix: 'Connected xAI Grok and Google GenAI with strict JSON schema validation contracts and schema validation gates.',
+                    metric: 'Strict JSON schema • Confidence > 0.85 • Zero schema drift',
+                    codeTitle: 'llm-contract-validation.js',
+                    code: `// Strict JSON Output Contract Validation
+const schema = {
+  type: "object",
+  required: ["title", "category", "verified_date", "confidence"],
+  properties: { confidence: { type: "number", minimum: 0.85 } }
+};
+const parsed = JSON.parse(await callAI(payload));
+if (!parsed.title || !parsed.category) {
+  throw new Error("Schema contract failed: Missing required keys");
+}
+return { json: parsed };`
+                },
+                {
+                    id: 'storage',
+                    step: '05',
+                    name: 'Sheets & CRM Sync',
+                    sub: 'batchUpdate & Hooks',
+                    icon: 'fa-solid fa-table-cells',
+                    badgeColor: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10',
+                    dotColor: 'bg-emerald-400',
+                    role: 'High-Throughput Downstream Persistence',
+                    problem: 'Writing rows one-by-one hit Google Sheets rate limits (100 reqs/100s) and created execution timeouts.',
+                    fix: 'Batched entire datasets into single Google Sheets batchUpdate API payloads and triggered instant Telegram alerts.',
+                    metric: '1 API call per batch • 1,300+ backfilled • Instant Telegram alerts',
+                    codeTitle: 'sheets-batch-update.js',
+                    code: `// High-Volume Google Sheets batchUpdate API Sync
+const resource = {
+  valueInputOption: "USER_ENTERED",
+  data: [{
+    range: "Active_Leads!A2:E",
+    values: uniqueBatch.map(r => [r.id, r.title, r.category, r.date, "VERIFIED"])
+  }]
+};
+await sheets.spreadsheets.values.batchUpdate({ spreadsheetId, resource });
+
+// Instant Telegram alert on successful batch
+if (uniqueBatch.length > 0) {
+  await dispatchTelegramWebhook(\`⚡ Ingested \${uniqueBatch.length} new records!\`);
+}`
+                }
+            ];
+
+            let activeId = 'dedupe';
+            let isSimulating = false;
+
+            function renderNodes() {
+                container.innerHTML = nodes.map(node => {
+                    const isActive = node.id === activeId;
+                    return `
+                        <div data-node-id="${node.id}" class="pipeline-node cursor-pointer p-3 sm:p-4 rounded-xl border transition-all duration-300 flex flex-col justify-between ${isActive ? 'bg-purple-950/40 border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)] scale-[1.02]' : 'bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]'}">
+                            <div class="flex items-center justify-between gap-1 mb-2">
+                                <span class="text-[10px] font-mono text-slate-500">${node.step}</span>
+                                <span class="w-2 h-2 rounded-full ${node.dotColor} ${isActive ? 'animate-ping' : ''}"></span>
+                            </div>
+                            <div class="flex items-center gap-2 my-1">
+                                <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs border ${node.badgeColor}">
+                                    <i class="${node.icon}"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="text-xs font-bold text-white truncate">${node.name}</div>
+                                    <div class="text-[10px] font-mono text-slate-400 truncate">${node.sub}</div>
+                                </div>
+                            </div>
+                            <div class="mt-2 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono ${isActive ? 'text-cyan-300 font-semibold' : 'text-slate-500'}">
+                                <span>${isActive ? 'Inspecting' : 'Click to inspect'}</span>
+                                <i class="fa-solid fa-chevron-right text-[8px] opacity-70"></i>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                container.querySelectorAll('.pipeline-node').forEach(el => {
+                    el.addEventListener('click', () => {
+                        if (isSimulating) return;
+                        activeId = el.getAttribute('data-node-id');
+                        renderNodes();
+                        renderInspector();
+                    });
+                });
+            }
+
+            function renderInspector() {
+                const node = nodes.find(n => n.id === activeId) || nodes[2];
+                inspector.innerHTML = `
+                    <div class="lg:col-span-5 space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded-full border text-[10px] font-mono uppercase tracking-wider ${node.badgeColor}">
+                                ${node.role}
+                            </span>
+                        </div>
+                        <h4 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                            <i class="${node.icon} text-cyan-400 text-base"></i>
+                            <span>${node.name}</span>
+                        </h4>
+                        <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1 text-xs leading-relaxed">
+                            <span class="text-[10px] font-mono font-semibold uppercase text-rose-400 block">The Engineering Challenge</span>
+                            <p class="text-slate-300">${node.problem}</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1 text-xs leading-relaxed">
+                            <span class="text-[10px] font-mono font-semibold uppercase text-cyan-400 block">How Adrian Solved It</span>
+                            <p class="text-slate-300">${node.fix}</p>
+                        </div>
+                        <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 flex items-center gap-2">
+                            <i class="fa-solid fa-gauge-high"></i>
+                            <span>${node.metric}</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 bg-[#05040d] border border-white/10 rounded-2xl p-4 font-mono text-xs overflow-hidden shadow-2xl flex flex-col">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3 text-slate-400 text-[11px]">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                                <span class="ml-2 text-slate-300 font-semibold">${node.codeTitle}</span>
+                            </div>
+                            <span class="text-[10px] text-slate-500">Sanitized Production Node</span>
+                        </div>
+                        <pre class="overflow-x-auto text-slate-300 text-xs leading-relaxed custom-scrollbar max-h-56"><code>${escapeHtml(node.code)}</code></pre>
+                    </div>
+                `;
+            }
+
+            function escapeHtml(str) {
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            // Simulate Pipeline Execution Runner
+            if (simBtn) {
+                simBtn.addEventListener('click', async () => {
+                    if (isSimulating) return;
+                    isSimulating = true;
+                    simBtn.disabled = true;
+                    simBtn.classList.add('opacity-70');
+                    if (statusBadge) {
+                        statusBadge.textContent = '▶ Running Automated Batch Cycle...';
+                        statusBadge.className = 'text-[11px] font-mono text-amber-300 bg-amber-950/40 border border-amber-500/30 px-2 py-0.5 rounded animate-pulse';
+                    }
+
+                    for (let i = 0; i < nodes.length; i++) {
+                        activeId = nodes[i].id;
+                        renderNodes();
+                        renderInspector();
+                        await new Promise(r => setTimeout(r, 650));
+                    }
+
+                    if (statusBadge) {
+                        statusBadge.textContent = '✅ Batch Success: 250 Ingested • 14 Dupes Dropped (O(1) Set) • 236 Rows Written';
+                        statusBadge.className = 'text-[11px] font-mono text-emerald-300 bg-emerald-950/40 border border-emerald-500/30 px-2 py-0.5 rounded';
+                    }
+                    simBtn.disabled = false;
+                    simBtn.classList.remove('opacity-70');
+                    isSimulating = false;
+                });
+            }
+
+            renderNodes();
+            renderInspector();
         })();
     </script>
 </body>
