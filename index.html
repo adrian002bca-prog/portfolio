@@ -1519,9 +1519,9 @@
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shrink-0"></span>
                             <span id="preview-window-title" class="ml-2 text-slate-300 font-semibold truncate"></span>
                         </div>
-                        <span class="text-[10px] text-cyan-400 font-semibold flex items-center gap-1 shrink-0">
-                            <i class="fa-solid fa-bolt"></i> Instant Local Preview • 0s Load
-                        </span>
+                        <div id="preview-views" class="flex items-center gap-1.5 shrink-0">
+                            <!-- Switcher tabs if multiple views exist -->
+                        </div>
                     </div>
                     <div class="relative bg-slate-950/90 flex items-center justify-center p-2 sm:p-4">
                         <img id="preview-img" src="" alt="Project Preview Screenshot" class="w-full h-auto max-h-[460px] object-contain rounded-xl shadow-inner transition-transform duration-500 group-hover:scale-[1.01]" />
@@ -3164,11 +3164,15 @@ if (uniqueBatch.length > 0) {
                 },
                 apptrade: {
                     title: "Apptrade POS & Dual-Channel E-Commerce System",
-                    windowTitle: "Apptrade Retail POS • Terminal #02 (Active Cashier Register)",
+                    windowTitle: "localhost/Pos-system/pos.php • Active Cashier Terminal",
                     badge: '<i class="fa-solid fa-cart-shopping mr-1 text-emerald-300"></i> Commercial Retail System',
                     badgeClass: 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-300',
-                    image: 'preview-apptrade.jpg',
-                    imageAlt: 'Apptrade Retail POS Cashier Terminal & Inventory Dashboard',
+                    image: 'preview-apptrade-pos.png',
+                    imageAlt: 'Apptrade Retail POS Cashier Terminal',
+                    views: [
+                        { name: '🖥️ Retail POS Register', windowTitle: 'localhost/Pos-system/pos.php • Active Cashier Terminal', image: 'preview-apptrade-pos.png' },
+                        { name: '🛒 Online E-Commerce Store', windowTitle: 'sampleappweb.great-site.net • Dual-Channel Storefront', image: 'preview-apptrade-store.png' }
+                    ],
                     metrics: [
                         { label: 'Active Retail SKUs', value: '300+ Items', icon: 'fa-boxes-stacked', color: 'emerald' },
                         { label: 'Barcode Lookup', value: '<500ms', icon: 'fa-barcode', color: 'cyan' },
@@ -3188,6 +3192,26 @@ if (uniqueBatch.length > 0) {
                 }
             };
 
+            window.switchPreviewView = function(projectId, idx) {
+                const data = projectData[projectId];
+                if (!data || !data.views || !data.views[idx]) return;
+                const v = data.views[idx];
+                const imgEl = document.getElementById('preview-img');
+                const winTitleEl = document.getElementById('preview-window-title');
+                if (imgEl) imgEl.src = v.image;
+                if (winTitleEl) winTitleEl.textContent = v.windowTitle;
+
+                data.views.forEach((_, i) => {
+                    const tab = document.getElementById(`preview-tab-${i}`);
+                    if (!tab) return;
+                    if (i === idx) {
+                        tab.className = 'px-2.5 py-1 rounded-lg text-[10px] font-mono font-semibold transition-all cursor-pointer bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm shadow-emerald-500/20';
+                    } else {
+                        tab.className = 'px-2.5 py-1 rounded-lg text-[10px] font-mono font-semibold transition-all cursor-pointer bg-white/5 text-slate-400 hover:text-white border border-white/5';
+                    }
+                });
+            };
+
             window.openProjectPreview = function(projectId) {
                 const data = projectData[projectId];
                 if (!data) return;
@@ -3202,6 +3226,7 @@ if (uniqueBatch.length > 0) {
                 const techStackEl = document.getElementById('preview-tech-stack');
                 const actionsEl = document.getElementById('preview-footer-actions');
                 const scrollEl = document.getElementById('project-preview-scroll');
+                const viewsEl = document.getElementById('preview-views');
 
                 if (!modal) return;
 
@@ -3211,6 +3236,26 @@ if (uniqueBatch.length > 0) {
                 winTitleEl.textContent = data.windowTitle;
                 imgEl.src = data.image;
                 imgEl.alt = data.imageAlt;
+
+                if (viewsEl) {
+                    if (data.views && data.views.length > 1) {
+                        viewsEl.innerHTML = data.views.map((v, idx) => `
+                            <button type="button" onclick="switchPreviewView('${projectId}', ${idx})" id="preview-tab-${idx}" class="px-2.5 py-1 rounded-lg text-[10px] font-mono font-semibold transition-all cursor-pointer ${
+                                idx === 0 
+                                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm shadow-emerald-500/20' 
+                                : 'bg-white/5 text-slate-400 hover:text-white border border-white/5'
+                            }">
+                                ${v.name}
+                            </button>
+                        `).join('');
+                    } else {
+                        viewsEl.innerHTML = `
+                            <span class="text-[10px] text-cyan-400 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-bolt"></i> Instant Local Preview • 0s Load
+                            </span>
+                        `;
+                    }
+                }
 
                 metricsGrid.innerHTML = data.metrics.map(m => `
                     <div class="glass-panel p-3 rounded-xl border border-white/10 bg-slate-900/60 flex flex-col justify-between">
