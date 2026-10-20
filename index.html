@@ -316,6 +316,7 @@
             <nav class="hidden md:flex items-center gap-1 glass-panel px-6 py-2 rounded-full border border-white/10 shadow-lg">
                 <a href="#about" class="px-4 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all">About</a>
                 <a href="#projects" class="px-4 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all">Projects</a>
+                <a href="#incidents" class="px-4 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all">Incidents</a>
                 <a href="#skills" class="px-4 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all">Skills</a>
                 <a href="#experience" class="px-4 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all">Experience</a>
                 <a href="#contact" class="px-4 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all">Contact</a>
@@ -351,6 +352,9 @@
             </a>
             <a href="#projects" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
                 <i class="fa-solid fa-laptop-code text-cyan-400 text-xs w-4"></i> Projects
+            </a>
+            <a href="#incidents" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
+                <i class="fa-solid fa-shield-halved text-rose-400 text-xs w-4"></i> Incidents
             </a>
             <a href="#skills" class="text-sm py-2 text-slate-300 hover:text-white flex items-center gap-2.5">
                 <i class="fa-solid fa-microchip text-indigo-400 text-xs w-4"></i> Skills
@@ -723,6 +727,222 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- PRODUCTION INCIDENTS I FIXED (OPERATIONAL WAR STORIES)         -->
+    <!-- ============================================================= -->
+    <section id="incidents" class="relative z-10 py-20 bg-slate-950/70 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            
+            <!-- Section Header -->
+            <div class="reveal-header flex flex-col items-center text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 font-mono text-xs mb-3">
+                    <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+                    <span>Real-World Post-Mortems</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    Production Incidents <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-purple-400 to-cyan-400">I Fixed.</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-rose-500 via-purple-500 to-cyan-500 rounded-full mt-4"></div>
+                <p class="text-slate-400 text-sm sm:text-base max-w-3xl mt-4 leading-relaxed">
+                    Tutorials teach ideal syntax; live production operations teach battle-tested engineering judgment. Here are three critical live failures I diagnosed, root-caused, and permanently resolved.
+                </p>
+            </div>
+
+            <!-- Incidents Grid: 3 Real Production Cases -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- INCIDENT 1: Cloudflare 403 & HTTP 429 Concurrency Stalls -->
+                <div class="glass-panel rounded-3xl p-6 sm:p-7 border border-white/10 hover:border-rose-500/40 transition-all flex flex-col justify-between group shadow-xl hover:shadow-rose-950/30">
+                    <div>
+                        <!-- Header / Metadata -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300 font-mono text-[11px] font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-triangle-exclamation text-rose-400"></i> Cloudflare 403 & 429
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-400">n8n VPS Fleet</span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white group-hover:text-rose-300 transition-colors leading-snug">
+                            Anti-Bot Blocks & Burst Concurrency Freezes
+                        </h3>
+
+                        <!-- 3-Stage Post-Mortem Flow -->
+                        <div class="mt-5 space-y-3 text-xs sm:text-[13px] leading-relaxed">
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-rose-400 block">
+                                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Problem
+                                </span>
+                                <p class="text-slate-300">
+                                    Automated ingestion pipelines on 2-hour cron cycles began crashing with HTTP 403 forbidden responses and HTTP 429 Too Many Requests, stalling daily data synchronization across 25+ workflows.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-amber-400 block">
+                                    <i class="fa-solid fa-stethoscope mr-1"></i> Root Cause
+                                </span>
+                                <p class="text-slate-300">
+                                    Target server Cloudflare protection identified uniform HTTP headers and concurrent burst scraping patterns from the VPS IP, triggering behavioral fingerprint blocks and rate throttles.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-cyan-400 block">
+                                    <i class="fa-solid fa-screwdriver-wrench mr-1"></i> Engineering Fix
+                                </span>
+                                <p class="text-slate-300">
+                                    Engineered dynamic User-Agent header rotation, structured request jitter (randomized 800–2400ms delay), and an exponential backoff retry algorithm in JavaScript Code nodes with circuit breaker fallback.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verified Outcome Strip -->
+                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+                            <span class="text-xs font-semibold text-white">99.8% Fleet Uptime Restored</span>
+                        </div>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Zero Blocks</span>
+                    </div>
+                </div>
+
+                <!-- INCIDENT 2: Silent Ingestion Stalls & 1,300-Row Backfill -->
+                <div class="glass-panel rounded-3xl p-6 sm:p-7 border border-white/10 hover:border-purple-500/40 transition-all flex flex-col justify-between group shadow-xl hover:shadow-purple-950/30">
+                    <div>
+                        <!-- Header / Metadata -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-lg bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono text-[11px] font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-database text-purple-400"></i> Silent Schema Drift
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-400">Google Sheets API</span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition-colors leading-snug">
+                            Silent Ingestion Stalls & 1,300-Row Backfill
+                        </h3>
+
+                        <!-- 3-Stage Post-Mortem Flow -->
+                        <div class="mt-5 space-y-3 text-xs sm:text-[13px] leading-relaxed">
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-rose-400 block">
+                                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Problem
+                                </span>
+                                <p class="text-slate-300">
+                                    5 crucial upstream ingestion workflows silently stopped recording leads to operational spreadsheets, creating a multi-week data gap without throwing loud system-level crashes.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-amber-400 block">
+                                    <i class="fa-solid fa-stethoscope mr-1"></i> Root Cause
+                                </span>
+                                <p class="text-slate-300">
+                                    An unversioned upstream webhook API modified its output payload keys, causing downstream Google Sheets column mapping lookups to return <code class="text-purple-300">undefined</code> and fail silently inside catch blocks.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-cyan-400 block">
+                                    <i class="fa-solid fa-screwdriver-wrench mr-1"></i> Engineering Fix
+                                </span>
+                                <p class="text-slate-300">
+                                    Implemented strict JSON schema contract validation nodes with immediate Telegram alert webhooks, and authored an automated backfill script leveraging Google Sheets <code class="text-cyan-300">batchUpdate</code> API.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verified Outcome Strip -->
+                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+                            <span class="text-xs font-semibold text-white">1,300+ Records Recovered</span>
+                        </div>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">100% Integrity</span>
+                    </div>
+                </div>
+
+                <!-- INCIDENT 3: Inventory Race Conditions & Stock Drift (Apptrade) -->
+                <div class="glass-panel rounded-3xl p-6 sm:p-7 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group shadow-xl hover:shadow-cyan-950/30">
+                    <div>
+                        <!-- Header / Metadata -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-[11px] font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-bolt text-cyan-400"></i> Race Conditions
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-400">Apptrade Inc. POS</span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                            Dual-Channel SKU Race Conditions & Drift
+                        </h3>
+
+                        <!-- 3-Stage Post-Mortem Flow -->
+                        <div class="mt-5 space-y-3 text-xs sm:text-[13px] leading-relaxed">
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-rose-400 block">
+                                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Problem
+                                </span>
+                                <p class="text-slate-300">
+                                    During peak rush hours, concurrent checkouts across physical cashier registers and the online web storefront resulted in phantom inventory and overselling across 300+ active retail SKUs.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-amber-400 block">
+                                    <i class="fa-solid fa-stethoscope mr-1"></i> Root Cause
+                                </span>
+                                <p class="text-slate-300">
+                                    Registers and web carts were executing non-atomic MySQL read-modify-write queries without row-level database locks, causing classic dirty reads and lost update concurrency conflicts.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                                <span class="font-mono text-[11px] font-semibold uppercase text-cyan-400 block">
+                                    <i class="fa-solid fa-screwdriver-wrench mr-1"></i> Engineering Fix
+                                </span>
+                                <p class="text-slate-300">
+                                    Replaced standard queries with strict ACID InnoDB database transactions utilizing <code class="text-cyan-300">SELECT ... FOR UPDATE</code> row-level locks, coupled with sub-500ms laser barcode scanning in JavaScript.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verified Outcome Strip -->
+                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+                            <span class="text-xs font-semibold text-white">0 Stock Drift Across 300+ SKUs</span>
+                        </div>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">&lt;500ms Scan</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Operational Engineering Takeaway Banner -->
+            <div class="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-purple-950/40 via-[#0a0e27]/80 to-cyan-950/30 border border-purple-500/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center shrink-0 text-purple-300 text-xl shadow-lg shadow-purple-500/20">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base sm:text-lg font-bold text-white">Continuous Operational Reliability Standard</h4>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+                            Every pipeline and database transaction is designed defensively: idempotent writes, atomic database commits, circuit breakers on rate limits, and real-time alert webhooks.
+                        </p>
+                    </div>
+                </div>
+                <button type="button" onclick="if(window.openAdrAIChat) window.openAdrAIChat();" class="px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-semibold text-xs sm:text-sm shrink-0 flex items-center gap-2 shadow-lg shadow-purple-600/30 transition-all hover:scale-105 active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Ask adr-AI About Incident Fixes</span>
+                </button>
+            </div>
+
         </div>
     </section>
 
@@ -2183,6 +2403,10 @@
                 }
             }
 
+            // Expose globally so buttons across the site can launch adr-AI
+            window.openAdrAIChat = openChat;
+            window.closeAdrAIChat = closeChat;
+
             launcher.addEventListener('click', openChat);
             if (closeBtn) closeBtn.addEventListener('click', closeChat);
 
@@ -2349,6 +2573,10 @@
                 }
 
                 // 2. High-Priority Technical: 25+ n8n Workflows, Anti-Scraping, Deduplication, ETL
+                if (q.includes('incident') || q.includes('post-mortem') || q.includes('postmortem') || q.includes('outage') || q.includes('war stor') || q.includes('failure')) {
+                    return `🛡️ **3 Critical Production Incidents Adrian Diagnosed & Resolved:**\n\n1. **Cloudflare 403 & HTTP 429 Concurrency Stalls (n8n VPS Fleet):**\n• *Problem:* Automated scrapers stalled from anti-bot challenge pages and burst request limits.\n• *Fix:* Implemented dynamic User-Agent rotation, adaptive request jitter (800–2400ms), and exponential backoff retries with circuit breaker fallback (99.8% uptime restored).\n\n2. **Silent Schema Drift & 1,300-Row Backfill (Google Sheets API):**\n• *Problem:* 5 ingestion pipelines silently failed on downstream writes due to unversioned upstream key changes.\n• *Fix:* Deployed strict JSON schema validation gates with instant Telegram alerts, and automated backfilling of 1,300+ missing rows via Google Sheets \`batchUpdate\` API.\n\n3. **Dual-Channel SKU Race Conditions & Drift (Apptrade Inc.):**\n• *Problem:* Peak checkout volume caused phantom inventory and overselling across 300+ retail SKUs.\n• *Fix:* Replaced non-atomic queries with ACID InnoDB transactions using \`SELECT ... FOR UPDATE\` row-level locking, coupled with sub-500ms barcode scanning.\n\n👉 *You can inspect the full breakdown in the **#incidents** section of this portfolio!*`;
+                }
+
                 if (q.includes('n8n') || q.includes('workflow') || q.includes('pipeline') || q.includes('automat') || q.includes('anti-scraping') || q.includes('scraping') || q.includes('dedup') || q.includes('cloudflare')) {
                     return `⚡ **Adrian's 25+ Production n8n Workflows & Operational Engineering:**\n\nAdrian architects and manages an enterprise fleet of **25+ production automated pipelines** deployed on self-hosted Linux VPS (Hostinger), processing **10,000+ data rows weekly** with **99.8% uptime** on 2-hour cron cycles.\n\n**How He Solves Production-Grade Challenges:**\n• **Anti-Scraping & Incident Mitigation:** Bypassed aggressive Cloudflare 403 blocks and HTTP 429 rate limits by configuring rotating User-Agents, adaptive request throttling, and custom exponential backoff retry logic.\n• **O(1) In-Memory Deduplication:** Authored custom JavaScript Code nodes in n8n utilizing ES6 \`Set()\` data structures for O(1) lookups against composite key hashes, guaranteeing zero duplicate entries written across consecutive batch runs.\n• **Data Pipeline Ingestion & Resiliency:** Audited and restored 5 stale ingestion pipelines, backfilling 1,300+ missing rows into Google Sheets via the \`batchUpdate\` API.\n• **Autonomous AI & Output Contracts:** Connected xAI Grok and Google GenAI nodes with strict JSON schema validation, persistent memory buffers, Ghost CMS, and Kit (ConvertKit) CRM subscriber tagging.\n\n💡 *Tip: Click **"Nodes"** at the top right of this chat to inspect the 4-stage pipeline architecture!*`;
                 }
