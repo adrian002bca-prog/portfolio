@@ -160,7 +160,10 @@
         #n8n-chat-messages,
         #project-preview-modal,
         #project-preview-window,
-        #project-preview-scroll {
+        #project-preview-scroll,
+        #cmd-palette-overlay,
+        #cmd-palette-window,
+        #cmd-list-container {
             overscroll-behavior: contain;
         }
 
@@ -325,8 +328,13 @@
                 <a href="#contact" class="px-4 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all">Contact</a>
             </nav>
 
-            <!-- Resume & Socials -->
+            <!-- Resume & Socials & Command Palette -->
             <div class="hidden sm:flex items-center gap-3">
+                <button onclick="openCommandPalette()" type="button" title="Spotlight Search (Ctrl + K)" class="px-3 py-2 rounded-xl glass-panel text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 text-xs font-mono flex items-center gap-2 transition-all cursor-pointer group">
+                    <i class="fa-solid fa-magnifying-glass text-[11px] text-purple-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="hidden lg:inline text-slate-300 font-sans font-medium">Quick Jump</span>
+                    <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-purple-300 font-mono border border-white/10">⌘K</kbd>
+                </button>
                 <a href="https://github.com/adrian002bca-prog" target="_blank" rel="noopener" aria-label="GitHub Profile" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:border-purple-500/50 transition-all">
                     <i class="fa-brands fa-github text-lg"></i>
                 </a>
@@ -342,10 +350,15 @@
                 </a>
             </div>
 
-            <!-- Mobile Hamburger -->
-            <button id="mobile-menu-btn" aria-label="Toggle menu" class="sm:hidden w-10 h-10 rounded-xl glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-purple-500/50 transition-all focus:outline-none">
-                <i class="fa-solid fa-bars text-base"></i>
-            </button>
+            <!-- Mobile Controls -->
+            <div class="sm:hidden flex items-center gap-2">
+                <button onclick="openCommandPalette()" type="button" aria-label="Quick Jump" class="w-10 h-10 rounded-xl glass-panel border border-white/10 flex items-center justify-center text-purple-400 hover:text-white hover:border-purple-500/50 transition-all cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </button>
+                <button id="mobile-menu-btn" aria-label="Toggle menu" class="w-10 h-10 rounded-xl glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-purple-500/50 transition-all focus:outline-none cursor-pointer">
+                    <i class="fa-solid fa-bars text-base"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile Menu Dropdown -->
@@ -1589,6 +1602,41 @@
                 <div id="preview-footer-actions" class="flex flex-wrap items-center gap-2.5">
                     <!-- Populated dynamically -->
                 </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- COMMAND PALETTE (CTRL+K / CMD+K SPOTLIGHT NAVIGATOR)          -->
+    <!-- ============================================================= -->
+    <div id="cmd-palette-overlay" data-lenis-prevent="true" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-start justify-center pt-[10vh] sm:pt-[14vh] p-3 sm:p-6 transition-all duration-200">
+        
+        <!-- Palette Dialog Window -->
+        <div id="cmd-palette-window" data-lenis-prevent="true" class="relative w-full max-w-xl rounded-2xl sm:rounded-3xl border border-purple-500/30 bg-[#080718]/98 backdrop-blur-2xl shadow-[0_0_60px_rgba(145,94,255,0.3)] flex flex-col overflow-hidden font-sans">
+            
+            <!-- Search Input Header -->
+            <div class="px-4 sm:px-5 py-3.5 bg-white/[0.03] border-b border-white/10 flex items-center gap-3 shrink-0">
+                <i class="fa-solid fa-magnifying-glass text-purple-400 text-sm"></i>
+                <input id="cmd-search-input" type="text" placeholder="Type a command or jump to... (e.g. QRYPT, n8n, resume, contact)" autocomplete="off" spellcheck="false" class="flex-1 bg-transparent text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none" />
+                <kbd class="hidden sm:inline px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-slate-400 border border-white/10">ESC</kbd>
+                <button onclick="closeCommandPalette()" type="button" aria-label="Close" class="sm:hidden w-7 h-7 rounded-lg bg-white/5 text-slate-400 hover:text-white flex items-center justify-center text-xs cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Command List -->
+            <div id="cmd-list-container" data-lenis-prevent="true" class="overflow-y-auto max-h-[380px] p-2 sm:p-3 space-y-1 custom-scrollbar overscroll-contain">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- Keyboard Footer Hints -->
+            <div class="px-4 py-2.5 bg-slate-950/90 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500 shrink-0">
+                <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-slate-400">↑</kbd><kbd class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-slate-400">↓</kbd> navigate</span>
+                    <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-slate-400">↵</kbd> select</span>
+                </div>
+                <span class="text-purple-400/80 font-semibold">Spotlight Navigator</span>
             </div>
 
         </div>
@@ -3577,6 +3625,353 @@ if (uniqueBatch.length > 0) {
                 });
             }
         })();
+
+        // -------------------------------------------------------------
+        // COMMAND PALETTE (CTRL+K / CMD+K SPOTLIGHT SEARCH CONTROLLER)
+        // -------------------------------------------------------------
+        (function() {
+            const overlay = document.getElementById('cmd-palette-overlay');
+            const searchInput = document.getElementById('cmd-search-input');
+            const listContainer = document.getElementById('cmd-list-container');
+
+            if (!overlay || !searchInput || !listContainer) return;
+
+            const commands = [
+                // Quick Actions
+                {
+                    id: 'ai-chat',
+                    title: 'Ask adr-AI Autonomous Assistant',
+                    desc: "Prompt Adrian's neural core on n8n workflows, full-stack apps, or background",
+                    category: 'AI Core',
+                    icon: 'fa-robot',
+                    color: 'purple',
+                    badge: 'Interactive',
+                    action: () => { window.closeCommandPalette(); setTimeout(() => window.openAdrAIChat(), 120); }
+                },
+                {
+                    id: 'download-resume',
+                    title: 'Download 1-Page Resume (PDF)',
+                    desc: 'Direct ATS-optimized resume download (verified production metrics)',
+                    category: 'Direct Download',
+                    icon: 'fa-file-pdf',
+                    color: 'rose',
+                    badge: 'PDF',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        const a = document.createElement('a'); 
+                        a.href = 'resume.pdf'; 
+                        a.download = 'Adrian_San_Diego_Resume.pdf'; 
+                        a.click(); 
+                    }
+                },
+                {
+                    id: 'copy-email',
+                    title: 'Copy Email to Clipboard',
+                    desc: 'adrian002bca@gmail.com with instant toast confirmation',
+                    category: 'Contact',
+                    icon: 'fa-envelope',
+                    color: 'cyan',
+                    badge: 'Instant Copy',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        window.copyEmailToClipboard(document.getElementById('hero-copy-email-btn')); 
+                    }
+                },
+                {
+                    id: 'whatsapp',
+                    title: 'Message via WhatsApp',
+                    desc: 'Direct line (+63 935 272 6487) for urgent hiring & interview invites',
+                    category: 'Contact',
+                    icon: 'fa-whatsapp',
+                    color: 'emerald',
+                    badge: 'Direct API',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        window.open('https://api.whatsapp.com/send?phone=639352726487', '_blank', 'noopener'); 
+                    }
+                },
+
+                // Featured Projects
+                {
+                    id: 'proj-qrypt',
+                    title: 'QRYPT: QR Code Attendance System',
+                    desc: 'Best Capstone Project Award • WebRTC scanner & MySQL ACID state machine',
+                    category: 'Projects',
+                    icon: 'fa-trophy',
+                    color: 'amber',
+                    badge: 'Quick Preview',
+                    action: () => { window.closeCommandPalette(); setTimeout(() => window.openProjectPreview('qrypt'), 120); }
+                },
+                {
+                    id: 'proj-obi',
+                    title: 'OBI Interactive Room Visualizer',
+                    desc: 'Live client production on obiasia.com • HTML5 Canvas spatial transformation matrix',
+                    category: 'Projects',
+                    icon: 'fa-building',
+                    color: 'cyan',
+                    badge: 'Quick Preview',
+                    action: () => { window.closeCommandPalette(); setTimeout(() => window.openProjectPreview('obi'), 120); }
+                },
+                {
+                    id: 'proj-apptrade',
+                    title: 'Apptrade POS & E-Commerce Web System',
+                    desc: 'Commercial retail point-of-sale with 300+ SKUs & InnoDB row concurrency locks',
+                    category: 'Projects',
+                    icon: 'fa-cart-shopping',
+                    color: 'emerald',
+                    badge: 'Quick Preview',
+                    action: () => { window.closeCommandPalette(); setTimeout(() => window.openProjectPreview('apptrade'), 120); }
+                },
+                {
+                    id: 'proj-n8n',
+                    title: 'Production n8n Fleet & Batch Simulator',
+                    desc: '25+ self-hosted pipelines on Linux VPS, 10,000+ rows/week, 99.8% uptime',
+                    category: 'Automation Fleet',
+                    icon: 'fa-diagram-project',
+                    color: 'purple',
+                    badge: 'Node Canvas',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        const el = document.getElementById('pipeline-nodes-container');
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                    }
+                },
+
+                // Real-World Production Incidents
+                {
+                    id: 'incidents',
+                    title: 'Production Incidents I Diagnosed & Fixed',
+                    desc: 'Sanitized post-mortems: Cloudflare 403 bypass, Google Sheets schema drift, SKU locks',
+                    category: 'Case Studies',
+                    icon: 'fa-shield-halved',
+                    color: 'rose',
+                    badge: '3 Post-Mortems',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        const el = document.getElementById('incidents');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                },
+
+                // Sections Navigation
+                {
+                    id: 'nav-skills',
+                    title: 'Technical Stack & Verified Capabilities',
+                    desc: 'Automation (n8n), Backend (PHP/MySQL), Frontend (JS/Canvas/Tailwind)',
+                    category: 'Navigation',
+                    icon: 'fa-layer-group',
+                    color: 'cyan',
+                    badge: 'Jump',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                },
+                {
+                    id: 'nav-experience',
+                    title: 'Career Experience & Timeline',
+                    desc: 'Apptrade Inc., Optimum Brands Inc., BSIS May 2026, TESDA NC II',
+                    category: 'Navigation',
+                    icon: 'fa-briefcase',
+                    color: 'purple',
+                    badge: 'Jump',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                },
+                {
+                    id: 'nav-contact',
+                    title: 'Get In Touch / Booking Section',
+                    desc: 'Full-time & contract software engineering opportunities',
+                    category: 'Navigation',
+                    icon: 'fa-paper-plane',
+                    color: 'emerald',
+                    badge: 'Jump',
+                    action: () => { 
+                        window.closeCommandPalette(); 
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                },
+
+                // External Profiles
+                {
+                    id: 'ext-github',
+                    title: 'GitHub Repositories (@adrian002bca-prog)',
+                    desc: 'Open-source codebases, capstone systems, and implementation history',
+                    category: 'External',
+                    icon: 'fa-github',
+                    color: 'purple',
+                    badge: 'github.com',
+                    action: () => { window.closeCommandPalette(); window.open('https://github.com/adrian002bca-prog', '_blank', 'noopener'); }
+                },
+                {
+                    id: 'ext-linkedin',
+                    title: 'LinkedIn Profile (@adrian-justin-san-diego)',
+                    desc: 'Professional network, certifications, and recommendations',
+                    category: 'External',
+                    icon: 'fa-linkedin',
+                    color: 'cyan',
+                    badge: 'linkedin.com',
+                    action: () => { window.closeCommandPalette(); window.open('https://linkedin.com/in/adrian-justin-san-diego', '_blank', 'noopener'); }
+                }
+            ];
+
+            let filteredCommands = [...commands];
+            let activeIndex = 0;
+
+            function renderCommands() {
+                if (filteredCommands.length === 0) {
+                    listContainer.innerHTML = `
+                        <div class="py-8 text-center text-slate-500 font-mono text-xs">
+                            <i class="fa-solid fa-magnifying-glass text-slate-600 text-lg mb-2 block"></i>
+                            No commands found matching "${escapeHtml(searchInput.value)}"
+                        </div>
+                    `;
+                    return;
+                }
+
+                listContainer.innerHTML = filteredCommands.map((c, idx) => `
+                    <div data-cmd-index="${idx}" class="cmd-item p-2.5 sm:p-3 rounded-xl flex items-center justify-between gap-3 cursor-pointer transition-all ${
+                        idx === activeIndex 
+                        ? 'bg-purple-600/20 border border-purple-500/40 text-white shadow-md shadow-purple-600/10' 
+                        : 'hover:bg-white/5 border border-transparent text-slate-300'
+                    }">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-8 h-8 rounded-lg bg-${c.color}-500/15 border border-${c.color}-500/30 flex items-center justify-center text-${c.color}-400 shrink-0">
+                                <i class="fa-brands ${c.icon.startsWith('fa-') && (c.icon.includes('github') || c.icon.includes('linkedin') || c.icon.includes('whatsapp')) ? c.icon : ''} ${!c.icon.includes('github') && !c.icon.includes('linkedin') && !c.icon.includes('whatsapp') ? 'fa-solid ' + c.icon : ''} text-xs"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <div class="text-xs sm:text-sm font-semibold truncate text-white">${c.title}</div>
+                                <div class="text-[11px] text-slate-400 font-normal truncate">${c.desc}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400">
+                                ${c.badge}
+                            </span>
+                            <i class="fa-solid fa-arrow-turn-down text-[10px] text-purple-400 ${idx === activeIndex ? 'opacity-100' : 'opacity-0'} transition-opacity"></i>
+                        </div>
+                    </div>
+                `).join('');
+
+                listContainer.querySelectorAll('.cmd-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const idx = parseInt(item.getAttribute('data-cmd-index'), 10);
+                        if (!isNaN(idx) && filteredCommands[idx]) {
+                            filteredCommands[idx].action();
+                        }
+                    });
+                });
+
+                const activeEl = listContainer.querySelector(`[data-cmd-index="${activeIndex}"]`);
+                if (activeEl) {
+                    activeEl.scrollIntoView({ block: 'nearest' });
+                }
+            }
+
+            function filterCommands() {
+                const query = searchInput.value.toLowerCase().trim();
+                if (!query) {
+                    filteredCommands = [...commands];
+                } else {
+                    filteredCommands = commands.filter(c => 
+                        c.title.toLowerCase().includes(query) ||
+                        c.desc.toLowerCase().includes(query) ||
+                        c.category.toLowerCase().includes(query)
+                    );
+                }
+                activeIndex = 0;
+                renderCommands();
+            }
+
+            function escapeHtml(str) {
+                return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            window.openCommandPalette = function() {
+                overlay.classList.remove('hidden');
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+                if (window.lenis) {
+                    try { window.lenis.stop(); } catch (_) {}
+                }
+                searchInput.value = '';
+                filteredCommands = [...commands];
+                activeIndex = 0;
+                renderCommands();
+                setTimeout(() => searchInput.focus(), 60);
+            };
+
+            window.closeCommandPalette = function() {
+                overlay.classList.add('hidden');
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
+                if (window.lenis) {
+                    try { window.lenis.start(); } catch (_) {}
+                }
+            };
+
+            searchInput.addEventListener('input', filterCommands);
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (filteredCommands.length > 0) {
+                        activeIndex = (activeIndex + 1) % filteredCommands.length;
+                        renderCommands();
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (filteredCommands.length > 0) {
+                        activeIndex = (activeIndex - 1 + filteredCommands.length) % filteredCommands.length;
+                        renderCommands();
+                    }
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (filteredCommands[activeIndex]) {
+                        filteredCommands[activeIndex].action();
+                    }
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    if (!overlay.classList.contains('hidden')) {
+                        window.closeCommandPalette();
+                    } else {
+                        window.openCommandPalette();
+                    }
+                } else if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+                    window.closeCommandPalette();
+                }
+            });
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) window.closeCommandPalette();
+            });
+
+            listContainer.addEventListener('wheel', (e) => {
+                listContainer.scrollTop += e.deltaY;
+                e.preventDefault();
+                e.stopPropagation();
+            }, { passive: false });
+
+            overlay.addEventListener('wheel', (e) => {
+                if (!e.target.closest('#cmd-list-container')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, { passive: false });
+
+            overlay.addEventListener('touchmove', (e) => {
+                if (!e.target.closest('#cmd-list-container')) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        })();
+
     </script>
 </body>
 </html>
