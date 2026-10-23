@@ -1558,9 +1558,9 @@
                         </div>
                         
                         <!-- Fixed WhatsApp Link using direct API (prevents wa.me SSL certificate errors) -->
-                        <a href="https://api.whatsapp.com/send?phone=639352726487" target="_blank" rel="noopener noreferrer" id="whatsapp-btn" class="w-full sm:w-auto px-5 sm:px-6 py-3.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs sm:text-sm hover:text-white hover:border-emerald-500/50 hover:scale-[1.03] transition-all flex items-center justify-center gap-2">
+                        <a href="https://api.whatsapp.com/send?phone=639187436765" target="_blank" rel="noopener noreferrer" id="whatsapp-btn" class="w-full sm:w-auto px-5 sm:px-6 py-3.5 rounded-xl glass-panel text-slate-200 font-semibold text-xs sm:text-sm hover:text-white hover:border-emerald-500/50 hover:scale-[1.03] transition-all flex items-center justify-center gap-2">
                             <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
-                            <span id="whatsapp-btn-text">WhatsApp: +63 935 272 6487</span>
+                            <span id="whatsapp-btn-text">WhatsApp: +63 918 743 6765</span>
                         </a>
                     </div>
 
@@ -2293,7 +2293,7 @@
         const waBtnText = document.getElementById('whatsapp-btn-text');
         if (waBtn && waBtnText) {
             waBtn.addEventListener('click', () => {
-                navigator.clipboard.writeText('+639352726487');
+                navigator.clipboard.writeText('+639187436765');
                 const orig = waBtnText.textContent;
                 waBtnText.textContent = 'Number Copied & Opening WhatsApp... 💬';
                 setTimeout(() => {
@@ -3398,14 +3398,14 @@ if (uniqueBatch.length > 0) {
                 {
                     id: 'whatsapp',
                     title: 'Message via WhatsApp',
-                    desc: 'Direct line (+63 935 272 6487) for urgent hiring & interview invites',
+                    desc: 'Direct line (+63 918 743 6765) for urgent hiring & interview invites',
                     category: 'Contact',
                     icon: 'fa-whatsapp',
                     color: 'emerald',
                     badge: 'Direct API',
                     action: () => { 
                         window.closeCommandPalette(); 
-                        window.open('https://api.whatsapp.com/send?phone=639352726487', '_blank', 'noopener'); 
+                        window.open('https://api.whatsapp.com/send?phone=639187436765', '_blank', 'noopener'); 
                     }
                 },
 
